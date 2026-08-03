@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Shravan Puja & Rudrabhishek Booking in [CITY_NAME] | [PANDIT_NAME]</title>
+  <meta name="description" content="Book Shravan Somvar Vrat puja, Rudrabhishek, Parthiv Shivling puja and Mangala Gauri Vrat with [PANDIT_NAME], Vedic priest in [CITY_NAME]. Authentic rituals for Lord Shiva this sacred Sawan month.">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;} body{background:#fffbeb;}
+    @media(max-width:900px){
+      .ritual-grid{grid-template-columns:repeat(2,1fr)!important;}
+      .somvar-grid{grid-template-columns:repeat(2,1fr)!important;}
+    }
+    @media(max-width:768px){
+      .sh-header{padding:48px 24px 0!important;}
+      .sh-header-grid{grid-template-columns:1fr!important;gap:32px!important;}
+      .sh-h1{font-size:38px!important;letter-spacing:-.01em!important;}
+      .section-h2{font-size:28px!important;}
+      .container{padding-left:24px!important;padding-right:24px!important;}
+      .story-grid{grid-template-columns:1fr!important;gap:28px!important;}
+      .somvar-grid{grid-template-columns:1fr!important;}
+      .ritual-grid{grid-template-columns:1fr!important;}
+      .cta-box{padding:44px 28px!important;}
+      .sh-hero-img{aspect-ratio:16/10!important;}
+    }
+    @media(max-width:480px){
+      .container{padding-left:16px!important;padding-right:16px!important;}
+      .sh-h1{font-size:28px!important;}
+      .section-h2{font-size:22px!important;}
+      .cta-box{padding:36px 20px!important;}
+      .sh-header{padding:36px 16px 0!important;}
+    }
+    .ritual-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .ritual-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 20px -8px rgba(153, 27, 27, 0.15);
+      border-color: #b45309 !important;
+    }
+    .ritual-card .img-container img {
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .ritual-card:hover .img-container img {
+      transform: scale(1.08);
+    }
+  </style>
+</helmet>
+
+<div style="font-family:'Inter',sans-serif;background:#fffbeb;color:#1c1917;">
+  <dc-import name="Nav" active="shravan" hint-size="100%,82px"></dc-import>
+
+  <!-- ============ HEADER ============ -->
+  <section class="sh-header container" style="max-width:1200px;margin:0 auto;padding:64px 40px 0;">
+    <div class="sh-header-grid" style="display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:#fff7e6;border:1px solid #f5d997;color:#b45309;padding:7px 14px;border-radius:999px;font-size:12.5px;font-weight:600;letter-spacing:0.03em;">● Now booking · Shravan 2026</div>
+        <h1 class="sh-h1" style="font-family:'Playfair Display',serif;font-size:50px;line-height:1.08;font-weight:700;margin-top:20px;letter-spacing:-0.01em;">The holy month of Lord Shiva.</h1>
+        <p style="font-size:17px;line-height:1.65;color:#57534e;margin-top:18px;max-width:480px;">Shravan is the most sacred month in the Vedic calendar — dedicated entirely to Mahadev. Pandit Ji performs Somvar Vrat puja, Rudrabhishek and Parthiv Shivling rituals at your home, with full scriptural accuracy.</p>
+        <div style="display:flex;align-items:center;gap:14px;margin-top:30px;">
+          <a href="/contact" style="background:#991b1b;color:#fff;text-decoration:none;padding:15px 28px;border-radius:999px;font-weight:600;font-size:15px;">Book a Shravan Puja</a>
+        </div>
+      </div>
+      <!-- IMAGE 1: Hero image — Shivling abhishek / jalabhishek being performed, OR Pandit ji performing a Shiva puja. Close-up, devotional, warm lighting. This is the most important image on the page. -->
+      <div class="sh-hero-img" style="position:relative;aspect-ratio:4/5;border-radius:16px;border:1px solid #e7dcc2;overflow:hidden;background:#f3ecdb;">
+        <img src="./assets/shravan-hero.jpg" alt="Shivling abhishek ritual during Shravan" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(43,17,16,0) 55%,rgba(43,17,16,.4) 100%);"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STORY / SIGNIFICANCE ============ -->
+  <section class="container story-grid" style="max-width:1200px;margin:0 auto;padding:80px 40px;display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center;">
+    <!-- IMAGE 2: Samudra Manthan / Neelkanth themed — could be a small temple idol of Shiva with blue throat, or an artistic depiction. If no such image available, use another Pandit Ji ritual photo instead. -->
+    <div style="position:relative;aspect-ratio:1/1;border-radius:16px;border:1px solid #e7dcc2;overflow:hidden;background:#f3ecdb;">
+      <img src="./assets/neelkanth.jpg" alt="Lord Shiva Neelkanth significance of Shravan" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div>
+      <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#b45309;font-weight:600;">Why Shravan matters</div>
+      <h2 class="section-h2" style="font-family:'Playfair Display',serif;font-size:38px;font-weight:700;margin-top:10px;line-height:1.15;">The month Lord Shiva saved the universe.</h2>
+      <p style="font-size:16.5px;line-height:1.75;color:#57534e;margin-top:18px;">During the Samudra Manthan — the great churning of the cosmic ocean — a deadly poison, Halahal, emerged with the power to destroy all of creation. To protect the universe, Lord Shiva consumed the poison and held it in his throat, which turned blue. This is why he is known as Neelkanth.</p>
+      <p style="font-size:16.5px;line-height:1.75;color:#57534e;margin-top:14px;">Every Monday of Shravan — Shravan Somvar — devotees offer water and milk to the Shivling to cool and honour this sacrifice. It is considered the most powerful time of the year to seek Mahadev's grace, release doshas, and begin spiritual practice with sincerity.</p>
+      <div style="display:flex;gap:28px;margin-top:24px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:10px;"><span style="color:#991b1b;font-size:16px;">✦</span><span style="font-size:14.5px;color:#44403c;">Performed with correct Vedic procedure</span></div>
+        <div style="display:flex;align-items:center;gap:10px;"><span style="color:#991b1b;font-size:16px;">✦</span><span style="font-size:14.5px;color:#44403c;">Right samagri arranged for you</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SHRAVAN SOMVAR DATES STRIP ============ -->
+  <section style="background:#fff;border-top:1px solid #f0e6cf;border-bottom:1px solid #f0e6cf;">
+    <div class="container" style="max-width:1200px;margin:0 auto;padding:48px 40px;">
+      <div style="text-align:center;max-width:600px;margin:0 auto 32px;">
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#b45309;font-weight:600;">Sacred Mondays</div>
+        <h2 class="section-h2" style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;margin-top:8px;">Shravan Somvar 2026</h2>
+        <p style="font-size:14.5px;color:#78716c;margin-top:10px;line-height:1.6;">Dates as per Maharashtra (Amavasyant) calendar — confirm with Pandit Ji for your exact muhurat.</p>
+      </div>
+      <div class="somvar-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+        <div style="border:1px solid #f0e6cf;border-radius:14px;padding:22px;text-align:center;"><div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#b45309;font-weight:600;">1st Somvar</div><div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;margin-top:6px;">Aug 17</div></div>
+        <div style="border:1px solid #f0e6cf;border-radius:14px;padding:22px;text-align:center;"><div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#b45309;font-weight:600;">2nd Somvar</div><div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;margin-top:6px;">Aug 24</div></div>
+        <div style="border:1px solid #f0e6cf;border-radius:14px;padding:22px;text-align:center;"><div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#b45309;font-weight:600;">3rd Somvar</div><div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;margin-top:6px;">Aug 31</div></div>
+        <div style="border:1px solid #f0e6cf;border-radius:14px;padding:22px;text-align:center;"><div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#b45309;font-weight:600;">4th Somvar</div><div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;margin-top:6px;">Sep 7</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RITUAL CARDS ============ -->
+  <section class="container" style="max-width:1200px;margin:0 auto;padding:84px 40px 72px;">
+    <div style="text-align:center;max-width:640px;margin:0 auto 40px;">
+      <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#b45309;font-weight:600;">Shravan Rituals</div>
+      <h2 class="section-h2" style="font-family:'Playfair Display',serif;font-size:38px;font-weight:700;margin-top:8px;">Pujas performed this Shravan</h2>
+    </div>
+
+    <div class="ritual-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+      <div class="ritual-card" style="border:1px solid #f0e6cf;border-radius:16px;overflow:hidden;background:#fff;display:flex;flex-direction:column;">
+        <!-- IMAGE 3: Devotee/Pandit Ji pouring water (jalabhishek) on a Shivling -->
+        <div class="img-container" style="aspect-ratio:3/2;overflow:hidden;background:#f3ecdb;"><img src="./assets/sawan-somvar.jpg" alt="Shravan Somvar Vrat puja" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:22px;display:flex;flex-direction:column;gap:10px;flex:1;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:21px;font-weight:600;">Shravan Somvar Vrat Puja</h3>
+          <p style="font-size:14px;line-height:1.6;color:#78716c;">Weekly Monday fasting and Vedic worship dedicated to Lord Shiva — performed across all four sacred Mondays of the month.</p>
+        </div>
+      </div>
+      <div class="ritual-card" style="border:1px solid #f0e6cf;border-radius:16px;overflow:hidden;background:#fff;display:flex;flex-direction:column;">
+        <!-- IMAGE 4: Panchamrit abhishek being poured on Shivling — milk, curd, honey, ghee mixture -->
+        <div class="img-container" style="aspect-ratio:3/2;overflow:hidden;background:#f3ecdb;"><img src="./assets/rudrabhishek.jpg" alt="Rudrabhishek puja ritual" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:22px;display:flex;flex-direction:column;gap:10px;flex:1;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:21px;font-weight:600;">Rudrabhishek Puja</h3>
+          <p style="font-size:14px;line-height:1.6;color:#78716c;">Ritualistic bathing of the Shivling with Gangajal, milk, ghee and Panchamrit — cleansing misgivings and promoting spiritual growth.</p>
+        </div>
+      </div>
+      <div class="ritual-card" style="border:1px solid #f0e6cf;border-radius:16px;overflow:hidden;background:#fff;display:flex;flex-direction:column;">
+        <!-- IMAGE 5: A hand-formed earthen/clay Shivling (Parthiv Shivling) being worshipped -->
+        <div class="img-container" style="aspect-ratio:3/2;overflow:hidden;background:#f3ecdb;"><img src="./assets/parthiv-shivling.jpg" alt="Parthiv Shivling puja with earthen lingam" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:22px;display:flex;flex-direction:column;gap:10px;flex:1;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:21px;font-weight:600;">Parthiv Shivling Puja</h3>
+          <p style="font-size:14px;line-height:1.6;color:#78716c;">Worship of a sacred earthen Shivling — Dugdh Abhishek for prosperity, and Madhu Abhishek across three Mondays for relief from chronic ailments.</p>
+          <div style="display:inline-flex;align-items:center;gap:7px;margin-top:4px;background:#fff7e6;border:1px solid #f5d997;color:#92400e;padding:6px 12px;border-radius:8px;font-size:12.5px;font-weight:500;line-height:1.4;width:fit-content;">
+            <span style="color:#d97706;">✦</span> Pandit Ji's special recommendation
+          </div>
+        </div>
+      </div>
+      <div class="ritual-card" style="border:1px solid #f0e6cf;border-radius:16px;overflow:hidden;background:#fff;display:flex;flex-direction:column;">
+        <!-- IMAGE 6: Married woman performing Mangala Gauri puja, or Gauri idol/image with puja thali -->
+        <div class="img-container" style="aspect-ratio:3/2;overflow:hidden;background:#f3ecdb;"><img src="./assets/mangala-gauri.jpg" alt="Mangala Gauri Vrat puja" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:22px;display:flex;flex-direction:column;gap:10px;flex:1;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:21px;font-weight:600;">Mangala Gauri Vrat</h3>
+          <p style="font-size:14px;line-height:1.6;color:#78716c;">Observed by married women on Shravan Tuesdays for the wellbeing, harmony and longevity of their family.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="border:1px dashed #e7dcc2;border-radius:16px;padding:24px 28px;background:#fff7e6;margin-top:20px;text-align:center;">
+      <p style="font-size:14px;line-height:1.6;color:#92400e;"><b>Dakshina / Pricing is discussed offline</b> based on your specific ritual requirements.</p>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="container" style="max-width:1200px;margin:0 auto;padding:0 40px 90px;">
+    <div class="cta-box" style="background:#fff7e6;border:1px solid #f5d997;border-radius:24px;padding:64px 48px;text-align:center;position:relative;overflow:hidden;">
+      <svg width="200" height="200" viewBox="0 0 200 200" style="position:absolute;bottom:-60px;left:-40px;opacity:.5;"><g fill="none" stroke="#d97706" stroke-width="1"><circle cx="100" cy="100" r="40"/><circle cx="100" cy="100" r="64" stroke-dasharray="2 6"/><circle cx="100" cy="100" r="88"/></g></svg>
+      <h2 class="section-h2" style="font-family:'Playfair Display',serif;font-size:44px;font-weight:700;position:relative;line-height:1.1;">Begin your Shravan with devotion.</h2>
+      <p style="font-size:17px;color:#92400e;margin-top:14px;position:relative;">Tell Pandit Ji which Somvar you'd like to book — he'll handle the rest.</p>
+      <a href="/contact" style="display:inline-block;margin-top:28px;background:#991b1b;color:#fff;text-decoration:none;padding:16px 34px;border-radius:999px;font-weight:600;font-size:16px;position:relative;">Book a Shravan Puja</a>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+</body>
+</html>

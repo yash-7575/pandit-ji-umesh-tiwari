@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Contact [PANDIT_NAME] | Book a Puja in [CITY_NAME]</title>
+  <meta name="description" content="Call or WhatsApp [PANDIT_NAME] to book a puja, katha, yagya, homam, griha pravesh or sanskar ceremony anywhere in [CITY_NAME].">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;} body{background:#fffbeb;} input,select,textarea{font-family:'Inter',sans-serif;}
+    @media(max-width:768px){
+      .contact-header{padding:48px 24px 32px!important;}
+      .contact-body{padding:16px 24px 72px!important;grid-template-columns:1fr!important;gap:28px!important;}
+      .contact-h1{font-size:36px!important;}
+    }
+    @media(max-width:480px){
+      .contact-header{padding:36px 16px 24px!important;}
+      .contact-body{padding:12px 16px 56px!important;}
+      .contact-h1{font-size:28px!important;}
+    }
+  </style>
+</helmet>
+
+<div style="font-family:'Inter',sans-serif;background:#fffbeb;color:#1c1917;">
+  <dc-import name="Nav" active="contact" hint-size="100%,82px"></dc-import>
+
+  <!-- header -->
+  <section class="contact-header" style="max-width:1200px;margin:0 auto;padding:64px 40px 40px;text-align:center;">
+    <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#b45309;font-weight:600;">Contact</div>
+    <h1 class="contact-h1" style="font-family:'Playfair Display',serif;font-size:54px;font-weight:700;margin-top:10px;letter-spacing:-0.015em;line-height:1.05;">Book a Puja with Pandit Ji</h1>
+    <p style="font-size:17px;line-height:1.65;color:#57534e;margin:16px auto 0;max-width:580px;">Call or message directly on either number. Pandit Ji will confirm your muhurat, samagri and arrangements personally.</p>
+  </section>
+
+  <section class="contact-body" style="max-width:1200px;margin:0 auto;padding:24px 40px 90px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
+
+    <!-- left: contact details -->
+    <div style="display:flex;flex-direction:column;gap:18px;">
+      <!-- number 1 -->
+      <div style="border:1px solid #f0e6cf;border-radius:18px;padding:26px;background:#fff;">
+        <div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#a8a29e;font-weight:600;">[PANDIT_NAME]</div>
+        <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:#1c1917;margin-top:5px;">[PHONE_NUMBER]</div>
+        <div style="display:flex;gap:12px;margin-top:16px;">
+          <a href="tel:[PHONE_NUMBER]" style="flex:1;text-align:center;background:#991b1b;color:#fff;text-decoration:none;padding:13px;border-radius:10px;font-weight:600;font-size:14.5px;">Call now</a>
+          <a href="https://wa.me/[WHATSAPP_NUMBER]" style="flex:1;text-align:center;background:#e8f6ed;color:#15803d;text-decoration:none;padding:13px;border-radius:10px;font-weight:600;font-size:14.5px;border:1px solid #bfe6cd;">WhatsApp</a>
+        </div>
+      </div>
+
+      <!-- address -->
+      <div style="border:1px solid #f0e6cf;border-radius:18px;padding:26px;background:#fff;">
+        <div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#a8a29e;font-weight:600;">Address</div>
+        <div style="font-size:17px;font-weight:600;color:#1c1917;margin-top:6px;line-height:1.5;">[FULL_ADDRESS]</div>
+        <a href="[GBP_LINK]" target="_blank" rel="noopener" style="margin-top:16px;display:block;border-radius:12px;overflow:hidden;border:1px solid #e2e5e8;">
+          <div style="width:100%;height:250px;background:#f3ecdb;display:flex;align-items:center;justify-content:center;color:#b45309;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;text-align:center;padding:20px;">Replace with Google Maps embed for [FULL_ADDRESS]</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- right: enquiry form -->
+    <div style="border:1px solid #f0e6cf;border-radius:18px;padding:34px;background:#fff;">
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center;padding:48px 12px;">
+          <div style="width:64px;height:64px;border-radius:50%;background:#e8f6ed;border:1px solid #bfe6cd;display:flex;align-items:center;justify-content:center;margin:0 auto;color:#15803d;font-size:28px;">✓</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-top:20px;">Enquiry received</h3>
+          <p style="font-size:15px;color:#78716c;margin-top:10px;line-height:1.6;">Thank you — Pandit Ji will reach out to confirm the details of your ceremony shortly.</p>
+        </div>
+      </sc-if>
+      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;">Send an enquiry</h2>
+          <p style="font-size:14px;color:#78716c;margin-top:6px;">We'll get back to you to confirm your booking.</p>
+          <form onSubmit="{{ onSubmit }}" style="display:contents;">
+          <div style="display:flex;flex-direction:column;gap:16px;margin-top:24px;">
+            <div>
+              <label style="font-size:13px;font-weight:600;color:#44403c;display:block;margin-bottom:6px;">Your name</label>
+              <input type="text" placeholder="Full name" value="{{ name }}" onInput="{{ onNameInput }}" required style="width:100%;padding:13px 15px;border:1px solid #e7dcc2;border-radius:10px;font-size:15px;background:#fffdf7;outline:none;">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div>
+                <label style="font-size:13px;font-weight:600;color:#44403c;display:block;margin-bottom:6px;">Phone</label>
+                <input type="tel" placeholder="+91" value="{{ phone }}" onInput="{{ onPhoneInput }}" required style="width:100%;padding:13px 15px;border:1px solid #e7dcc2;border-radius:10px;font-size:15px;background:#fffdf7;outline:none;">
+              </div>
+              <div>
+                <label style="font-size:13px;font-weight:600;color:#44403c;display:block;margin-bottom:6px;">Area in [CITY_NAME]</label>
+                <input type="text" placeholder="e.g. [AREA_EXAMPLE]" value="{{ area }}" onInput="{{ onAreaInput }}" required style="width:100%;padding:13px 15px;border:1px solid #e7dcc2;border-radius:10px;font-size:15px;background:#fffdf7;outline:none;">
+              </div>
+            </div>
+            <div>
+              <label style="font-size:13px;font-weight:600;color:#44403c;display:block;margin-bottom:6px;">Ritual / ceremony</label>
+              <select value="{{ ceremony }}" onChange="{{ onCeremonyChange }}" required style="width:100%;padding:13px 15px;border:1px solid #e7dcc2;border-radius:10px;font-size:15px;background:#fffdf7;outline:none;color:#44403c;">
+                <option value="">Select a ceremony…</option>
+                <option value="Shanti / Dosha Nivaran Puja">Shanti / Dosha Nivaran Puja</option>
+                <option value="Griha Pravesh / Vastu Shanti">Griha Pravesh / Vastu Shanti</option>
+                <option value="Yagya / Homam">Yagya / Homam</option>
+                <option value="Katha / Recitation">Katha / Recitation</option>
+                <option value="Sanskar / Ancestral Rite">Sanskar / Ancestral Rite</option>
+                <option value="Not sure — need guidance">Not sure — need guidance</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:13px;font-weight:600;color:#44403c;display:block;margin-bottom:6px;">Message &amp; preferred dates</label>
+              <textarea rows="3" placeholder="Tell Pandit Ji about your requirement…" value="{{ message }}" onInput="{{ onMessageInput }}" style="width:100%;padding:13px 15px;border:1px solid #e7dcc2;border-radius:10px;font-size:15px;background:#fffdf7;outline:none;resize:vertical;"></textarea>
+            </div>
+            <button type="submit" disabled="{{ isSubmitting }}" style="background:#991b1b;color:#fff;border:none;padding:15px;border-radius:10px;font-weight:600;font-size:15px;cursor:pointer;font-family:'Inter',sans-serif;">Send enquiry</button>
+            <div style="display:flex;gap:9px;background:#fff7e6;border:1px solid #f5d997;border-radius:10px;padding:12px 14px;">
+              <span style="color:#d97706;">✦</span>
+              <p style="font-size:12.5px;line-height:1.5;color:#92400e;margin:0;">Dakshina / Pricing is discussed offline based on your specific ritual requirements.</p>
+            </div>
+          </div>
+          </form>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { name: '', phone: '', area: '', ceremony: '', message: '', isSubmitted: false, isSubmitting: false };
+
+  renderVals() {
+    return {
+      name: this.state.name,
+      phone: this.state.phone,
+      area: this.state.area,
+      ceremony: this.state.ceremony,
+      message: this.state.message,
+      sent: this.state.isSubmitted,
+      notSent: !this.state.isSubmitted,
+      isSubmitting: this.state.isSubmitting,
+      onNameInput: (e) => this.setState({ name: e.target.value }),
+      onPhoneInput: (e) => this.setState({ phone: e.target.value }),
+      onAreaInput: (e) => this.setState({ area: e.target.value }),
+      onCeremonyChange: (e) => this.setState({ ceremony: e.target.value }),
+      onMessageInput: (e) => this.setState({ message: e.target.value }),
+      onSubmit: async (e) => {
+        e.preventDefault();
+        this.setState({ isSubmitting: true });
+        try {
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({
+              access_key: '[WEB3FORMS_KEY]',
+              subject: 'New puja enquiry from [WEBSITE_URL]',
+              from_name: '[PANDIT_NAME] Website',
+              name: this.state.name,
+              phone: this.state.phone,
+              area_in_city: this.state.area,
+              ritual_ceremony: this.state.ceremony,
+              message_dates: this.state.message,
+            }),
+          });
+          const result = await res.json();
+          if (result.success) {
+            this.setState({ isSubmitted: true, isSubmitting: false });
+          } else {
+            alert('Something went wrong. Please try again.');
+            this.setState({ isSubmitting: false });
+          }
+        } catch (err) {
+          console.error('Form error:', err);
+          alert('Network error. Please check your connection.');
+          this.setState({ isSubmitting: false });
+        }
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

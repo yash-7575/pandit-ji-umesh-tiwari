@@ -1,0 +1,11 @@
+{
+  "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/", "destination": "/Home.dc.html" },
+    { "source": "/about", "destination": "/About.dc.html" },
+    { "source": "/services", "destination": "/Services.dc.html" },
+    { "source": "/contact", "destination": "/Contact.dc.html" },
+    { "source": "/store", "destination": "/Store.dc.html" },
+    { "source": "/shravan", "destination": "/Shravan.dc.html" }
+  ]
+}

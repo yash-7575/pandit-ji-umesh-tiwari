@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>About [PANDIT_NAME] | Vedic Priest in [CITY_NAME]</title>
+  <meta name="description" content="Learn about [PANDIT_NAME], a North Indian Vedic priest in [CITY_NAME] known for personal, scripturally accurate rituals, kathas and ceremonies.">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;} body{background:#fffbeb;}
+    @media(max-width:768px){
+      .about-intro-grid{grid-template-columns:1fr!important;gap:28px!important;padding:40px 24px 48px!important;}
+      .about-img{aspect-ratio:4/5!important;}
+      .principles-container{padding-left:24px!important;padding-right:24px!important;}
+      .principles-grid{grid-template-columns:1fr!important;}
+      .about-h1{font-size:36px!important;}
+      .about-section-h2{font-size:28px!important;}
+    }
+    @media(max-width:480px){
+      .about-intro-grid{padding:28px 16px 36px!important;}
+      .principles-container{padding-left:16px!important;padding-right:16px!important;}
+      .about-h1{font-size:28px!important;}
+      .about-section-h2{font-size:22px!important;}
+    }
+  </style>
+</helmet>
+
+<div style="font-family:'Inter',sans-serif;background:#fffbeb;color:#1c1917;">
+  <dc-import name="Nav" active="about" hint-size="100%,82px"></dc-import>
+
+  <!-- intro -->
+  <section class="about-intro-grid" style="max-width:1200px;margin:0 auto;padding:64px 40px 80px;display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center;">
+    <div class="about-img" style="position:relative;aspect-ratio:4/5;border-radius:16px;border:1px solid #e7dcc2;overflow:hidden;background:#f3ecdb;">
+      <img src="./assets/panditji3.png" alt="Pandit Vinay Tiwari" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div>
+      <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#b45309;font-weight:600;">About Pandit Ji</div>
+      <h1 class="about-h1" style="font-family:'Playfair Display',serif;font-size:50px;font-weight:700;margin-top:10px;line-height:1.05;letter-spacing:-0.015em;">[PANDIT_NAME]</h1>
+      <p style="font-size:17.5px;line-height:1.7;color:#57534e;margin-top:20px;">A highly-regarded North Indian Vedic priest based in [CITY_NAME], [PANDIT_NAME] has devoted his life to the authentic practice of the Vedic tradition. Raised in the discipline of correct procedure, mantra and muhurat, he brings depth and sincerity to every ceremony.</p>
+      <p style="font-size:17.5px;line-height:1.7;color:#57534e;margin-top:16px;">Each ritual is performed <b>personally</b> — never outsourced — so families across [CITY_NAME] can trust that their puja is conducted with full scriptural accuracy and devotion.</p>
+      <div style="display:flex;gap:14px;margin-top:30px;">
+        <a href="/services" style="background:#991b1b;color:#fff;text-decoration:none;padding:14px 26px;border-radius:999px;font-weight:600;font-size:15px;">View services</a>
+        <a href="/contact" style="border:1.5px solid #d6d3d1;color:#1c1917;text-decoration:none;padding:13px 24px;border-radius:999px;font-weight:600;font-size:15px;background:#fff;">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- principles -->
+  <section style="background:#fff;border-top:1px solid #f0e6cf;border-bottom:1px solid #f0e6cf;">
+    <div class="principles-container" style="max-width:1200px;margin:0 auto;padding:72px 40px;">
+      <div style="text-align:center;max-width:600px;margin:0 auto 44px;">
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#b45309;font-weight:600;">The standard of service</div>
+        <h2 class="about-section-h2" style="font-family:'Playfair Display',serif;font-size:38px;font-weight:700;margin-top:8px;">What you can expect</h2>
+      </div>
+      <div class="principles-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;">
+        <div style="border:1px solid #f0e6cf;border-radius:16px;padding:30px;">
+          <div style="width:44px;height:44px;border-radius:50%;border:1.5px solid #991b1b;display:flex;align-items:center;justify-content:center;color:#991b1b;font-size:18px;">✦</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:21px;font-weight:600;margin-top:18px;">Scriptural accuracy</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:#78716c;margin-top:8px;">Every mantra, vidhi and muhurat follows correct Vedic procedure — no shortcuts.</p>
+        </div>
+        <div style="border:1px solid #f0e6cf;border-radius:16px;padding:30px;">
+          <div style="width:44px;height:44px;border-radius:50%;border:1.5px solid #991b1b;display:flex;align-items:center;justify-content:center;color:#991b1b;font-size:18px;">✦</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:21px;font-weight:600;margin-top:18px;">Performed personally</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:#78716c;margin-top:8px;">Pandit Ji conducts each ceremony himself, guiding your family through every step.</p>
+        </div>
+        <div style="border:1px solid #f0e6cf;border-radius:16px;padding:30px;">
+          <div style="width:44px;height:44px;border-radius:50%;border:1.5px solid #991b1b;display:flex;align-items:center;justify-content:center;color:#991b1b;font-size:18px;">✦</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:21px;font-weight:600;margin-top:18px;">Bhagwat Saptaha</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:#78716c;margin-top:8px;">The full 7-day Katha — Kalash Sthapana, daily recitation, and the closing Purnahuti havan — conducted personally with complete Vedic procedure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- credo quote -->
+  <section style="max-width:1000px;margin:0 auto;padding:84px 40px;text-align:center;">
+    <svg width="120" height="120" viewBox="0 0 120 120" style="margin:0 auto 24px;display:block;opacity:.5;"><g fill="none" stroke="#d97706" stroke-width="1"><circle cx="60" cy="60" r="24"/><circle cx="60" cy="60" r="40" stroke-dasharray="2 7"/><circle cx="60" cy="60" r="56"/></g></svg>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:32px;line-height:1.4;color:#1c1917;">"A puja done with shraddha and correct vidhi carries its full blessing. That is the only way I know to serve."</p>
+    <div style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:#b45309;font-weight:600;margin-top:24px;">— [PANDIT_NAME]</div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+</body>
+</html>

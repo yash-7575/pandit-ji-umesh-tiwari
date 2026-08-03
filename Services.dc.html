@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Puja Services in [CITY_NAME] | [PANDIT_NAME]</title>
+  <meta name="description" content="Explore Vedic puja services in [CITY_NAME] including Navgrah Shanti, Griha Pravesh, Vastu Shanti, Rudrabhishek, Bhagwat Katha, Vivah Sanskar and ancestral rites.">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;} body{background:#fffbeb;}
+    @media(max-width:768px){
+      .svc-header{padding:48px 24px 8px!important;}
+      .svc-tabs{padding:28px 24px 0!important;}
+      .svc-list{padding:28px 24px 0!important;}
+      .svc-enquire{padding:48px 24px 72px!important;}
+      .svc-h1{font-size:36px!important;}
+      .enquire-band{flex-direction:column!important;padding:36px 28px!important;gap:20px!important;}
+    }
+    @media(max-width:640px){
+      .svc-items-grid{grid-template-columns:1fr!important;}
+      .svc-tabs-inner{gap:8px!important;}
+    }
+    @media(max-width:480px){
+      .svc-header{padding:36px 16px 8px!important;}
+      .svc-tabs{padding:20px 16px 0!important;}
+      .svc-list{padding:20px 16px 0!important;}
+      .svc-enquire{padding:36px 16px 56px!important;}
+      .svc-h1{font-size:28px!important;}
+    }
+  </style>
+</helmet>
+
+<div style="font-family:'Inter',sans-serif;background:#fffbeb;color:#1c1917;">
+  <dc-import name="Nav" active="services" hint-size="100%,82px"></dc-import>
+
+  <!-- header -->
+  <section class="svc-header" style="max-width:1200px;margin:0 auto;padding:64px 40px 8px;text-align:center;">
+    <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#b45309;font-weight:600;">Services Catalog</div>
+    <h1 class="svc-h1" style="font-family:'Playfair Display',serif;font-size:54px;font-weight:700;margin-top:10px;letter-spacing:-0.015em;line-height:1.05;">Rituals &amp; ceremonies</h1>
+    <p style="font-size:17px;line-height:1.65;color:#57534e;margin:16px auto 0;max-width:600px;">A complete repertoire of authentic North Indian Vedic ceremonies, performed personally by Pandit Ji across all of [CITY_NAME].</p>
+    <div style="display:inline-flex;align-items:center;gap:9px;margin-top:22px;background:#fff7e6;border:1px solid #f5d997;color:#92400e;padding:9px 18px;border-radius:999px;font-size:13.5px;font-weight:500;">
+      <span style="color:#d97706;">✦</span> Dakshina / Pricing is discussed offline based on specific ritual requirements.
+    </div>
+  </section>
+
+  <!-- tabs -->
+  <section class="svc-tabs" style="max-width:1200px;margin:0 auto;padding:40px 40px 0;">
+    <div class="svc-tabs-inner" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;border-bottom:1px solid #f0e6cf;padding-bottom:28px;">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+        <button onClick="{{ t.onClick }}" style="{{ t.style }}">{{ t.label }}</button>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- active category -->
+  <section class="svc-list" style="max-width:1200px;margin:0 auto;padding:40px 40px 0;">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;">
+      <span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;background:#991b1b;width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;">{{ catNum }}</span>
+      <div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:30px;font-weight:700;line-height:1.1;">{{ catTitle }}</h2>
+        <p style="font-size:14.5px;color:#78716c;margin-top:3px;">{{ catBlurb }}</p>
+      </div>
+    </div>
+
+    <div class="svc-items-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+      <sc-for list="{{ items }}" as="it" hint-placeholder-count="6">
+        <div style="display:flex;gap:16px;border:1px solid #f0e6cf;border-radius:14px;padding:22px 24px;background:#fff;">
+          <span style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#d97706;flex-shrink:0;width:30px;">{{ it.num }}</span>
+          <div style="flex:1;">
+            <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:600;line-height:1.25;">{{ it.name }}</h3>
+            <p style="font-size:14px;line-height:1.55;color:#78716c;margin-top:5px;">{{ it.desc }}</p>
+            <sc-if value="{{ it.note }}" hint-placeholder-val="">
+              <div style="display:inline-flex;align-items:center;gap:7px;margin-top:12px;background:#fff7e6;border:1px solid #f5d997;color:#92400e;padding:6px 12px;border-radius:8px;font-size:12.5px;font-weight:500;line-height:1.4;">
+                <span style="color:#d97706;">✦</span> {{ it.note }}
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <sc-if value="{{ showShravanBanner }}" hint-placeholder-val="">
+    <section class="container" style="max-width:1200px;margin:0 auto;padding:32px 40px 0;">
+      <a href="/shravan" style="text-decoration:none;display:block;background:#fff7e6;border:1px solid #f5d997;border-radius:18px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:#b45309;font-weight:600;">Shravan Guide</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#1c1917;margin-top:6px;">Why is Shravan so sacred?</h3>
+          <p style="font-size:14px;color:#92400e;margin-top:6px;max-width:480px;">Read the story of Lord Shiva, this year's Somvar dates, and which rituals to choose.</p>
+        </div>
+        <span style="color:#991b1b;font-weight:600;font-size:15px;white-space:nowrap;">Read the Shravan guide →</span>
+      </a>
+    </section>
+  </sc-if>
+
+  <!-- enquire band -->
+  <section class="svc-enquire" style="max-width:1200px;margin:0 auto;padding:72px 40px 90px;">
+    <div class="enquire-band" style="background:#991b1b;border-radius:24px;padding:56px 48px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;color:#fff;">
+      <div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:34px;font-weight:700;line-height:1.1;">Not sure which ritual you need?</h2>
+        <p style="font-size:16px;color:#fbe7d8;margin-top:10px;max-width:520px;">Share your situation with Pandit Ji — he'll recommend the right ceremony, muhurat and samagri.</p>
+      </div>
+      <a href="/contact" style="background:#fff;color:#991b1b;text-decoration:none;padding:16px 32px;border-radius:999px;font-weight:600;font-size:16px;white-space:nowrap;">Speak to Pandit Ji</a>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { tab: 0 };
+  cats() {
+    return [
+      { id: 'A', tab: 'A · Shanti & Dosha Nivaran', title: 'Shanti & Dosha Nivaran Pujas', blurb: 'Remedial rituals to restore balance and peace.', items: [
+        { name: 'Navgrah Shanti Puja', desc: 'Pacifying the nine planets to harmonise their influence.' },
+        { name: 'Kaal Sarp Dosh Nivaran Puja', desc: 'Relief from the affliction of Kaal Sarp Dosh.' },
+        { name: 'Pitru Dosh Nivaran & Narayan Bali', desc: 'Ancestral peace and release from Pitru Dosh.' },
+        { name: 'Manglik Dosh Puja', desc: 'For marital harmony and Mangal Dosh remediation.' },
+        { name: 'Nakshatra Shanti Puja', desc: 'Pacifying afflicted birth-star influences.' },
+        { name: 'Drishti Durga Homam / Nazar Dosh Puja', desc: 'Clearing negative energy and the evil eye.' },
+      ]},
+      { id: 'B', tab: 'B · Home & Office', title: 'Festive, Home & Office Inaugurations', blurb: 'Ceremonies to bless new beginnings and spaces.', items: [
+        { name: 'Griha Pravesh Puja', desc: 'Comprehensive housewarming for a new home.' },
+        { name: 'Vastu Shanti Puja', desc: 'Structural harmony and peace for any space.' },
+        { name: 'Bhumi Puja', desc: 'Groundbreaking ceremony before construction.' },
+        { name: 'Office / Business Inauguration Puja', desc: 'Auspicious opening for a workplace or venture.' },
+        { name: 'Diwali Lakshmi-Kuber Puja', desc: 'Invoking financial prosperity and abundance.' },
+        { name: 'Ganesh Chaturthi Sthapana & Puja', desc: 'Installation and worship of Lord Ganesha.' },
+      ]},
+      { id: 'C', tab: 'C · Yagyas & Homams', title: 'Major Vedic Yagyas & Powerful Homams', blurb: 'Potent fire ceremonies for protection and grace.', items: [
+        { name: 'Maha Mrityunjaya Yagya', desc: 'For health recovery and longevity.' },
+        { name: 'Navchandi / Satchandi Yagya', desc: 'Invocation of Goddess Durga for protection.' },
+        { name: 'Maha Ganapati Homam / Ganesh Yagya', desc: 'For the removal of obstacles.' },
+        { name: 'Lakshmi Narayana Homam / Vishnu Yagya', desc: 'For prosperity, harmony and divine grace.' },
+        { name: 'Saraswati Havan / Yagya', desc: 'For academic and creative success.' },
+        { name: 'Sri Suktam Havan', desc: 'Sacred recitation invoking Goddess Lakshmi.' },
+        { name: 'Rudrabhishek / Maha Rudra Yagya', desc: 'Pure devotion to Lord Shiva.' },
+      ]},
+      { id: 'D', tab: 'D · Kathas & Recitations', title: 'Sacred Kathas & Holy Recitations', blurb: 'Soul-stirring narrations of the scriptures.', items: [
+        { name: 'Satyanarayan Vrat Katha', desc: 'Household thanksgiving and blessing.' },
+        { name: 'Shrimad Bhagwat Saptaha Katha', desc: 'Complete seven-day recitation of the 18,000 verses of the Bhagwat Puran — Kalash Sthapana daily, Purnahuti havan on the seventh day.', note: 'Considered the most powerful path to liberation in Kaliyug — removes sins, ancestral debts and bestows moksha.' },
+        { name: 'Shri Ram Katha / Ramayan Saptaha', desc: 'Narration of the life of Lord Rama.' },
+        { name: 'Shiv Maha Puran Katha', desc: 'Recitation of the glory of Lord Shiva.' },
+        { name: 'Shrimad Devi Bhagwat Puran', desc: 'Sacred narration of the Divine Mother.' },
+        { name: 'Srimad Bhagavad Gita Path', desc: 'Recitation of the holy Bhagavad Gita.' },
+      ]},
+      { id: 'E', tab: 'E · Sanskar & Ancestral', title: 'Sanskar Ceremonies & Ancestral Rites', blurb: 'Life-cycle sacraments and rites for ancestors.', items: [
+        { name: 'Vedic Sanskars', desc: 'Namkaran, Mundan and Janeu (Yagnopavit) sacraments.' },
+        { name: 'Godh Bharai & Aksharabhyasam', desc: 'Baby Shower and Vedarambh (commencement of learning).' },
+        { name: 'Vedic Vivah Sanskar', desc: 'Complete wedding ceremonies including Grah Shanti, Kanyadaan, Vivaha Hom, and Saptapadi rites.' },
+        { name: 'Ancestral Rites', desc: 'Varshik Shradh, Pind Daan, Tarpan and Asthi Visarjan rites.' },
+      ]},
+      { id: 'F', tab: 'F · Shravan & Navratri', title: 'Shravan Maas & Navratri Specials', blurb: 'Seasonal pujas for these sacred periods.', items: [
+        { name: 'Shravan Somvar Rudrabhishek', desc: 'Abhishek and puja on every Monday of Shravan.' },
+        { name: 'Mangala Gauri Puja', desc: 'Tuesday offerings to Goddess Parvati during Shravan.' },
+        { name: 'Shravan Shivratri Puja', desc: 'Night-long worship on the Shravan Shivratri.' },
+        { name: 'Navratri Chandi Path & Havan', desc: 'Worship of Goddess Durga across the nine nights.' },
+        { name: 'Durga Ashtami / Maha Navami Puja', desc: 'Key Navratri rituals with kanya pujan.' },
+      ]},
+    ];
+  }
+  renderVals() {
+    const cats = this.cats();
+    const tab = this.state.tab;
+    const base = { fontFamily: "'Inter',sans-serif", fontSize: '14px', fontWeight: 600, padding: '11px 20px', borderRadius: '999px', cursor: 'pointer', border: '1px solid #e7dcc2', background: '#fff', color: '#57534e' };
+    const act = { ...base, background: '#991b1b', color: '#fff', border: '1px solid #991b1b' };
+    const tabs = cats.map((c, i) => ({ label: c.tab, onClick: () => this.setState({ tab: i }), style: i === tab ? act : base }));
+    const cur = cats[tab];
+    const items = cur.items.map((it, i) => ({ ...it, num: String(i + 1).padStart(2, '0') }));
+    const showShravanBanner = cur.id === 'F';
+    return { tabs, catNum: cur.id, catTitle: cur.title, catBlurb: cur.blurb, items, showShravanBanner };
+  }
+}
+</script>
+</body>
+</html>

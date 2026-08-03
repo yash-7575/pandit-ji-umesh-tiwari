@@ -1,0 +1,4 @@
+node_modules/
+screenshots/smoke-*.png
+.vercel
+.env*
