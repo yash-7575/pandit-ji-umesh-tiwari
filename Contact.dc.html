@@ -8,93 +8,101 @@
 <body>
 <x-dc>
 <helmet>
-  <title>Contact [PANDIT_NAME] | Book a Puja in [CITY_NAME]</title>
-  <meta name="description" content="Call or WhatsApp [PANDIT_NAME] to book a puja, katha, yagya, homam, griha pravesh or sanskar ceremony anywhere in [CITY_NAME].">
-  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <title>Contact Pandit Umesh Mishra | Book a Puja in Pune</title>
+  <meta name="description" content="Call or WhatsApp Pandit Umesh Mishra to book a puja, katha, yagya, homam, griha pravesh or sanskar ceremony anywhere in Pune.">
+  <link rel="icon" href="./assets/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    *{box-sizing:border-box;margin:0;padding:0;} body{background:#fffbeb;} input,select,textarea{font-family:'Inter',sans-serif;}
+    *{box-sizing:border-box;margin:0;padding:0;} body{background:#1a0505;} input,select,textarea{font-family:'Inter',sans-serif;color:#faf6ed;}
+    ::selection{background:#d4a344;color:#2a0808;}
+    input::placeholder,textarea::placeholder{color:rgba(245,239,230,.35);}
+    input:focus,select:focus,textarea:focus{border-color:#d4a344!important;background:rgba(245,239,230,.05)!important;}
+    select option{background:#2a0808;color:#faf6ed;}
     @media(max-width:768px){
-      .contact-header{padding:48px 24px 32px!important;}
-      .contact-body{padding:16px 24px 72px!important;grid-template-columns:1fr!important;gap:28px!important;}
-      .contact-h1{font-size:36px!important;}
+      .contact-header{padding:80px 24px 48px!important;}
+      .contact-body{padding:24px 24px 96px!important;grid-template-columns:1fr!important;gap:32px!important;}
+      .contact-h1{font-size:44px!important;}
     }
     @media(max-width:480px){
-      .contact-header{padding:36px 16px 24px!important;}
-      .contact-body{padding:12px 16px 56px!important;}
-      .contact-h1{font-size:28px!important;}
+      .contact-header{padding:56px 16px 36px!important;}
+      .contact-body{padding:16px 16px 72px!important;}
+      .contact-h1{font-size:34px!important;}
     }
   </style>
 </helmet>
 
-<div style="font-family:'Inter',sans-serif;background:#fffbeb;color:#1c1917;">
-  <dc-import name="Nav" active="contact" hint-size="100%,82px"></dc-import>
+<div style="font-family:'Inter',sans-serif;background:#1a0505;color:#f5efe6;">
+  <dc-import name="Nav" active="contact" hint-size="100%,84px"></dc-import>
 
   <!-- header -->
-  <section class="contact-header" style="max-width:1200px;margin:0 auto;padding:64px 40px 40px;text-align:center;">
-    <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#b45309;font-weight:600;">Contact</div>
-    <h1 class="contact-h1" style="font-family:'Playfair Display',serif;font-size:54px;font-weight:700;margin-top:10px;letter-spacing:-0.015em;line-height:1.05;">Book a Puja with Pandit Ji</h1>
-    <p style="font-size:17px;line-height:1.65;color:#57534e;margin:16px auto 0;max-width:580px;">Call or message directly on either number. Pandit Ji will confirm your muhurat, samagri and arrangements personally.</p>
+  <section class="contact-header" style="max-width:1240px;margin:0 auto;padding:100px 40px 56px;text-align:center;">
+    <div style="font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:#d4a344;font-weight:600;">— Contact</div>
+    <h1 class="contact-h1" style="font-family:'Playfair Display',serif;font-size:66px;font-weight:700;margin-top:18px;letter-spacing:-.02em;line-height:1.03;color:#faf6ed;">Book a Puja<br><em style="font-style:italic;font-weight:400;color:#e8b84b;">with Pandit Ji.</em></h1>
+    <p style="font-size:17px;line-height:1.75;color:rgba(245,239,230,.7);margin:24px auto 0;max-width:620px;font-weight:300;">Call or message directly. Pandit Ji will confirm your muhurat, samagri and arrangements personally.</p>
   </section>
 
-  <section class="contact-body" style="max-width:1200px;margin:0 auto;padding:24px 40px 90px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
+  <section class="contact-body" style="max-width:1240px;margin:0 auto;padding:32px 40px 120px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;">
 
     <!-- left: contact details -->
-    <div style="display:flex;flex-direction:column;gap:18px;">
-      <!-- number 1 -->
-      <div style="border:1px solid #f0e6cf;border-radius:18px;padding:26px;background:#fff;">
-        <div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#a8a29e;font-weight:600;">[PANDIT_NAME]</div>
-        <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:#1c1917;margin-top:5px;">[PHONE_NUMBER]</div>
-        <div style="display:flex;gap:12px;margin-top:16px;">
-          <a href="tel:[PHONE_NUMBER]" style="flex:1;text-align:center;background:#991b1b;color:#fff;text-decoration:none;padding:13px;border-radius:10px;font-weight:600;font-size:14.5px;">Call now</a>
-          <a href="https://wa.me/[WHATSAPP_NUMBER]" style="flex:1;text-align:center;background:#e8f6ed;color:#15803d;text-decoration:none;padding:13px;border-radius:10px;font-weight:600;font-size:14.5px;border:1px solid #bfe6cd;">WhatsApp</a>
+    <div style="display:flex;flex-direction:column;gap:22px;">
+      <!-- number -->
+      <div style="border:1px solid rgba(212,163,68,.22);border-radius:4px;padding:32px;background:rgba(245,239,230,.02);">
+        <div style="font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:#d4a344;font-weight:600;">Pandit Umesh Mishra</div>
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:600;color:#faf6ed;margin-top:8px;">+91 98935 15745</div>
+        <div style="display:flex;gap:12px;margin-top:22px;">
+          <a href="tel:+919893515745" style="flex:1;text-align:center;background:#f5efe6;color:#4a0e0e;text-decoration:none;padding:14px;border-radius:2px;font-weight:600;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;">Call Now</a>
+          <a href="https://wa.me/919893515745" style="flex:1;text-align:center;background:transparent;color:#f5efe6;text-decoration:none;padding:13px;border-radius:2px;font-weight:600;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(245,239,230,.4);">WhatsApp</a>
         </div>
       </div>
 
       <!-- address -->
-      <div style="border:1px solid #f0e6cf;border-radius:18px;padding:26px;background:#fff;">
-        <div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#a8a29e;font-weight:600;">Address</div>
-        <div style="font-size:17px;font-weight:600;color:#1c1917;margin-top:6px;line-height:1.5;">[FULL_ADDRESS]</div>
-        <a href="[GBP_LINK]" target="_blank" rel="noopener" style="margin-top:16px;display:block;border-radius:12px;overflow:hidden;border:1px solid #e2e5e8;">
-          <div style="width:100%;height:250px;background:#f3ecdb;display:flex;align-items:center;justify-content:center;color:#b45309;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;text-align:center;padding:20px;">Replace with Google Maps embed for [FULL_ADDRESS]</div>
+      <div style="border:1px solid rgba(212,163,68,.22);border-radius:4px;padding:32px;background:rgba(245,239,230,.02);">
+        <div style="font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:#d4a344;font-weight:600;">Address</div>
+        <div style="font-family:'Playfair Display',serif;font-size:19px;font-weight:500;color:#faf6ed;margin-top:12px;line-height:1.5;">Flat No. 704, A-2 Wing, Sai Nagari Society, Near Moze School, Dighi Alandi Road, Wadmukhwadi, Pune, Maharashtra 412105</div>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Wadmukhwadi%2C+Pune%2C+Maharashtra+412105" target="_blank" rel="noopener" style="margin-top:20px;display:block;border-radius:4px;overflow:hidden;border:1px solid rgba(212,163,68,.2);text-decoration:none;">
+          <div style="width:100%;height:220px;background:linear-gradient(135deg,#2a0808 0%,#3a0a0a 100%);display:flex;align-items:center;justify-content:center;color:#d4a344;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-align:center;padding:24px;position:relative;overflow:hidden;">
+            <svg width="200" height="200" viewBox="0 0 200 200" style="position:absolute;opacity:.15;"><g fill="none" stroke="#d4a344" stroke-width="1"><circle cx="100" cy="100" r="40"/><circle cx="100" cy="100" r="64" stroke-dasharray="2 6"/><circle cx="100" cy="100" r="88"/></g></svg>
+            <span style="position:relative;">Open Location on Google Maps<br><span style="color:rgba(245,239,230,.6);font-weight:300;letter-spacing:.08em;text-transform:none;margin-top:6px;display:inline-block;font-family:'Playfair Display',serif;font-style:italic;font-size:14px;">Wadmukhwadi, Pune →</span></span>
+          </div>
         </a>
       </div>
     </div>
 
     <!-- right: enquiry form -->
-    <div style="border:1px solid #f0e6cf;border-radius:18px;padding:34px;background:#fff;">
+    <div style="border:1px solid rgba(212,163,68,.22);border-radius:4px;padding:40px;background:rgba(245,239,230,.02);">
       <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
-        <div style="text-align:center;padding:48px 12px;">
-          <div style="width:64px;height:64px;border-radius:50%;background:#e8f6ed;border:1px solid #bfe6cd;display:flex;align-items:center;justify-content:center;margin:0 auto;color:#15803d;font-size:28px;">✓</div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-top:20px;">Enquiry received</h3>
-          <p style="font-size:15px;color:#78716c;margin-top:10px;line-height:1.6;">Thank you — Pandit Ji will reach out to confirm the details of your ceremony shortly.</p>
+        <div style="text-align:center;padding:56px 12px;">
+          <div style="width:72px;height:72px;border-radius:50%;border:1.5px solid #d4a344;display:flex;align-items:center;justify-content:center;margin:0 auto;color:#e8b84b;font-size:30px;">✓</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:30px;font-weight:700;margin-top:24px;color:#faf6ed;">Enquiry received</h3>
+          <p style="font-size:15px;color:rgba(245,239,230,.7);margin-top:14px;line-height:1.7;font-weight:300;">Thank you — Pandit Ji will reach out to confirm the details of your ceremony shortly.</p>
         </div>
       </sc-if>
       <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
         <div>
-          <h2 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;">Send an enquiry</h2>
-          <p style="font-size:14px;color:#78716c;margin-top:6px;">We'll get back to you to confirm your booking.</p>
+          <div style="font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:#d4a344;font-weight:600;">— Enquiry Form</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:#faf6ed;margin-top:10px;line-height:1.15;">Send an enquiry</h2>
+          <p style="font-size:14px;color:rgba(245,239,230,.6);margin-top:8px;font-weight:300;">We'll get back to you to confirm your booking.</p>
           <form onSubmit="{{ onSubmit }}" style="display:contents;">
-          <div style="display:flex;flex-direction:column;gap:16px;margin-top:24px;">
+          <div style="display:flex;flex-direction:column;gap:18px;margin-top:28px;">
             <div>
-              <label style="font-size:13px;font-weight:600;color:#44403c;display:block;margin-bottom:6px;">Your name</label>
-              <input type="text" placeholder="Full name" value="{{ name }}" onInput="{{ onNameInput }}" required style="width:100%;padding:13px 15px;border:1px solid #e7dcc2;border-radius:10px;font-size:15px;background:#fffdf7;outline:none;">
+              <label style="font-size:10.5px;font-weight:600;color:#d4a344;display:block;margin-bottom:8px;letter-spacing:.2em;text-transform:uppercase;">Your name</label>
+              <input type="text" placeholder="Full name" value="{{ name }}" onInput="{{ onNameInput }}" required style="width:100%;padding:14px 16px;border:1px solid rgba(212,163,68,.22);border-radius:2px;font-size:15px;background:rgba(245,239,230,.02);outline:none;transition:all .2s ease;">
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
               <div>
-                <label style="font-size:13px;font-weight:600;color:#44403c;display:block;margin-bottom:6px;">Phone</label>
-                <input type="tel" placeholder="+91" value="{{ phone }}" onInput="{{ onPhoneInput }}" required style="width:100%;padding:13px 15px;border:1px solid #e7dcc2;border-radius:10px;font-size:15px;background:#fffdf7;outline:none;">
+                <label style="font-size:10.5px;font-weight:600;color:#d4a344;display:block;margin-bottom:8px;letter-spacing:.2em;text-transform:uppercase;">Phone</label>
+                <input type="tel" placeholder="+91" value="{{ phone }}" onInput="{{ onPhoneInput }}" required style="width:100%;padding:14px 16px;border:1px solid rgba(212,163,68,.22);border-radius:2px;font-size:15px;background:rgba(245,239,230,.02);outline:none;transition:all .2s ease;">
               </div>
               <div>
-                <label style="font-size:13px;font-weight:600;color:#44403c;display:block;margin-bottom:6px;">Area in [CITY_NAME]</label>
-                <input type="text" placeholder="e.g. [AREA_EXAMPLE]" value="{{ area }}" onInput="{{ onAreaInput }}" required style="width:100%;padding:13px 15px;border:1px solid #e7dcc2;border-radius:10px;font-size:15px;background:#fffdf7;outline:none;">
+                <label style="font-size:10.5px;font-weight:600;color:#d4a344;display:block;margin-bottom:8px;letter-spacing:.2em;text-transform:uppercase;">Area in Pune</label>
+                <input type="text" placeholder="e.g. Wadmukhwadi" value="{{ area }}" onInput="{{ onAreaInput }}" required style="width:100%;padding:14px 16px;border:1px solid rgba(212,163,68,.22);border-radius:2px;font-size:15px;background:rgba(245,239,230,.02);outline:none;transition:all .2s ease;">
               </div>
             </div>
             <div>
-              <label style="font-size:13px;font-weight:600;color:#44403c;display:block;margin-bottom:6px;">Ritual / ceremony</label>
-              <select value="{{ ceremony }}" onChange="{{ onCeremonyChange }}" required style="width:100%;padding:13px 15px;border:1px solid #e7dcc2;border-radius:10px;font-size:15px;background:#fffdf7;outline:none;color:#44403c;">
+              <label style="font-size:10.5px;font-weight:600;color:#d4a344;display:block;margin-bottom:8px;letter-spacing:.2em;text-transform:uppercase;">Ritual / ceremony</label>
+              <select value="{{ ceremony }}" onChange="{{ onCeremonyChange }}" required style="width:100%;padding:14px 16px;border:1px solid rgba(212,163,68,.22);border-radius:2px;font-size:15px;background:rgba(245,239,230,.02);outline:none;transition:all .2s ease;">
                 <option value="">Select a ceremony…</option>
                 <option value="Shanti / Dosha Nivaran Puja">Shanti / Dosha Nivaran Puja</option>
                 <option value="Griha Pravesh / Vastu Shanti">Griha Pravesh / Vastu Shanti</option>
@@ -105,13 +113,13 @@
               </select>
             </div>
             <div>
-              <label style="font-size:13px;font-weight:600;color:#44403c;display:block;margin-bottom:6px;">Message &amp; preferred dates</label>
-              <textarea rows="3" placeholder="Tell Pandit Ji about your requirement…" value="{{ message }}" onInput="{{ onMessageInput }}" style="width:100%;padding:13px 15px;border:1px solid #e7dcc2;border-radius:10px;font-size:15px;background:#fffdf7;outline:none;resize:vertical;"></textarea>
+              <label style="font-size:10.5px;font-weight:600;color:#d4a344;display:block;margin-bottom:8px;letter-spacing:.2em;text-transform:uppercase;">Message &amp; preferred dates</label>
+              <textarea rows="3" placeholder="Tell Pandit Ji about your requirement…" value="{{ message }}" onInput="{{ onMessageInput }}" style="width:100%;padding:14px 16px;border:1px solid rgba(212,163,68,.22);border-radius:2px;font-size:15px;background:rgba(245,239,230,.02);outline:none;resize:vertical;transition:all .2s ease;"></textarea>
             </div>
-            <button type="submit" disabled="{{ isSubmitting }}" style="background:#991b1b;color:#fff;border:none;padding:15px;border-radius:10px;font-weight:600;font-size:15px;cursor:pointer;font-family:'Inter',sans-serif;">Send enquiry</button>
-            <div style="display:flex;gap:9px;background:#fff7e6;border:1px solid #f5d997;border-radius:10px;padding:12px 14px;">
-              <span style="color:#d97706;">✦</span>
-              <p style="font-size:12.5px;line-height:1.5;color:#92400e;margin:0;">Dakshina / Pricing is discussed offline based on your specific ritual requirements.</p>
+            <button type="submit" disabled="{{ isSubmitting }}" style="background:#f5efe6;color:#4a0e0e;border:none;padding:16px;border-radius:2px;font-weight:600;font-size:12.5px;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;margin-top:4px;">Send Enquiry</button>
+            <div style="display:flex;gap:11px;background:rgba(212,163,68,.06);border:1px solid rgba(212,163,68,.22);border-radius:2px;padding:14px 16px;">
+              <span style="color:#d4a344;font-size:14px;line-height:1.4;">✦</span>
+              <p style="font-size:12.5px;line-height:1.6;color:rgba(245,239,230,.72);margin:0;">Dakshina / Pricing is discussed offline based on your specific ritual requirements.</p>
             </div>
           </div>
           </form>
@@ -120,7 +128,7 @@
     </div>
   </section>
 
-  <dc-import name="Footer" hint-size="100%,440px"></dc-import>
+  <dc-import name="Footer" hint-size="100%,520px"></dc-import>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
@@ -151,8 +159,8 @@ class Component extends DCLogic {
             headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
             body: JSON.stringify({
               access_key: '[WEB3FORMS_KEY]',
-              subject: 'New puja enquiry from [WEBSITE_URL]',
-              from_name: '[PANDIT_NAME] Website',
+              subject: 'New puja enquiry from Pandit Umesh Mishra website',
+              from_name: 'Pandit Umesh Mishra Website',
               name: this.state.name,
               phone: this.state.phone,
               area_in_city: this.state.area,

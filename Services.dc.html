@@ -8,176 +8,707 @@
 <body>
 <x-dc>
 <helmet>
-  <title>Puja Services in [CITY_NAME] | [PANDIT_NAME]</title>
-  <meta name="description" content="Explore Vedic puja services in [CITY_NAME] including Navgrah Shanti, Griha Pravesh, Vastu Shanti, Rudrabhishek, Bhagwat Katha, Vivah Sanskar and ancestral rites.">
-  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <title>Puja Services in Pune | Pandit Umesh Mishra</title>
+  <meta name="description" content="Explore the complete catalog of authentic Vedic pujas, kathas, yagyas, sanskars and ancestral rites performed by Pandit Umesh Mishra across Pune.">
+  <link rel="icon" href="./assets/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    *{box-sizing:border-box;margin:0;padding:0;} body{background:#fffbeb;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:#1a0505;overflow-x:hidden;}
+    ::selection{background:#d4a344;color:#2a0808;}
+
+    /* ---------- category pills ---------- */
+    .cat-pill{
+      position:relative;display:inline-flex;align-items:center;gap:12px;
+      padding:13px 22px 13px 16px;border-radius:2px;cursor:pointer;
+      background:rgba(245,239,230,.03);border:1px solid rgba(212,163,68,.22);color:rgba(245,239,230,.75);
+      font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+      transition:all .35s cubic-bezier(.4,0,.2,1);white-space:nowrap;
+    }
+    .cat-pill:hover{transform:translateY(-2px);border-color:rgba(212,163,68,.5);color:#f5efe6;background:rgba(245,239,230,.05);}
+    .cat-pill .num{
+      width:28px;height:28px;border-radius:50%;background:transparent;color:#d4a344;
+      display:inline-flex;align-items:center;justify-content:center;
+      font-family:'Playfair Display',serif;font-size:11.5px;font-weight:700;letter-spacing:.02em;
+      border:1px solid rgba(212,163,68,.4);transition:all .35s ease;
+    }
+    .cat-pill .count{
+      font-size:10px;color:rgba(245,239,230,.5);font-weight:500;background:transparent;
+      padding:3px 9px;border-radius:2px;border:1px solid rgba(212,163,68,.18);letter-spacing:.12em;
+    }
+    .cat-pill.active{background:#f5efe6;color:#4a0e0e;border-color:#f5efe6;transform:translateY(-2px);}
+    .cat-pill.active .num{background:#4a0e0e;color:#e8b84b;border-color:#4a0e0e;}
+    .cat-pill.active .count{background:rgba(74,14,14,.1);color:#4a0e0e;border-color:rgba(74,14,14,.2);}
+
+    /* ---------- puja cards ---------- */
+    .puja-card{
+      position:relative;background:rgba(245,239,230,.02);border-radius:4px;overflow:hidden;
+      border:1px solid rgba(212,163,68,.18);cursor:pointer;
+      transition:transform .5s cubic-bezier(.4,0,.2,1), border-color .3s ease, background .3s ease;
+      animation:cardIn .55s cubic-bezier(.4,0,.2,1) backwards;
+    }
+    .puja-card:hover{transform:translateY(-6px);border-color:rgba(212,163,68,.5);background:rgba(245,239,230,.05);}
+    .puja-card .img-wrap{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:#2a0808;}
+    .puja-card .img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.4,0,.2,1);filter:brightness(.92);}
+    .puja-card:hover .img-wrap img{transform:scale(1.06);filter:brightness(1);}
+    .puja-card .img-wrap::after{
+      content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,5,5,.75) 100%);
+      pointer-events:none;
+    }
+    .puja-card .badge{
+      position:absolute;top:16px;left:16px;background:rgba(20,4,4,.7);
+      backdrop-filter:blur(8px);padding:6px 12px;border-radius:2px;
+      font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#e8b84b;
+      letter-spacing:.14em;border:1px solid rgba(212,163,68,.4);z-index:2;
+    }
+    .puja-card .cta{
+      position:absolute;bottom:16px;right:16px;background:#f5efe6;color:#4a0e0e;
+      padding:8px 14px;border-radius:2px;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+      opacity:0;transform:translateY(8px);transition:all .4s cubic-bezier(.4,0,.2,1);z-index:2;
+    }
+    .puja-card:hover .cta{opacity:1;transform:translateY(0);}
+    .puja-card .body{padding:24px 24px 28px;}
+    .puja-card .hindi{font-family:'Noto Sans Devanagari',sans-serif;font-size:13.5px;color:#d4a344;font-weight:500;letter-spacing:.01em;}
+    .puja-card .name{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;line-height:1.2;color:#faf6ed;margin-top:6px;letter-spacing:-.005em;}
+    .puja-card .tagline{font-size:13.5px;line-height:1.7;color:rgba(245,239,230,.6);margin-top:10px;font-weight:300;}
+
+    /* placeholder image */
+    .img-placeholder{
+      width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+      background:
+        radial-gradient(circle at 30% 20%,rgba(212,163,68,.15),transparent 50%),
+        radial-gradient(circle at 70% 80%,rgba(107,20,20,.4),transparent 60%),
+        linear-gradient(135deg,#2a0808 0%,#3a0a0a 55%,#4a0e0e 100%);
+      position:relative;overflow:hidden;
+    }
+    .img-placeholder::before{
+      content:'';position:absolute;inset:-20%;
+      background:
+        conic-gradient(from 0deg at 50% 50%,transparent 0deg,rgba(212,163,68,.12) 40deg,transparent 80deg,rgba(212,163,68,.12) 120deg,transparent 160deg,rgba(212,163,68,.12) 200deg,transparent 240deg,rgba(212,163,68,.12) 280deg,transparent 320deg);
+      animation:mandala 45s linear infinite;
+      opacity:.6;
+    }
+    .img-placeholder .om{
+      font-family:'Noto Sans Devanagari',serif;font-size:100px;
+      color:#e8b84b;font-weight:700;text-shadow:0 6px 30px rgba(212,163,68,.35);
+      position:relative;z-index:1;
+      transition:transform .6s cubic-bezier(.4,0,.2,1);
+    }
+    .puja-card:hover .img-placeholder .om{transform:scale(1.12) rotate(-3deg);}
+
+    /* ---------- modal ---------- */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(10,2,2,.75);backdrop-filter:blur(10px);z-index:80;transition:opacity .4s ease;}
+    .modal-scroll{position:fixed;inset:0;z-index:85;overflow-y:auto;padding:48px 24px;display:flex;justify-content:center;align-items:flex-start;transition:opacity .4s ease;}
+    .modal-panel{
+      position:relative;background:linear-gradient(180deg,#1a0505 0%,#0f0303 100%);border-radius:4px;
+      max-width:1080px;width:100%;overflow:hidden;
+      box-shadow:0 60px 120px -30px rgba(0,0,0,.8);
+      border:1px solid rgba(212,163,68,.22);
+      transition:transform .5s cubic-bezier(.4,0,.2,1), opacity .4s ease;
+    }
+    .modal-close{
+      position:absolute;top:24px;right:24px;z-index:5;
+      width:44px;height:44px;border-radius:50%;
+      background:rgba(20,4,4,.7);backdrop-filter:blur(8px);
+      color:#f5efe6;font-size:18px;cursor:pointer;line-height:1;
+      display:flex;align-items:center;justify-content:center;
+      border:1px solid rgba(212,163,68,.35);
+      transition:all .3s ease;
+    }
+    .modal-close:hover{background:#f5efe6;color:#4a0e0e;border-color:#f5efe6;transform:rotate(90deg) scale(1.05);}
+    .modal-hero{width:100%;aspect-ratio:21/9;position:relative;overflow:hidden;background:#2a0808;}
+    .modal-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(.85) contrast(1.05);}
+    .modal-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,5,5,.3) 0%,rgba(26,5,5,.5) 40%,rgba(15,3,3,.95) 100%);}
+    .modal-hero .titlewrap{position:absolute;left:0;right:0;bottom:0;padding:48px 56px;color:#faf6ed;z-index:2;}
+    .modal-hero .hindi{font-family:'Noto Sans Devanagari',serif;font-size:22px;color:#e8b84b;font-weight:500;letter-spacing:.01em;}
+    .modal-hero .name{font-family:'Playfair Display',serif;font-size:54px;font-weight:700;line-height:1.03;margin-top:8px;letter-spacing:-.02em;text-shadow:0 4px 30px rgba(0,0,0,.6);color:#faf6ed;}
+    .modal-hero .tagline{font-size:16px;color:rgba(245,239,230,.75);margin-top:12px;max-width:640px;line-height:1.6;font-weight:300;}
+    .modal-body{padding:56px;}
+    .modal-shloka{
+      background:linear-gradient(135deg,rgba(212,163,68,.06) 0%,rgba(212,163,68,.02) 100%);
+      border:1px solid rgba(212,163,68,.28);border-left:3px solid #d4a344;
+      border-radius:4px;padding:32px 36px;margin-bottom:40px;position:relative;
+    }
+    .modal-shloka .glyph{position:absolute;top:14px;right:24px;font-family:'Playfair Display',serif;font-size:60px;color:rgba(212,163,68,.14);font-weight:700;line-height:1;}
+    .modal-shloka .verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:23px;line-height:1.6;color:#faf6ed;font-weight:500;}
+    .modal-shloka .translation{font-size:14px;color:rgba(245,239,230,.7);margin-top:14px;line-height:1.7;font-style:italic;font-weight:300;}
+    .modal-section{margin-bottom:36px;}
+    .modal-section .eyebrow{font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:#d4a344;font-weight:600;}
+    .modal-section h3{font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:#faf6ed;margin-top:10px;letter-spacing:-.01em;line-height:1.15;}
+    .modal-section p{font-size:15.5px;line-height:1.85;color:rgba(245,239,230,.75);margin-top:16px;font-weight:300;}
+    .modal-meta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px;}
+    .modal-meta{background:rgba(245,239,230,.02);border:1px solid rgba(212,163,68,.22);border-radius:4px;padding:24px;}
+    .modal-meta .lbl{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#d4a344;font-weight:600;}
+    .modal-meta .val{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:#faf6ed;margin-top:10px;line-height:1.3;}
+    .modal-included{background:rgba(245,239,230,.02);border:1px solid rgba(212,163,68,.22);border-radius:4px;padding:32px 36px;margin-bottom:40px;}
+    .modal-included ul{list-style:none;margin-top:20px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px 28px;}
+    .modal-included li{display:flex;align-items:flex-start;gap:12px;font-size:14.5px;color:rgba(245,239,230,.8);line-height:1.6;font-weight:300;}
+    .modal-included li::before{content:'✦';color:#d4a344;font-size:13px;flex-shrink:0;margin-top:4px;}
+    .modal-cta{display:flex;gap:14px;flex-wrap:wrap;padding-top:8px;}
+    .modal-cta a{text-decoration:none;padding:16px 32px;border-radius:2px;font-weight:600;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;transition:all .3s ease;}
+    .modal-cta .primary{background:#f5efe6;color:#4a0e0e;}
+    .modal-cta .primary:hover{background:#faf6ed;transform:translateY(-1px);}
+    .modal-cta .secondary{background:transparent;color:#f5efe6;border:1px solid rgba(245,239,230,.4);}
+    .modal-cta .secondary:hover{background:rgba(245,239,230,.08);border-color:#f5efe6;}
+
+    /* ---------- animations ---------- */
+    @keyframes cardIn{
+      from{opacity:0;transform:translateY(24px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+    @keyframes mandala{
+      from{transform:rotate(0deg);}
+      to{transform:rotate(360deg);}
+    }
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(12px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+    .header-in{animation:fadeIn .7s cubic-bezier(.4,0,.2,1) both;}
+
+    /* ---------- responsive ---------- */
+    @media(max-width:900px){
+      .puja-grid{grid-template-columns:repeat(2,1fr)!important;}
+      .modal-meta-grid{grid-template-columns:1fr 1fr!important;}
+      .modal-body{padding:36px 28px!important;}
+      .modal-hero .name{font-size:38px!important;}
+      .modal-hero .titlewrap{padding:32px 36px!important;}
+    }
     @media(max-width:768px){
-      .svc-header{padding:48px 24px 8px!important;}
-      .svc-tabs{padding:28px 24px 0!important;}
-      .svc-list{padding:28px 24px 0!important;}
-      .svc-enquire{padding:48px 24px 72px!important;}
-      .svc-h1{font-size:36px!important;}
-      .enquire-band{flex-direction:column!important;padding:36px 28px!important;gap:20px!important;}
+      .svc-header{padding:80px 24px 8px!important;}
+      .svc-cats{padding:36px 24px 0!important;}
+      .svc-list{padding:44px 24px 0!important;}
+      .svc-enquire{padding:80px 24px 96px!important;}
+      .svc-h1{font-size:44px!important;}
+      .enquire-band{flex-direction:column!important;padding:56px 32px!important;gap:24px!important;text-align:left;align-items:flex-start!important;}
+      .cat-header{flex-direction:column!important;align-items:flex-start!important;gap:14px!important;}
+      .cat-title{font-size:32px!important;}
+      .enquire-h2{font-size:32px!important;}
     }
     @media(max-width:640px){
-      .svc-items-grid{grid-template-columns:1fr!important;}
-      .svc-tabs-inner{gap:8px!important;}
+      .puja-grid{grid-template-columns:1fr!important;}
+      .modal-hero{aspect-ratio:16/10!important;}
+      .modal-hero .name{font-size:30px!important;}
+      .modal-hero .titlewrap{padding:24px 28px!important;}
+      .modal-meta-grid{grid-template-columns:1fr!important;}
+      .modal-included ul{grid-template-columns:1fr!important;}
+      .modal-scroll{padding:16px!important;}
+      .modal-body{padding:32px 24px!important;}
     }
     @media(max-width:480px){
-      .svc-header{padding:36px 16px 8px!important;}
-      .svc-tabs{padding:20px 16px 0!important;}
-      .svc-list{padding:20px 16px 0!important;}
-      .svc-enquire{padding:36px 16px 56px!important;}
-      .svc-h1{font-size:28px!important;}
+      .svc-header{padding:56px 16px 8px!important;}
+      .svc-cats{padding:28px 16px 0!important;}
+      .svc-list{padding:32px 16px 0!important;}
+      .svc-enquire{padding:56px 16px 72px!important;}
+      .svc-h1{font-size:34px!important;}
+      .cat-title{font-size:26px!important;}
+      .enquire-h2{font-size:26px!important;}
     }
   </style>
 </helmet>
 
-<div style="font-family:'Inter',sans-serif;background:#fffbeb;color:#1c1917;">
-  <dc-import name="Nav" active="services" hint-size="100%,82px"></dc-import>
+<div style="font-family:'Inter',sans-serif;background:#1a0505;color:#f5efe6;">
+  <dc-import name="Nav" active="services" hint-size="100%,84px"></dc-import>
 
   <!-- header -->
-  <section class="svc-header" style="max-width:1200px;margin:0 auto;padding:64px 40px 8px;text-align:center;">
-    <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#b45309;font-weight:600;">Services Catalog</div>
-    <h1 class="svc-h1" style="font-family:'Playfair Display',serif;font-size:54px;font-weight:700;margin-top:10px;letter-spacing:-0.015em;line-height:1.05;">Rituals &amp; ceremonies</h1>
-    <p style="font-size:17px;line-height:1.65;color:#57534e;margin:16px auto 0;max-width:600px;">A complete repertoire of authentic North Indian Vedic ceremonies, performed personally by Pandit Ji across all of [CITY_NAME].</p>
-    <div style="display:inline-flex;align-items:center;gap:9px;margin-top:22px;background:#fff7e6;border:1px solid #f5d997;color:#92400e;padding:9px 18px;border-radius:999px;font-size:13.5px;font-weight:500;">
-      <span style="color:#d97706;">✦</span> Dakshina / Pricing is discussed offline based on specific ritual requirements.
+  <section class="svc-header header-in" style="max-width:1240px;margin:0 auto;padding:100px 40px 8px;text-align:center;position:relative;">
+    <div style="font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:#d4a344;font-weight:600;">— Services Catalog</div>
+    <h1 class="svc-h1" style="font-family:'Playfair Display',serif;font-size:70px;font-weight:700;margin-top:18px;letter-spacing:-.02em;line-height:1.02;color:#faf6ed;">Rituals &amp;<br><em style="font-style:italic;font-weight:400;color:#e8b84b;">ceremonies.</em></h1>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.55;color:rgba(245,239,230,.7);margin:22px auto 0;max-width:660px;font-weight:400;">A complete repertoire of authentic North Indian Vedic ceremonies, performed personally by Pandit Ji across all of Pune.</p>
+    <div style="display:inline-flex;align-items:center;gap:11px;margin-top:32px;background:rgba(212,163,68,.06);border:1px solid rgba(212,163,68,.28);color:rgba(245,239,230,.78);padding:11px 22px;border-radius:2px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;">
+      <span style="color:#d4a344;">✦</span> Dakshina discussed offline · Based on specific requirements
     </div>
   </section>
 
-  <!-- tabs -->
-  <section class="svc-tabs" style="max-width:1200px;margin:0 auto;padding:40px 40px 0;">
-    <div class="svc-tabs-inner" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;border-bottom:1px solid #f0e6cf;padding-bottom:28px;">
-      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
-        <button onClick="{{ t.onClick }}" style="{{ t.style }}">{{ t.label }}</button>
+  <!-- interactive category pills -->
+  <section class="svc-cats" style="max-width:1240px;margin:0 auto;padding:64px 40px 0;">
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+      <sc-for list="{{ cats }}" as="c" hint-placeholder-count="7">
+        <button onClick="{{ c.onClick }}" class="{{ c.cls }}">
+          <span class="num">{{ c.num }}</span>
+          <span>{{ c.label }}</span>
+          <span class="count">{{ c.count }}</span>
+        </button>
       </sc-for>
     </div>
   </section>
 
-  <!-- active category -->
-  <section class="svc-list" style="max-width:1200px;margin:0 auto;padding:40px 40px 0;">
-    <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;">
-      <span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;background:#991b1b;width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;">{{ catNum }}</span>
+  <!-- active category header + grid -->
+  <section class="svc-list" style="max-width:1240px;margin:0 auto;padding:68px 40px 0;">
+    <div class="cat-header" style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid rgba(212,163,68,.18);">
       <div>
-        <h2 style="font-family:'Playfair Display',serif;font-size:30px;font-weight:700;line-height:1.1;">{{ catTitle }}</h2>
-        <p style="font-size:14.5px;color:#78716c;margin-top:3px;">{{ catBlurb }}</p>
+        <div style="font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:#d4a344;font-weight:600;">— Category {{ catNum }}</div>
+        <h2 class="cat-title" style="font-family:'Playfair Display',serif;font-size:44px;font-weight:700;line-height:1.05;margin-top:14px;letter-spacing:-.02em;color:#faf6ed;">{{ catTitle }}</h2>
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:rgba(245,239,230,.65);margin-top:12px;max-width:680px;line-height:1.55;font-weight:400;">{{ catBlurb }}</p>
       </div>
+      <div style="font-family:'Playfair Display',serif;font-size:12px;color:#d4a344;font-weight:500;white-space:nowrap;letter-spacing:.24em;text-transform:uppercase;">{{ catCountLabel }}</div>
     </div>
 
-    <div class="svc-items-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+    <div class="puja-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;">
       <sc-for list="{{ items }}" as="it" hint-placeholder-count="6">
-        <div style="display:flex;gap:16px;border:1px solid #f0e6cf;border-radius:14px;padding:22px 24px;background:#fff;">
-          <span style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#d97706;flex-shrink:0;width:30px;">{{ it.num }}</span>
-          <div style="flex:1;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:600;line-height:1.25;">{{ it.name }}</h3>
-            <p style="font-size:14px;line-height:1.55;color:#78716c;margin-top:5px;">{{ it.desc }}</p>
-            <sc-if value="{{ it.note }}" hint-placeholder-val="">
-              <div style="display:inline-flex;align-items:center;gap:7px;margin-top:12px;background:#fff7e6;border:1px solid #f5d997;color:#92400e;padding:6px 12px;border-radius:8px;font-size:12.5px;font-weight:500;line-height:1.4;">
-                <span style="color:#d97706;">✦</span> {{ it.note }}
-              </div>
+        <div class="puja-card" onClick="{{ it.onClick }}" style="animation-delay:{{ it.delay }};">
+          <div class="img-wrap">
+            <sc-if value="{{ it.hasImage }}" hint-placeholder-val="">
+              <img src="{{ it.imgSrc }}" alt="{{ it.name }}" loading="lazy">
             </sc-if>
+            <sc-if value="{{ it.noImage }}" hint-placeholder-val="">
+              <div class="img-placeholder"><span class="om">ॐ</span></div>
+            </sc-if>
+            <span class="badge">{{ it.num }}</span>
+            <span class="cta">View details →</span>
+          </div>
+          <div class="body">
+            <div class="hindi">{{ it.hindi }}</div>
+            <div class="name">{{ it.name }}</div>
+            <div class="tagline">{{ it.tagline }}</div>
           </div>
         </div>
       </sc-for>
     </div>
   </section>
 
-  <sc-if value="{{ showShravanBanner }}" hint-placeholder-val="">
-    <section class="container" style="max-width:1200px;margin:0 auto;padding:32px 40px 0;">
-      <a href="/shravan" style="text-decoration:none;display:block;background:#fff7e6;border:1px solid #f5d997;border-radius:18px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
-        <div>
-          <div style="font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:#b45309;font-weight:600;">Shravan Guide</div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#1c1917;margin-top:6px;">Why is Shravan so sacred?</h3>
-          <p style="font-size:14px;color:#92400e;margin-top:6px;max-width:480px;">Read the story of Lord Shiva, this year's Somvar dates, and which rituals to choose.</p>
-        </div>
-        <span style="color:#991b1b;font-weight:600;font-size:15px;white-space:nowrap;">Read the Shravan guide →</span>
-      </a>
-    </section>
-  </sc-if>
-
   <!-- enquire band -->
-  <section class="svc-enquire" style="max-width:1200px;margin:0 auto;padding:72px 40px 90px;">
-    <div class="enquire-band" style="background:#991b1b;border-radius:24px;padding:56px 48px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;color:#fff;">
-      <div>
-        <h2 style="font-family:'Playfair Display',serif;font-size:34px;font-weight:700;line-height:1.1;">Not sure which ritual you need?</h2>
-        <p style="font-size:16px;color:#fbe7d8;margin-top:10px;max-width:520px;">Share your situation with Pandit Ji — he'll recommend the right ceremony, muhurat and samagri.</p>
+  <section class="svc-enquire" style="max-width:1240px;margin:0 auto;padding:120px 40px 120px;">
+    <div class="enquire-band" style="background:linear-gradient(135deg,#3a0a0a 0%,#5a1010 100%);border-radius:4px;padding:80px 64px;display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap;color:#faf6ed;border:1px solid rgba(212,163,68,.3);box-shadow:0 40px 80px -30px rgba(0,0,0,.5);position:relative;overflow:hidden;">
+      <svg width="260" height="260" viewBox="0 0 260 260" style="position:absolute;top:-60px;right:-60px;opacity:.15;pointer-events:none;"><g fill="none" stroke="#d4a344" stroke-width="1"><circle cx="130" cy="130" r="50"/><circle cx="130" cy="130" r="82" stroke-dasharray="2 6"/><circle cx="130" cy="130" r="114"/></g></svg>
+      <div style="position:relative;max-width:640px;">
+        <div style="font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:#d4a344;font-weight:600;">— Need Guidance?</div>
+        <h2 class="enquire-h2" style="font-family:'Playfair Display',serif;font-size:44px;font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-top:14px;color:#faf6ed;">Not sure which ritual<br><em style="font-style:italic;font-weight:400;color:#e8b84b;">you need?</em></h2>
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:rgba(245,239,230,.75);margin-top:16px;max-width:580px;line-height:1.55;font-weight:400;">Share your situation with Pandit Ji — he'll recommend the right ceremony, muhurat and samagri.</p>
       </div>
-      <a href="/contact" style="background:#fff;color:#991b1b;text-decoration:none;padding:16px 32px;border-radius:999px;font-weight:600;font-size:16px;white-space:nowrap;">Speak to Pandit Ji</a>
+      <a href="/contact" style="background:#f5efe6;color:#4a0e0e;text-decoration:none;padding:17px 34px;border-radius:2px;font-weight:600;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;position:relative;">Speak to Pandit Ji</a>
     </div>
   </section>
 
-  <dc-import name="Footer" hint-size="100%,440px"></dc-import>
+  <dc-import name="Footer" hint-size="100%,520px"></dc-import>
+
+  <!-- ---------- MODAL ---------- -->
+  <div class="modal-backdrop" onClick="{{ closeModal }}" style="opacity:{{ modalOpacity }};pointer-events:{{ modalPE }};"></div>
+  <div class="modal-scroll" style="opacity:{{ modalOpacity }};pointer-events:{{ modalPE }};" onClick="{{ closeModal }}">
+    <div class="modal-panel" style="transform:{{ modalTransform }};opacity:{{ modalOpacity }};" onClick="{{ stopProp }}">
+      <button class="modal-close" onClick="{{ closeModal }}">✕</button>
+
+      <div class="modal-hero">
+        <sc-if value="{{ modalHasImage }}" hint-placeholder-val="">
+          <img src="{{ modalImageSrc }}" alt="{{ modalName }}">
+        </sc-if>
+        <sc-if value="{{ modalNoImage }}" hint-placeholder-val="">
+          <div class="img-placeholder"><span class="om">ॐ</span></div>
+        </sc-if>
+        <div class="titlewrap">
+          <div class="hindi">{{ modalHindi }}</div>
+          <div class="name">{{ modalName }}</div>
+          <div class="tagline">{{ modalTagline }}</div>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-shloka">
+          <span class="glyph">॥</span>
+          <div class="verse">{{ modalShloka }}</div>
+          <div class="translation">{{ modalShlokaMeaning }}</div>
+        </div>
+
+        <div class="modal-meta-grid">
+          <div class="modal-meta">
+            <div class="lbl">Duration</div>
+            <div class="val">{{ modalDuration }}</div>
+          </div>
+          <div class="modal-meta">
+            <div class="lbl">Ideal Muhurat</div>
+            <div class="val">{{ modalMuhurat }}</div>
+          </div>
+          <div class="modal-meta">
+            <div class="lbl">Best For</div>
+            <div class="val">{{ modalBestFor }}</div>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <div class="eyebrow">— About this Ritual</div>
+          <h3>The Sacred Purpose</h3>
+          <p>{{ modalAbout }}</p>
+        </div>
+
+        <div class="modal-section">
+          <div class="eyebrow">— Significance</div>
+          <h3>Why it is performed</h3>
+          <p>{{ modalWhy }}</p>
+        </div>
+
+        <div class="modal-included">
+          <div class="eyebrow" style="font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:#d4a344;font-weight:600;">— What is Included</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:#faf6ed;margin-top:10px;letter-spacing:-.01em;">The full ceremony arrangement</h3>
+          <ul>
+            <li>Complete Vedic samagri list &amp; procurement guidance</li>
+            <li>Muhurat calculation as per Panchang</li>
+            <li>Kalash sthapana and altar setup</li>
+            <li>Personal recitation by Pandit Ji</li>
+            <li>Havan / hom sequence with Purnahuti</li>
+            <li>Prasad distribution and blessings</li>
+          </ul>
+        </div>
+
+        <div class="modal-cta">
+          <a href="tel:+919893515745" class="primary">Book this Puja</a>
+          <a href="https://wa.me/919893515745" class="secondary">Ask on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { tab: 0 };
-  cats() {
+  state = { tab: 0, openPuja: null };
+
+  data() {
+    // categories: id, label, blurb, items[{name, hindi, tagline, image}]
     return [
-      { id: 'A', tab: 'A · Shanti & Dosha Nivaran', title: 'Shanti & Dosha Nivaran Pujas', blurb: 'Remedial rituals to restore balance and peace.', items: [
-        { name: 'Navgrah Shanti Puja', desc: 'Pacifying the nine planets to harmonise their influence.' },
-        { name: 'Kaal Sarp Dosh Nivaran Puja', desc: 'Relief from the affliction of Kaal Sarp Dosh.' },
-        { name: 'Pitru Dosh Nivaran & Narayan Bali', desc: 'Ancestral peace and release from Pitru Dosh.' },
-        { name: 'Manglik Dosh Puja', desc: 'For marital harmony and Mangal Dosh remediation.' },
-        { name: 'Nakshatra Shanti Puja', desc: 'Pacifying afflicted birth-star influences.' },
-        { name: 'Drishti Durga Homam / Nazar Dosh Puja', desc: 'Clearing negative energy and the evil eye.' },
+      { id: 'I', slug: 'sanskar', label: 'Sanskar Ceremonies', blurb: 'Sacred sacraments that mark every meaningful stage of life — from a child\'s first name to marriage vows.', items: [
+        { name: 'Namakaran Puja', hindi: 'नामकरण पूजा', tagline: 'The naming ceremony — bestowing a child\'s first identity with Vedic blessings.', image: '06_namakaran_puja.png',
+          shloka: 'ॐ नमो भगवते वासुदेवाय ।', shlokaMeaning: 'I bow to the Divine who resides in all. This supreme salutation — repeated by the parents — invokes the child\'s guardian deities and impresses the sacred name upon the soul.',
+          duration: '2 to 3 hours', muhurat: '11th or 12th day after birth (as per Panchang)', bestFor: 'Infants between 11 and 40 days old',
+          about: 'Namakaran is the second sanskar and the first grand ceremony in a child\'s life. On the tenth day after birth the mother\'s pollution period ends, and on the eleventh or twelfth day the infant is officially given a name chosen from the nakshatra of birth. Pandit Ji prepares the child\'s janm kundali, invokes Ganesha and the nine planets, and chants the japa-kavach of the child\'s deity. The name is whispered into the child\'s right ear by the father, followed by ahavani homa and prasad distribution.',
+          why: 'In the Vedas a name is not a label but a vibration. The shastra holds that a child raised with a name aligned to the birth nakshatra grows with greater clarity, confidence and longevity. Namakaran also formally introduces the child to the family deity and to the community — welcoming the new life into the family\'s protective circle.' },
+        { name: 'Annaprashan Puja', hindi: 'अन्नप्राशन पूजा', tagline: 'The child\'s first solid meal, sanctified by mantra and family blessings.', image: '07_annaprashan_puja.png',
+          shloka: 'ॐ प्राणाय स्वाहा । अपानाय स्वाहा । व्यानाय स्वाहा ।', shlokaMeaning: 'Offering to the life-wind, the downward-wind and the pervasive-wind. These three offerings consecrate the first bite so the food nourishes body, mind and prana alike.',
+          duration: '2 to 3 hours', muhurat: '6th or 8th month for boys, 5th or 7th for girls (as per Panchang)', bestFor: 'Infants reaching their first solid food',
+          about: 'Annaprashan marks the child\'s transition from milk to grain — the moment the body begins to build itself from earthly food. Pandit Ji purifies a bowl of kheer or rice pudding, offers it into the homa, and feeds the first morsel to the child while reciting the above mantras. The ceremony also features the classical shloka that names every food item the child will one day enjoy — a charming Vedic tradition that blesses future nourishment.',
+          why: 'The shastra says food shapes not just the body but the temperament. By feeding the first grain under mantra and Panchang muhurat, parents ensure the child\'s digestion, immunity and growth begin under divine blessing. Annaprashan also releases the mother from the strict diet of the first months and opens the child to a lifetime of healthy eating.' },
+        { name: 'Mundan Sanskar', hindi: 'मुंडन संस्कार', tagline: 'The sacred first tonsure — releasing past-life impressions and inviting new growth.', image: '08_mundan_sanskar.png',
+          shloka: 'ॐ भूर्भुवः स्वः । तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात् ।', shlokaMeaning: 'The Gayatri mantra — we meditate on the radiant light of Savitri, that it may illumine our intellect. Chanted during the tonsure, it asks for renewed mental strength as the child sheds the hair of the womb.',
+          duration: '2 hours', muhurat: '1st or 3rd year (odd year) as per family tradition (as per Panchang)', bestFor: 'Children aged 1 to 3 years',
+          about: 'Mundan is the third sanskar, performed in the first or third year of life. The child\'s hair — considered a remnant of the previous birth — is shaved by a professional barber while the family chants mantras. Pandit Ji performs the ritual with ghee-dipped coconut, applies a tilak and completes the ceremony with homa and prasad. The shaved hair is traditionally offered into a river or the homa fire.',
+          why: 'The shastra teaches that the hair carries the subtle impressions of the past life; removing it frees the child to grow in the present birth. Mundan also strengthens the skull, improves scalp health and — in tradition — reduces the influence of the ninth house, granting the child courage, intelligence and the blessings of a long life.' },
+        { name: 'Karnavedh Sanskar', hindi: 'कर्णवेध संस्कार', tagline: 'The ear-piercing sanskar for lifelong wellbeing and subtle balance.', image: '09_karnavedh_sanskar.png',
+          shloka: 'ॐ कर्णयोः शुभगं कुर्यात् दीर्घायुर्विदुषां वरः ।', shlokaMeaning: 'May this piercing bring auspiciousness to the ears and grant long life and wisdom. The mantra consecrates the procedure and the site of the piercing.',
+          duration: '1 to 2 hours', muhurat: '6th or 7th month (as per Panchang)', bestFor: 'Infants around 6–8 months, also children at any age before marriage',
+          about: 'Karnavedh is the fourth sanskar — the piercing of the ears — traditionally performed in the sixth or seventh month with a gold or silver wire. Pandit Ji chooses an auspicious tithi, prepares the child, and the piercing is done with a delicate needle while mantras for longevity are recited. In classical practice this sanskar also protects against certain ailments of the ear and is considered a doorway to higher receptivity.',
+          why: 'The shastra regards the earlobe as a subtle nerve centre; piercing it in childhood supports the flow of prana and is held to confer longevity, health and protection. For girls the piercing also prepares the body for the adornments of married life, and in many traditions it is done before the child can remember any fear of the rite.' },
+        { name: 'Upanayan Sanskar', hindi: 'उपनयन संस्कार', tagline: 'The sacred thread ceremony — initiation into learning and dvija status.', image: '10_upanayan_sanskar.png',
+          shloka: 'ॐ भद्रं कर्णेभिः शृणुयाम देवाः । भद्रं पश्येमाक्षभिर्यजत्राः ।', shlokaMeaning: 'O gods, may we hear with our ears what is auspicious; may we see with our eyes what is auspicious. This opening invocation of the yajnopavit ceremony blesses the student\'s senses for the path of learning.',
+          duration: '3 to 4 hours', muhurat: 'Any auspicious tithi in the 8th year (as per Panchang)', bestFor: 'Boys aged 8 to 12, aligned to their birth nakshatra',
+          about: 'Upanayan — the sacred thread ceremony — is the initiation of the dvija (twice-born) status. The child receives the yajnopavit, the Gayatri mantra and the first lesson of the teacher. Pandit Ji conducts the full ceremony: homa, the symbolic begging of alms, the girdle of munja grass, and the investiture of the sacred thread over the left shoulder. From this day the child is formally eligible for Vedic study and daily sandhya.',
+          why: 'Upanayan is the doorway to education in the Vedic tradition. By taking the Gayatri mantra and the sacred thread, the child takes a conscious vow of discipline, celibacy and devotion to learning. The ceremony awakens the intellect, binds the child to a guru, and marks the beginning of a life governed by dharma.' },
+        { name: 'Vivah Sanskar (Marriage)', hindi: 'विवाह संस्कार', tagline: 'The complete Vedic wedding — from Grah Shanti to Saptapadi vows.', image: '14_vivah.png',
+          shloka: 'यथा सप्तार्चिषो होतुः श्वेतं धूमं समीरयन् । सप्त पाकाः पतङ्गस्य, तथा सप्त सखि सप्तमी ॥', shlokaMeaning: 'The prayer spoken at the seventh step — that the couple may share seven lifetimes of companionship, walks and nourishment, just as the fire\'s seven flames rise together.',
+          duration: '4 to 6 hours (full Vedic ceremony)', muhurat: 'As per the couple\'s kundali matching (as per Panchang)', bestFor: 'Bride and groom with kundali matching completed',
+          about: 'The Vivah Sanskar is the sixteenth and most elaborate sanskar, and Pandit Ji performs it in its complete Vedic form. The ceremony unfolds in its classical sequence — Ganesh puja and Grah Shanti, Vara Puja and Kanyadaan, the tying of the mangalsutra with the sacred three knots, Panigrahan (taking the hand), agnipradakshina (circling the sacred fire), Saptapadi (seven steps) and Sindoor Daan. Every rite is accompanied by its proper mantra, so the wedding is not a show but a set of binding vows witnessed by the fire.',
+          why: 'The Vedic wedding is an act of dharma first and celebration second. The Saptapadi itself — seven steps taken as one — binds the couple to nourish each other, grow in strength, share prosperity and walk the path of righteousness together. A wedding conducted with full mantra produces a bond the shastra calls inseparable — a partnership blessed across seven lifetimes.' },
+        { name: 'Sagai (Engagement)', hindi: 'सगाई', tagline: 'A sanctified ring ceremony that formally unites two families.', image: '15_sagai.png',
+          shloka: 'ॐ मंगलं भगवान विष्णुः मंगलं गरुडध्वजः । मंगलं पुण्डरीकाक्षः मंगलाय तनो हरिः ॥', shlokaMeaning: 'Auspicious is Lord Vishnu, auspicious is the bearer of the Garuda banner; may the lotus-eyed one extend auspiciousness to all. This shloka consecrates the beginning of the union.',
+          duration: '1 to 2 hours', muhurat: 'As per Panchang', bestFor: 'Engaged couples before the wedding date',
+          about: 'Sagai (Sagai Sanskar) is the formal betrothal that precedes the wedding. Pandit Ji performs a small homa, worships Ganesha to remove obstacles, and sanctifies the exchange of rings between the couple. The families formally announce the alliance and fix the shubh vivah muhurat. Many families also perform a vachan puja here — invoking blessings on the two houses now joined by promise.',
+          why: 'In tradition the sagai is not merely a social announcement but the first binding vow. It secures the alliance, brings the two families into a single lineage of goodwill, and creates the purity of intention on which the marriage itself will be built.' },
+        { name: 'Godh Bharai (Baby Shower)', hindi: 'गोद भराई', tagline: 'The Vedic baby shower — invoking safe passage for mother and child.', image: '44_god_bharai.png',
+          shloka: 'ॐ विष्णुः प्रथमो देवः सर्वकार्येषु पूज्यताम् ।', shlokaMeaning: 'May Lord Vishnu, the first among gods, be honoured in every undertaking. The ceremony begins by invoking Vishnu\'s protective grace over mother and child.',
+          duration: '1 to 2 hours', muhurat: '7th or 8th month of pregnancy (as per Panchang)', bestFor: 'Expectant mothers in their third trimester',
+          about: 'Godh Bharai is the joyful Vedic baby shower performed in the seventh or eighth month. Women of the family and community gather, adorn the mother, and fill her lap (godh) with fruits, sweets and auspicious gifts while singing mangal geet. Pandit Ji performs the Simantonnyana-style rite — offering into the homa, tying a rakhi, and chanting mantras for a smooth delivery and a healthy child. The ceremony closes with aarti and a feast.',
+          why: 'The shastra places great care on the mother\'s state during pregnancy, believing the child in the womb is shaped by her peace and devotion. Godh Bharai surrounds the expectant mother with blessings, relieves her of anxiety, and formally engages the entire family in praying for the safe arrival of the child.' },
       ]},
-      { id: 'B', tab: 'B · Home & Office', title: 'Festive, Home & Office Inaugurations', blurb: 'Ceremonies to bless new beginnings and spaces.', items: [
-        { name: 'Griha Pravesh Puja', desc: 'Comprehensive housewarming for a new home.' },
-        { name: 'Vastu Shanti Puja', desc: 'Structural harmony and peace for any space.' },
-        { name: 'Bhumi Puja', desc: 'Groundbreaking ceremony before construction.' },
-        { name: 'Office / Business Inauguration Puja', desc: 'Auspicious opening for a workplace or venture.' },
-        { name: 'Diwali Lakshmi-Kuber Puja', desc: 'Invoking financial prosperity and abundance.' },
-        { name: 'Ganesh Chaturthi Sthapana & Puja', desc: 'Installation and worship of Lord Ganesha.' },
+
+      { id: 'II', slug: 'home-office', label: 'Home, Office & New Beginnings', blurb: 'Consecrating new spaces, ventures and vehicles so every fresh start begins on auspicious ground.', items: [
+        { name: 'Griha Pravesh Puja', hindi: 'गृह प्रवेश पूजा', tagline: 'The complete housewarming — cleansing a new home and welcoming Lakshmi.', image: '02_griha_pravesh_puja.png',
+          shloka: 'ॐ वास्तोष्पते प्रति जानीह्यस्मान् स्वावेशो अनमीवो भवा नः ।', shlokaMeaning: 'O Lord of the dwelling, receive us; let our entry be safe and free from affliction. The Griha Pravesh mantra invites the deity of the home to accept the family into its shelter.',
+          duration: '3 to 4 hours', muhurat: 'A shubh muhurat after house possession (as per Panchang)', bestFor: 'New homes, flats and renovated dwellings',
+          about: 'Griha Pravesh is performed before the family enters a newly built or newly purchased home. Pandit Ji begins with Ganesh puja and Vastu Shanti homa to pacify the site, then conducts the classical three-stage entry — first a kalash of sacred water, then a bowl of milk, then the family itself. The ceremony includes Navgrah puja, the installation of the family deity in the griha mandir, and the lighting of the first diya of the household. Only after the homa does the new life of the home begin.',
+          why: 'A home is more than brick and mortar — in the shastra it is a living presence that shapes the fortune of its residents. Griha Pravesh clears any lingering energy of previous owners or builders, aligns the dwelling with Vastu, and formally installs Lakshmi and Ganesha as the protectors of the household\'s prosperity.' },
+        { name: 'Vastu Shanti', hindi: 'वास्तु शान्ति', tagline: 'Structural harmony puja to pacify directional doshas of any built space.', image: '05_vastu_shanti.png',
+          shloka: 'ॐ वास्तोष्पते शग्मया संसदा ते, सक्षीमहि गातुभिर्यज्ञियाभिः ।', shlokaMeaning: 'O Lord of the dwelling, may we dwell with you in auspicious assembly through worthy worship. The mantra harmonises the family with the presiding energy of the structure.',
+          duration: '3 to 5 hours', muhurat: 'Any shubh tithi after completing the building (as per Panchang)', bestFor: 'Homes, offices, factories and even existing residences with recurring issues',
+          about: 'Vastu Shanti is the corrective rite for any space where Vastu dosha (directional imbalance) is detected — be it a kitchen in the wrong corner, a toilet in an inauspicious zone, or an entrance facing a negative direction. Pandit Ji first assesses the building\'s orientation, then performs Vastu Purush puja with a homa of 108 offerings, pacifies the eight directions and the Navgrahas, and concludes with the worship of the Vastu Purush of the site. Where structural change is impossible, this rite is the prescribed remedy.',
+          why: 'The shastra holds that the Vastu Purush governs every dwelling, and that his displeasure — caused by structural imbalance — manifests as illness, discord and financial strain. Vastu Shanti restores his grace, so the space again supports the health, harmony and growth of all who live or work within it.' },
+        { name: 'Office Opening Puja', hindi: 'ऑफिस ओपनिंग पूजा', tagline: 'Auspicious inauguration for a new workplace, shop or professional venture.', image: '04_office_opening_puja.png',
+          shloka: 'ॐ श्री गणेशाय नमः । श्री लक्ष्मीनारायणाभ्यां नमः ।', shlokaMeaning: 'Salutations to Lord Ganesha, and to Lakshmi and Narayan together. The twin invocation removes obstacles and invites wealth for the new venture in a single offering.',
+          duration: '2 to 3 hours', muhurat: 'A shubh muhurat for the inauguration date (as per Panchang)', bestFor: 'New offices, shops, clinics, studios and startups',
+          about: 'The Office Opening Puja consecrates a new workplace before business begins. Pandit Ji installs a small Ganesha-Lakshmi mandir in the office, performs the homa with Navgrah shanti, and sanctifies the shop counter or account books. The ceremony often includes the puja of the office\'s main entrance, the planting of a tulsi, and the offering of the first laddoo to Ganesha. Employees receive prasad, and the business opens with its first aarti.',
+          why: 'A venture begun without invocation begins without protection. This puja ensures the business starts on a shubh muhurat, invokes Ganesha for obstacle-free operations and Lakshmi for steady revenue, and plants the seed of goodwill among partners, staff and customers from day one.' },
+        { name: 'Vahan Puja', hindi: 'वाहन पूजा', tagline: 'Blessing a new vehicle for safe journeys and continued protection.', image: '11_vahan_puja.png',
+          shloka: 'ॐ स्वस्ति न इन्द्रो वृद्धश्रवाः, स्वस्ति नः पूषा विश्ववेदाः ।', shlokaMeaning: 'May glorious Indra grant us welfare, may all-knowing Pushan grant us welfare. The mantra invokes the guardians of the paths for protection on every journey.',
+          duration: '1 to 2 hours', muhurat: 'Any shubh tithi before first use (as per Panchang)', bestFor: 'Cars, two-wheelers, commercial vehicles and new machines',
+          about: 'Vahan Puja is performed on the purchase day of any new vehicle — or on the festival of Ayudha Puja during Navratri for an existing one. Pandit Ji decorates the vehicle, performs a small homa, and applies vermilion and a lemon-and-chilli charm for protection from the evil eye. The steering wheel is anointed, mantras for safe travel are chanted, and the vehicle\'s first journey is made auspicious.',
+          why: 'In the Vedic worldview a vehicle is entrusted to the rider\'s karma; a blessed vehicle is guarded on the road. The puja protects the owner and family from accidents, keeps the vehicle mechanically smooth, and consecrates it as a servant of the family\'s dharma rather than merely an object of convenience.' },
+        { name: 'Udak Shanti', hindi: 'उदक शान्ति', tagline: 'Sacred water consecration to purify a home before any major ceremony.', image: '12_udak_shanti.png',
+          shloka: 'ॐ आपो अस्मान् मातरः शुन्धयन्तु, घृतेन नो घृतप्वः पुनन्तु ।', shlokaMeaning: 'May the waters, our mothers, purify us; may those whose food is ghee cleanse us with ghee. The mantra invokes the purifying power of consecrated water to cleanse the space.',
+          duration: '2 to 3 hours', muhurat: 'A day or two before the main ceremony (as per Panchang)', bestFor: 'Any home before a wedding, puja, or after an inauspicious event',
+          about: 'Udak Shanti is the water-consecration rite that cleanses a home before major ceremonies or after any negative event. Pandit Ji sanctifies water with mantras and Varuna puja, then sprinkles it throughout the dwelling while chanting — purifying every room, corner and entry. In many traditions it is the prescribed first step before Griha Pravesh, a wedding, or a thread ceremony, ensuring the environment is pure enough to hold the grace of the coming ritual.',
+          why: 'Water is the great purifier of the shastra, capable of absorbing and dissolving negative energy. Udak Shanti ensures the family performs its ceremonies from a foundation of purity, and it is the recognised remedy for a home that has witnessed grief, conflict or untimely events.' },
+        { name: 'Vyapar Vriddhi Puja', hindi: 'व्यापार वृद्धि पूजा', tagline: 'Ritual to remove obstacles in trade and invite steady business growth.', image: '48_vyapar_vridhi_puja.png',
+          shloka: 'ॐ ह्रीं श्रीं लक्ष्मी भंडाराय नमः ।', shlokaMeaning: 'Salutations to the treasure-house of Goddess Lakshmi. This beej-mantra invocation unlocks the gates of prosperity within the business.',
+          duration: '2 to 3 hours', muhurat: 'Shubh tithi, often at Diwali or after a loss period (as per Panchang)', bestFor: 'Traders, shopkeepers, small businesses facing stagnation or loss',
+          about: 'Vyapar Vriddhi Puja is the growth ritual for businesses facing stagnation, debt or fierce competition. Pandit Ji performs Ganesha puja to clear the path, then a Lakshmi-Kuber homa with 108 offerings to draw wealth, and concludes with a Navgrah shanti for any planet afflicting the 10th or 11th houses of the owner\'s chart. The ceremony often includes the worship of the account books and the shop\'s main counter.',
+          why: 'The shastra teaches that business success depends on more than effort — it flows from planetary grace and the blessings of Lakshmi. This puja removes the doshas causing loss, pacifies competitors\' ill-will, and turns the trader\'s karmic account toward growth, ensuring the venture thrives in its market.' },
       ]},
-      { id: 'C', tab: 'C · Yagyas & Homams', title: 'Major Vedic Yagyas & Powerful Homams', blurb: 'Potent fire ceremonies for protection and grace.', items: [
-        { name: 'Maha Mrityunjaya Yagya', desc: 'For health recovery and longevity.' },
-        { name: 'Navchandi / Satchandi Yagya', desc: 'Invocation of Goddess Durga for protection.' },
-        { name: 'Maha Ganapati Homam / Ganesh Yagya', desc: 'For the removal of obstacles.' },
-        { name: 'Lakshmi Narayana Homam / Vishnu Yagya', desc: 'For prosperity, harmony and divine grace.' },
-        { name: 'Saraswati Havan / Yagya', desc: 'For academic and creative success.' },
-        { name: 'Sri Suktam Havan', desc: 'Sacred recitation invoking Goddess Lakshmi.' },
-        { name: 'Rudrabhishek / Maha Rudra Yagya', desc: 'Pure devotion to Lord Shiva.' },
+
+      { id: 'III', slug: 'grah-shanti', label: 'Grah Shanti & Dosha Nivaran', blurb: 'Remedial rites that pacify planetary afflictions and restore harmony to your birth chart.', items: [
+        { name: 'Navgrah Shanti Puja', hindi: 'नवग्रह शान्ति', tagline: 'Balancing the nine planetary energies through their assigned mantras and havan.', image: '19_navagrah_shanti.png',
+          shloka: 'ॐ ब्रह्मा मुरारिस्त्रिपुरान्तकारी भानुः शशी भूमिसुतो बुधश्च । गुरुश्च शुक्रः शनि राहु केतवः सर्वे ग्रहाः शान्तिकरा भवन्तु ॥', shlokaMeaning: 'Brahma, Murari, the destroyer of Tripura, Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu and Ketu — may all these planets be the bestowers of peace. This is the classic invocation that opens every Navgrah shanti.',
+          duration: '4 to 6 hours (up to 9 days for 108 recitations)', muhurat: 'Chosen according to the afflicted planet\'s day and nakshatra (as per Panchang)', bestFor: 'Anyone with multiple afflicted planets or a generally difficult dashas period',
+          about: 'Navgrah Shanti is the master remedy that balances the nine planetary energies — Surya, Chandra, Mangal, Budh, Guru, Shukra, Shani, Rahu and Ketu. Pandit Ji first reads the birth chart to identify which planets are weak, combust or malefic in placement. Each planet is then pacified on its own day with its own mantra, its assigned offerings of grain and metal, and its portion of the 108-offering homa. The puja includes the worship of the Navgrah deities with their symbolic yantras and the wearing of their prescribed gem or metal.',
+          why: 'The nine planets are the divine administrators of karma in this life. When a planet is afflicted, its malefic fruit ripens as illness, delay, loss or conflict. Navgrah Shanti transforms that ripe fruit into grace — converting the same planetary energies into support, so the native can move through life\'s periods with balance rather than turbulence.' },
+        { name: 'Shani Shanti Puja', hindi: 'शनि शान्ति', tagline: 'Devoted rite to pacify Lord Shani and soften karmic hardship.', image: '17_shani_shanti.png',
+          shloka: 'ॐ नीलांजन समाभासं रवि पुत्रं यमाग्रजम् । छायामार्तण्ड सम्भूतं तं नमामि शनैश्चरम् ॥', shlokaMeaning: 'I bow to Shanichar — who shines like dark collyrium, son of the Sun, elder brother of Yama, born of Chhaya and Martanda. This mantra honours Shani as the just accountant of karma.',
+          duration: '3 to 4 hours; Sade Sati remedy spans 7.5 years of ritual duties', muhurat: 'Saturday, especially in Shani\'s nakshatra or at Shani temple (as per Panchang)', bestFor: 'Those in Sade Sati, Dhaiya, or with Shani in the 1st, 4th, 7th, 8th or 12th houses',
+          about: 'Shani Shanti pacifies Saturn during the difficult periods of Sade Sati (7.5 years), Dhaiya (2.5 years), or a weak Shani in the chart. Pandit Ji performs the puja with the recitation of the Shani beej mantra and the Shani Stotra, offers black sesame, mustard oil, urad dal and iron into the homa, and worships Shani on a Saturday. The ceremony often includes the shani tailam abhishek (oil bath) to the deity and, for grave affliction, the Shani Dhauta or the visit to Shani Shingnapur is advised.',
+          why: 'Shani is not a punishing planet but the divine accountant who delivers the fruit of karma without favour. His affliction surfaces as delay, humiliation, chronic illness and separation. Shani Shanti does not remove karma but restores the native\'s balance with it — turning Saturn\'s weight into discipline, patience and eventual promotion, so the tough years pass with grace instead of grief.' },
+        { name: 'Rahu Ketu Shanti Puja', hindi: 'राहु केतु शान्ति', tagline: 'Neutralising the shadow-planet doshas that cloud clarity and progress.', image: '18_rahu_ketu_shanti.png',
+          shloka: 'ॐ भ्रांतिदो भ्रांतिहंता च भीषणो भयवर्जितः । राहुः सिंहिकापुत्रः श्रीमान् सर्वत्र पूज्यताम् ॥', shlokaMeaning: 'May Rahu — son of Simhika, the source of illusion and its remover, fearsome yet beyond fear — be worshipped everywhere with honour. The mantra invokes the shadow planet as a dispeller of confusion.',
+          duration: '3 to 4 hours', muhurat: 'Shubh tithi, often in the Rahu or Ketu nakshatra (as per Panchang)', bestFor: 'Those with Rahu/Ketu dosha, Kaal Sarp Yog, or afflicted in the chart',
+          about: 'Rahu and Ketu are the shadow planets — the nodes of the moon — that carry the karmic residue of the past. Pandit Ji reads the chart for Kaal Sarp Yog, Rahu-Ketu affliction or their malefic placements, then performs the shanti with their beej mantras, offerings of blue and grey items, and a homa on their prescribed days. The remedy often includes the worship of Rahu on Saturday with sindoor offerings and Ketu on Tuesday with flower offerings, along with the prescribed rudraksha and gem recommendations.',
+          why: 'Rahu magnifies ambition into delusion and sudden upheaval; Ketu detaches and disturbs the mind. Where the shadow planets afflict, natives face unexpected obstacles, relationship confusion and professional zig-zags. Rahu-Ketu Shanti harmonises these nodes — converting Rahu\'s restlessness into vision and Ketu\'s detachment into wisdom — and neutralises the heaviness of Kaal Sarp Yog.' },
+        { name: 'Mangalnath Puja', hindi: 'मंगलनाथ पूजा', tagline: 'Special puja at the seat of Mangal — resolving Manglik and marital delays.', image: '16_manglanath_puja.png',
+          shloka: 'ॐ धरात्मजं महावीरं मंगलं शुभमंगलम् । अरक्तांगं दिव्यरूपं मंगलं शुभमंगलम् ॥', shlokaMeaning: 'O great hero born of the earth, auspicious Mars, whose form is divine and red of limb — you are the blessed one. This mantra worships Mangal as the strong protector of dharma.',
+          duration: '3 to 4 hours (Manglik dosha remedy)', muhurat: 'Tuesday, especially in the Mangal nakshatra (as per Panchang)', bestFor: 'Manglik natives, and couples with Mangal dosha before marriage',
+          about: 'Mangalnath Puja pacifies Mars — the planet of energy, courage and marriage — for natives born with Manglik dosha (Mars in the 1st, 4th, 7th, 8th or 12th house of the birth chart). Pandit Ji performs the puja with the Mangal beej mantra, offers red flowers, red sandalwood and masoor dal into the homa, and worships Mars on a Tuesday. For marriage seekers, the shanti is often performed at a Mangalnath temple and completed with the recitation of the Mangal Stotra and the wearing of red coral.',
+          why: 'Mars is the planet of drive, courage and the sacred union. In Manglik placement his raw energy is said to create friction in marriage — causing delays, discord or early separation. Mangalnath Puja channels that fiery energy into protection, so the native finds a compatible partner, the marriage proceeds smoothly, and the couple\'s passion burns as strength rather than strife.' },
+        { name: 'Nakshatra Shanti', hindi: 'नक्षत्र शान्ति', tagline: 'Pacifying the influence of an afflicted or ill-placed birth star.', image: '42_nakshatra_shanti.png',
+          shloka: 'ॐ नक्षत्राणां समूहं च सर्वग्रहाणां च मण्डलम् । शान्तिं कृत्वा नमस्यामि देवं नारायणं विभुम् ॥', shlokaMeaning: 'I bow to the omnipresent Lord Narayana after pacifying the host of stars and the circle of all planets. The mantra appeals beyond the stars to the supreme deity for peace.',
+          duration: '3 to 4 hours', muhurat: 'On the native\'s birth nakshatra day (as per Panchang)', bestFor: 'Anyone with an afflicted birth star or born under malefic combinations',
+          about: 'Every person is born under one of the 27 nakshatras, and each star carries the flavour of the deity who governs it. When a birth nakshatra is afflicted — or when malefic planets transit through it — its influence ripens as chronic obstacles, ill health or failure. Nakshatra Shanti is performed on the native\'s own nakshatra day: Pandit Ji worships the presiding deity of the star, recites its specific mantra, and offers its prescribed grains and colours into the homa. The ceremony often includes the birth-star puja of the nakshatra deity and the recitation of the Mahamrityunjay mantra.',
+          why: 'The birth star is the doorway through which the soul entered this life; when it is disturbed, every area of life feels subtly unsettled. Nakshatra Shanti restores the star\'s grace, aligns the native with the deity who presides over their birth, and removes the chronic, unexplained obstacles that seem to follow a person through life.' },
+        { name: 'Gandmool Shanti', hindi: 'गंडमूल शान्ति', tagline: 'The 27-day remedy for a child born in Gandmool nakshatra.', image: '41_gandmool_shanti.png',
+          shloka: 'ॐ नमो भगवते वासुदेवाय । गंडमूल नाशाय नमः ।', shlokaMeaning: 'Salutations to Lord Vasudeva, the destroyer of the Gandmool affliction. The mantra surrenders the child\'s star to Vishnu for purification.',
+          duration: 'Performed for 27 days after birth; final ceremony on the 27th day', muhurat: 'Starts at birth, concluding ceremony on the 27th day (as per Panchang)', bestFor: 'Newborns born under Gandmool nakshatras',
+          about: 'A child born under the Gandmool nakshatras (Ashwini, Ashlesha, Magha, Jyeshtha, Moola, Revati — the last quarter) is considered to carry a knot (gand) of the nakshatra that can disturb the family if not remedied. The classical remedy begins immediately: for 27 days the household avoids certain rituals and the child is gently protected, and on the 27th day Pandit Ji performs the Gandmool Shanti puja — a full shanti with homa, the recitation of the child\'s birth mantras, and offerings to the governing planet and deity. From that day the child is considered free of the gand.',
+          why: 'The shastra regards Gandmool birth as a test placed before the family — a knot of karma tied at birth. Gandmool Shanti unties that knot through the prescribed 27-day discipline and final ceremony, ensuring the child grows without the star\'s affliction and the family is released from the heaviness the gand is said to bring.' },
+        { name: 'Pitru Dosh Puja', hindi: 'पितृ दोष पूजा', tagline: 'Release from ancestral debts through Vedic tarpan and havan.', image: '35_pitra_dosh_puja.png',
+          shloka: 'ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम् । उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय मामृतात् ॥', shlokaMeaning: 'We worship the fragrant, nourishing three-eyed one, that like a ripe cucumber from the vine He may release us from death, not from immortality. The Mahamrityunjay mantra liberates the lineage from the bondage of unfulfilled ancestors.',
+          duration: '3 to 4 hours', muhurat: 'Shubh tithi, especially on the native\'s birth nakshatra or at Gaya/Trimbakeshwar (as per Panchang)', bestFor: 'Those with Pitru Dosh in the chart, or persistent family misfortunes',
+          about: 'Pitru Dosh forms when ancestors\' souls are unsatisfied — often due to unperformed shraddh, violent or early death, or unfulfilled last wishes. In the chart it appears as affliction of the 9th house, the Sun or Rahu-Ketu. Pandit Ji performs the remedy through tarpan (offerings of water and sesame to the ancestors), a Pitru homa with the offering of food into the fire, and the recitation of the Pitru mantras and Mahamrityunjay mantra. For severe dosha the ceremony is completed at the holy sites of Gaya or Trimbakeshwar with Narayan Nagbali.',
+          why: 'The ancestors are the unseen pillars of the family line; their satisfaction is the family\'s security. Pitru Dosh manifests as childlessness, repeated failure, chronic illness or sudden financial loss that no effort seems to cure. The puja satisfies the departed, clears the ancestral debt, and reopens the flow of blessings from the lineage to the living.' },
+        { name: 'Shuddhikaran Puja', hindi: 'शुद्धिकरण पूजा', tagline: 'Deep energetic cleansing of a home, person or space.', image: '22_shuddhikaran_puja.png',
+          shloka: 'ॐ अपवित्रः पवित्रो वा सर्वावस्थां गतोऽपि वा । यः स्मरेत् पुण्डरीकाक्षं स बाह्याभ्यन्तरः शुचिः ॥', shlokaMeaning: 'Whether impure or pure, in whatever condition one may be — one who remembers the lotus-eyed Lord becomes clean within and without. The mantra of inner purification that accompanies the external rite.',
+          duration: '2 to 3 hours', muhurat: 'Any time; ideal before major ceremonies or after negative events (as per Panchang)', bestFor: 'Homes, offices and persons after illness, grief, conflict or alleged negative influence',
+          about: 'Shuddhikaran is the deep-cleansing rite used when a space or person has absorbed negative energy — after prolonged illness, a death in the family, frequent conflict, or the suspicion of black-magic influence. Pandit Ji performs Panch-Gavya purification (offerings of the five cow products), recites the powerful mantras of the Durgasaptashati, and conducts a cleansing havan with herbs like guggul, neem and camphor. The ceremony includes the sprinkling of consecrated water through every room and, for persons, a ritual bath with mantras.',
+          why: 'Just as the body is cleansed by bathing, the shastra holds that homes and auras must be cleansed by ritual. Shuddhikaran dissolves accumulated negativity, breaks the pattern of repeated misfortune, and restores the natural light and harmony of the space — so the family can again live in peace and prosperity.' },
       ]},
-      { id: 'D', tab: 'D · Kathas & Recitations', title: 'Sacred Kathas & Holy Recitations', blurb: 'Soul-stirring narrations of the scriptures.', items: [
-        { name: 'Satyanarayan Vrat Katha', desc: 'Household thanksgiving and blessing.' },
-        { name: 'Shrimad Bhagwat Saptaha Katha', desc: 'Complete seven-day recitation of the 18,000 verses of the Bhagwat Puran — Kalash Sthapana daily, Purnahuti havan on the seventh day.', note: 'Considered the most powerful path to liberation in Kaliyug — removes sins, ancestral debts and bestows moksha.' },
-        { name: 'Shri Ram Katha / Ramayan Saptaha', desc: 'Narration of the life of Lord Rama.' },
-        { name: 'Shiv Maha Puran Katha', desc: 'Recitation of the glory of Lord Shiva.' },
-        { name: 'Shrimad Devi Bhagwat Puran', desc: 'Sacred narration of the Divine Mother.' },
-        { name: 'Srimad Bhagavad Gita Path', desc: 'Recitation of the holy Bhagavad Gita.' },
+
+      { id: 'IV', slug: 'yagya', label: 'Yagya & Anushthan', blurb: 'Fire ceremonies and extended anushthans — the most potent Vedic instruments for grace.', items: [
+        { name: 'Rudrabhishek', hindi: 'रुद्राभिषेक', tagline: 'The eleven-fold abhishek of Lord Shiva with sacred substances and Rudri path.', image: '03_rudrabhishek.png',
+          shloka: 'नमस्ते रुद्र मन्यवे उतोत इषवे नमः । बाहुभ्यामुत ते नमः ॥', shlokaMeaning: 'Salutation to your anger, O Rudra, and to your arrows; salutation to your arms. This verse from the Rudri path accepts even Shiva\'s fierce aspect, transforming it into grace.',
+          duration: '2 to 3 hours (Laghu Rudra — 11 abhisheks)', muhurat: 'Mondays, Pradosh, or on the native\'s birth nakshatra (as per Panchang)', bestFor: 'Health concerns, mental peace, and all-round purification',
+          about: 'Rudrabhishek is the sacred bathing of the Shiva Linga while chanting the Rudri path. Pandit Ji performs the abhishek eleven times (Laghu Rudra) — or a hundred and eleven times for a full Maha Rudra — with eleven sacred substances: water, milk, curd, ghee, honey, sugar, sugarcane juice, panchamrit, coconut water, vibhuti and bael leaves. Each abhishek is accompanied by the corresponding mantra of the Rudra-adhyaya of the Yajurveda, and the ceremony closes with a rudra homa and the distribution of the consecrated water as teerth.',
+          why: 'Rudra is the lord of dissolution and healing — the aspect of Shiva that burns away disease and negativity. Rudrabhishek is prescribed for chronic illness, mental agitation, fear and planetary affliction. The eleven-fold abhishek with eleven substances engages all the senses in devotion, and is considered one of the most powerful remedies for stubborn life obstacles.' },
+        { name: 'Mahamrityunjay Puja & Jap', hindi: 'महामृत्युंजय पूजा एवं जप', tagline: 'Sustained mantra jap and havan for health, healing and longevity.', image: '13_mahamrityunjay_puja.png',
+          shloka: 'ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम् । उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय मामृतात् ॥', shlokaMeaning: 'We worship the three-eyed lord, fragrant and nourishing; as the ripe cucumber is freed from the vine, may He free us from death, not from immortality. This is the great death-conquering mantra of the Rigveda.',
+          duration: '1 to 9 days (jap of 125,000 mantras for a full anushthan)', muhurat: 'Any day; ideal during illness or on a critical transit (as per Panchang)', bestFor: 'Recovery from illness, accident fear, and for longevity',
+          about: 'The Mahamrityunjay mantra is the death-conquering mantra of Sage Markandeya. Pandit Ji performs the puja with a copper pot of water over which the mantra is recited 108 times, followed by the abhishek of a Shiva Linga and a mahamrityunjay havan with 108 offerings. For grave illness or a feared transit, an extended anushthan of 125,000 repetitions over 9 days is performed with strict discipline — the household observes simplicity, and the entire family joins the daily jap.',
+          why: 'The Mahamrityunjay mantra addresses Shiva as the vanquisher of untimely death. It is the first remedy recommended for chronic illness, accident-proneness, surgery fears and planetary afflictions in the 8th house. The puja strengthens the native\'s prana, calms the fear of death, and is regarded as the most powerful protection a family can seek.' },
+        { name: 'Santan Gopal Anushthan', hindi: 'संतान गोपाल अनुष्ठान', tagline: 'Vishnu upasana performed by couples seeking a healthy child.', image: '34_santan_gopal_anushthan.png',
+          shloka: 'ॐ देवकीसुत गोविन्द वासुदेव जगत्पते । देहि मे तनयं कृष्ण त्वामहं शरणं गतः ॥', shlokaMeaning: 'O son of Devaki, Govinda, Vasudeva, Lord of the universe — I have taken refuge in you; grant me a child, O Krishna. This is the direct prayer of the anushthan for progeny.',
+          duration: '1 to 9 days; full anushthan is 125,000 mantra repetitions', muhurat: 'Any shubh tithi, often before conception (as per Panchang)', bestFor: 'Couples desiring children, or seeking a healthy, long-lived child',
+          about: 'Santan Gopal is the deity of progeny — the child-form of Vishnu worshipped for the blessing of a healthy child. Pandit Ji performs the anushthan with the daily recitation of the Santan Gopal mantra, a homa with 108 offerings each day, and the worship of Vishnu with tulsi leaves and milk. The full anushthan of 125,000 repetitions is completed with the observance of strict discipline by the couple, and the ceremony closes with the feeding of a pregnant or newly-married woman and the distribution of prasad.',
+          why: 'In the shastra, childlessness is often traced to planetary affliction, Pitru Dosh or the karmic accounts of the couple. Santan Gopal Anushthan directly invokes Vishnu\'s grace for progeny, clears the doshas obstructing conception, and blesses the child to be born healthy, intelligent and long-lived.' },
+        { name: 'Lakshmi Narsimha Pujan', hindi: 'लक्ष्मी नरसिंह पूजन', tagline: 'Fierce-protective form of Vishnu invoked for wealth and safety.', image: '47_lakshmi_narsimha_poojan.png',
+          shloka: 'नृसिंहं शंकरं भानुं वैकुण्ठं पुरुषोत्तमम् । अच्युतं च हृषीकेशं नारसिंहं भजाम्यहम् ॥', shlokaMeaning: 'I worship Narasimha — fierce as a lion, the protector who appears at the junction of day and night to rescue his devotees. The mantra invokes the half-man, half-lion form of Vishnu.',
+          duration: '2 to 3 hours', muhurat: 'Shubh tithi, often on a Saturday (as per Panchang)', bestFor: 'Protection from enemies, fears and negative influences; also for wealth',
+          about: 'Lakshmi Narasimha combines two aspects of Vishnu in a single worship: Narasimha, the fierce protector who emerged from the pillar to shield Prahlad, and Lakshmi, the goddess of abundance who sits in his lap. Pandit Ji performs the puja with the Narasimha beej mantra, offers into the homa the ghee and herbs of protection, and recites the Narasimha Kavach and the Lakshmi-Narasimha stotra. The ceremony is often chosen during a feared period, a legal threat, or the appearance of evil-eye or black-magic concerns.',
+          why: 'Where there is fear of harm — from enemies, litigation, evil influence or hidden threat — the shastra prescribes the fiercest form of divine protection. Lakshmi Narasimha Pujan guards the family at its most vulnerable moment while simultaneously drawing Lakshmi\'s wealth, making it the puja of both safety and prosperity.' },
+        { name: 'Sri Baglamukhi Puja', hindi: 'श्री बगलामुखी पूजा', tagline: 'Powerful Mahavidya upasana for victory in disputes and legal matters.', image: '49_shri_baglamukhi_puja.png',
+          shloka: 'ॐ ह्लीं बगलामुखी देव्यै सर्वदुष्टं वशं कुरु । जिह्वां स्तम्भय मौनं कुरु वाचं स्तम्भय ॥', shlokaMeaning: 'O Bagalamukhi, goddess of the crane, subjugate all evil; freeze their tongues, still their speech. This beej invocation is the essence of stambhana (paralysing the opponent).',
+          duration: '3 to 9 days (anushthan) for the full upasana', muhurat: 'Tuesdays or on the nakshatra of the native (as per Panchang)', bestFor: 'Court cases, rivalries, competitions, and protection from enemies',
+          about: 'Bagalamukhi is the eighth Mahavidya — the goddess of stambhana, who freezes the tongue of the opponent and paralyses their plans. Pandit Ji performs the puja with yellow-clad worship (yellow is her colour — turmeric, yellow flowers and yellow cloth), the recitation of her beej mantra and the Bagalamukhi Kavach. The ceremony includes the worship of the tongue and the churning rod with which the goddess holds down the demon\'s tongue, symbolically silencing all opposition. For court matters the puja is often extended into a 3- or 9-day anushthan.',
+          why: 'In disputes, competition and litigation, the shastra prescribes the goddess who cannot be defeated. Bagalamukhi Puja paralyzes the opponent\'s arguments, reveals their hidden intentions, and secures victory where the matter seems lost. It is the choice of those who must win on a fixed day — in court, in examinations, in sports or in business rivalry.' },
+        { name: 'Dus Mahavidya Puja', hindi: 'दस महाविद्या पूजा', tagline: 'Worship of the ten wisdom-goddesses — the highest tantric anushthan.', image: '45_das_mahavidya_puja.png',
+          shloka: 'ॐ ह्रीं क्लीं हूं नमः । सर्वविद्यायै महाविद्यायै नमः ।', shlokaMeaning: 'Salutations to the source of all knowledge, the great wisdom. This seed-invocation opens the worship of the ten forms of the goddess.',
+          duration: '3, 7 or 9 days (anushthan)', muhurat: 'Navratri, or a shubh tithi chosen for the native (as per Panchang)', bestFor: 'Deep spiritual progress, removal of karmic obstacles, and all-round protection',
+          about: 'The Dus Mahavidyas are the ten wisdom-goddesses — Kali, Tara, Tripura Sundari, Bhuvaneshwari, Tripura Bhairavi, Chhinnamasta, Dhumavati, Bagalamukhi, Matangi and Kamala — the ten faces through which the Goddess reveals the full spectrum of existence. Pandit Ji performs the puja with the worship of each Mahavidya on her own day with her own mantra and yantra, followed by a homa with 108 offerings for each. The anushthan is a serious upasana requiring discipline — it is undertaken under Pandit Ji\'s guidance and concluded with the distribution of prasad and the offering of coconuts.',
+          why: 'The Mahavidyas are the highest wisdom of the tantric tradition — each form a doorway to a different power: Kali for time and destruction of evil, Tara for guidance, Tripura Sundari for beauty and love, Bhuvaneshwari for the world itself. Dus Mahavidya Puja is undertaken by those seeking rapid spiritual progress, complete protection from all afflictions, and mastery over the obstacles that ordinary puja cannot move.' },
       ]},
-      { id: 'E', tab: 'E · Sanskar & Ancestral', title: 'Sanskar Ceremonies & Ancestral Rites', blurb: 'Life-cycle sacraments and rites for ancestors.', items: [
-        { name: 'Vedic Sanskars', desc: 'Namkaran, Mundan and Janeu (Yagnopavit) sacraments.' },
-        { name: 'Godh Bharai & Aksharabhyasam', desc: 'Baby Shower and Vedarambh (commencement of learning).' },
-        { name: 'Vedic Vivah Sanskar', desc: 'Complete wedding ceremonies including Grah Shanti, Kanyadaan, Vivaha Hom, and Saptapadi rites.' },
-        { name: 'Ancestral Rites', desc: 'Varshik Shradh, Pind Daan, Tarpan and Asthi Visarjan rites.' },
+
+      { id: 'V', slug: 'katha-path', label: 'Katha & Path (Recitations)', blurb: 'Soul-stirring narrations of the scriptures — from Satyanarayan Katha to Bhagwat Saptaha.', items: [
+        { name: 'Satyanarayan Puja', hindi: 'सत्यनारायण पूजा', tagline: 'The classic household thanksgiving — recital of the five chapters with prasad.', image: '01_satyanarayan_puja.png',
+          shloka: 'ॐ नमो नारायणाय । सत्यं ज्ञानमनन्तं नित्यमनाकारं समाकुलम् ।', shlokaMeaning: 'Salutations to Narayana, who is truth, knowledge, infinite and eternal — beyond form yet present in all. The opening salutation of the Satyanarayan vrat.',
+          duration: '2 to 3 hours', muhurat: 'Full moon (Purnima), Sankranti, or any shubh tithi (as per Panchang)', bestFor: 'Thanksgiving, fulfilment of wishes, and household harmony',
+          about: 'The Satyanarayan Puja is the beloved household ceremony of Lord Vishnu in his form of Narayana — the embodiment of truth. Pandit Ji performs the full vrat: the invocation of Ganesha, the sthapana of the kalash, the recitation of the five chapters of the Satyanarayan Katha, and the offering of the prescribed panchamrit, tulsi and the kheer prasad cooked in a single vessel. The katha narrates how the vow was tested and fulfilled by gods and mortals alike, and the ceremony closes with the aarti and the distribution of the sacred prasad to all present.',
+          why: 'The Satyanarayan Vrat is performed to give thanks for a fulfilled wish, before a journey or new beginning, or simply to restore peace to a household. The shastra promises that whoever performs it with faith on a Purnima or Sankranti is blessed with the removal of obstacles, the fulfilment of desires and the steady grace of Vishnu.' },
+        { name: 'Sunderkand Path', hindi: 'सुंदरकांड पाठ', tagline: 'Recitation of Hanuman\'s chapter for courage, protection and obstacle removal.', image: '20_sundarkand_path.png',
+          shloka: 'श्री गुरु चरन सरोज रज निज मनु मुकुरु सुधारि । बरनउँ रघुबर बिमल जसु जो दायकु फल चारि ॥', shlokaMeaning: 'Cleansing the mirror of my mind with the dust of the guru\'s lotus feet, I sing the spotless glory of the Raghu prince which grants the four fruits of life. This is the opening couplet of the Ramcharitmanas.',
+          duration: '2 to 3 hours (Samanya); 9 days or 21 days for an anushthan', muhurat: 'Tuesdays, Saturdays, or any shubh tithi (as per Panchang)', bestFor: 'Fear, obstacles, court matters and travel protection',
+          about: 'Sunderkand is the fifth chapter of the Ramcharitmanas — the epic account of Hanuman\'s journey across the sea to Lanka, his meeting with Sita, and his burning of the enemy\'s city. Pandit Ji recites the entire kanda with its chhand and doha metres, pausing at the sacred verses for the family\'s offering. The path is often performed on Tuesdays and Saturdays, the days of Hanuman, and can be extended into a 9-day or 21-day anushthan for grave obstacles. The recitation closes with the Hanuman Chalisa and the aarti.',
+          why: 'Hanuman is the remover of obstacles who crossed an ocean on a single leap. The recitation of his chapter is prescribed wherever courage is needed — before a court case, an exam, a difficult journey, or a phase of fear. The shastra teaches that Sunderkand recitation brings the protection of Hanuman himself and the blessings of Shri Ram.' },
+        { name: 'Shri Ramcharitmanas Akhand Path', hindi: 'श्री रामचरितमानस अखंड पाठ', tagline: 'Unbroken 24-hour recitation of the complete Ramayan by Tulsidas.', image: '21_shri_ramcharitmanas_akhand_path.png',
+          shloka: 'मंगल भवन अमंगल हारी । द्रवहु सो दसरथ अजिर बिहारी ॥', shlokaMeaning: 'O dweller of the court of Dasharatha, abode of auspiciousness and remover of misfortune — may you be moved to grace. This benedictory couplet of the Ramcharitmanas blesses every listener.',
+          duration: '24 to 48 hours of continuous recitation', muhurat: 'Before a wedding, housewarming, or during any life transition (as per Panchang)', bestFor: 'Major family events, prayers for peace, and the removal of long-standing problems',
+          about: 'The Akhand Path is the continuous, unbroken recitation of the entire Ramcharitmanas — seven kandas — by a team of reciters working in shifts over 24 hours or more. Pandit Ji organises the recitation with the careful discipline of the akhand tradition: the reading never stops, one reader hands the text to the next without a gap, and the sacred book is worshipped before and after. The path begins with the Panchakanya and Shri Ram namavali and closes with the full shanti paath and prasad.',
+          why: 'The Ramcharitmanas is the living scripture of millions — the story of Ram as the ideal of dharma. An Akhand Path is performed to invoke the presence of Shri Ram over a family\'s most important moment: a wedding, a new home, a recovery, or the beginning of a difficult chapter. The continuous recitation is held to saturate the environment with the divine name, dissolving obstacles and bringing peace.' },
+        { name: 'Shrimad Bhagwat Katha', hindi: 'श्रीमद् भागवत कथा', tagline: 'The seven-day Bhagwat Saptaha — the path of moksha in Kaliyug.', image: '50_shrimad_bhagwat_katha.png',
+          shloka: 'नमो भगवते वासुदेवाय । यथा भ्रमति भुवनं वशमेकतं वर ।', shlokaMeaning: 'Salutation to Lord Vasudeva, by whose single will the universe turns. This mantra, repeated through the katha, invokes the Supreme as the source of all.',
+          duration: '7 days (Saptaha)', muhurat: 'Any shubh tithi; often during holidays or festival seasons (as per Panchang)', bestFor: 'Family-wide blessing, peace for the departed, and spiritual elevation',
+          about: 'The Shrimad Bhagwat Saptaha is the seven-day narration of the Srimad Bhagavatam — the crown jewel of the Puranas. Over seven days Pandit Ji narrates the complete story of devotion: from the creation of the universe to the life of Krishna, weaving in the tales of Prahlad, Dhruva, Ambarish and the gopis. Each day has its own theme — the Lord\'s incarnations, the glory of Bhakti, the killing of demons, the rasa-lila — and the week closes with the katha of the Kaliyug and the promise of liberation through the holy name.',
+          why: 'The Bhagwat Puran is called the ripe fruit of the Vedic tree, and its seven-day recitation is the single most powerful satsang a family can arrange. Performed after the death of a loved one, it brings peace to the departed soul; performed for the living, it fills the house with the joy of Krishna. The Saptaha is the Kaliyug\'s accessible path to moksha.' },
+        { name: 'Shrimad Bhagwat Mool Path', hindi: 'श्रीमद् भागवत मूल पाठ', tagline: 'Root Sanskrit recitation of the full 18,000 verses of Bhagwat Puran.', image: '51_bhagwat_mool_path.png',
+          shloka: 'सत्यं परं धीमहि । नारायणं देवमजं विश्वेशम् ।', shlokaMeaning: 'We meditate on the supreme truth — Narayana, the unborn, the lord of the universe. The opening meditation of the Bhagwat Puran.',
+          duration: '21 days (for the complete 18,000 shlokas)', muhurat: 'Any shubh tithi (as per Panchang)', bestFor: 'Profound family blessings and the fulfilment of major vows',
+          about: 'The Mool Path is the complete recitation of the Srimad Bhagavatam in its original Sanskrit — all twelve skandhas and 18,000 shlokas — a task that traditionally takes 21 days of daily recitation. Pandit Ji recites the mool text with its correct accents and metres, while the family listens or follows along. The path is performed with the worship of the Bhagwat before it begins and the Puran Pujan at its close.',
+          why: 'The Bhagwat Puran itself declares that hearing it in its original form carries incomparable merit. The Mool Path is undertaken for the greatest of vows — the removal of the heaviest afflictions, the elevation of a departed soul, or the crowning blessing of a family\'s most important year. Its completion is celebrated like the fulfilment of a pilgrimage.' },
+        { name: 'Puran Pujan', hindi: 'पुराण पूजन', tagline: 'Ceremonial worship of the sacred Puranic texts before a katha begins.', image: '23_puran_poojan.png',
+          shloka: 'ॐ नमो भगवते वासुदेवाय । धर्मो जयति नाभिगम्यः सदैव ।', shlokaMeaning: 'Salutation to Lord Vasudeva; may dharma, ever approachable, triumph. The worship of the scripture as the living body of the Lord.',
+          duration: '1 to 2 hours', muhurat: 'Performed on the first day of any katha or path (as per Panchang)', bestFor: 'The formal inauguration of any scripture recitation',
+          about: 'Puran Pujan is the consecration of the sacred text itself before a katha or path begins. The book — be it the Bhagwat Puran, Ramcharitmanas or another scripture — is dressed, decorated and installed on a seat of honour. Pandit Ji performs its worship as one would worship the Lord: with panchamrit abhishek of the text (traditionally with sandalwood paste on its cover), flowers, incense and the recitation of the shloka that declares the Puran to be the form of Vishnu. From this moment the reciter and the listeners are seated in the presence of the scripture itself.',
+          why: 'The shastra teaches that the scripture is not a book but the Lord\'s own form — the Bhagwat Puran is held to be a visible incarnation of Krishna. Puran Pujan ensures the recitation begins with the right reverence, transfers the merit of the worship to the text, and makes the entire katha an offering rather than a reading.' },
+        { name: 'Vrat Udyapan Puja', hindi: 'व्रत उद्यापन पूजा', tagline: 'The completion ceremony that formally concludes a vow or fast.', image: '46_vrat_udyapan_puja.png',
+          shloka: 'ॐ पूर्णमदः पूर्णमिदं पूर्णात्पूर्णमुदच्यते । पूर्णस्य पूर्णमादाय पूर्णमेवावशिष्यते ॥', shlokaMeaning: 'That is whole, this is whole; from the whole, the whole arises. Taking the whole from the whole, only the whole remains. This mantra of completion blesses the fulfilment of the vow.',
+          duration: '2 to 3 hours', muhurat: 'On the designated completion tithi of the vrat (as per Panchang)', bestFor: 'Concluding any completed fast, vow or vrat',
+          about: 'Udyapan is the formal completion ceremony of any vrat — be it a Monday Shiva vrat, a Karwa Chauth, an Ekadashi vow or a Satyanarayan series. Pandit Ji performs the puja with the worship of the vrat deity, the offering of the prescribed items and a homa, and the feeding of the required number of Brahmans or the poor. A vrat begun but not properly concluded is held to lose its merit and even bring affliction; the udyapan restores and secures the completed merit.',
+          why: 'The shastra is strict on one point — a vow must be fulfilled as it was taken. Udyapan ensures the vrat\'s promise is closed in the proper manner, the deity is thanked and dismissed with respect, and the accumulated merit of the fast is secured to the family rather than left incomplete.' },
       ]},
-      { id: 'F', tab: 'F · Shravan & Navratri', title: 'Shravan Maas & Navratri Specials', blurb: 'Seasonal pujas for these sacred periods.', items: [
-        { name: 'Shravan Somvar Rudrabhishek', desc: 'Abhishek and puja on every Monday of Shravan.' },
-        { name: 'Mangala Gauri Puja', desc: 'Tuesday offerings to Goddess Parvati during Shravan.' },
-        { name: 'Shravan Shivratri Puja', desc: 'Night-long worship on the Shravan Shivratri.' },
-        { name: 'Navratri Chandi Path & Havan', desc: 'Worship of Goddess Durga across the nine nights.' },
-        { name: 'Durga Ashtami / Maha Navami Puja', desc: 'Key Navratri rituals with kanya pujan.' },
+
+      { id: 'VI', slug: 'festival', label: 'Festival Pujas', blurb: 'Devotional celebrations across the sacred calendar — from Ganesh Chaturthi to Deepavali.', items: [
+        { name: 'Ganesh Chaturthi Puja', hindi: 'गणेश चतुर्थी पूजा', tagline: 'Sthapana and daily worship of Lord Ganesha through the ten-day festival.', image: '32_ganesh_chaturthi_puja.png',
+          shloka: 'वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ । निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥', shlokaMeaning: 'O lord of the curved trunk and mighty form, radiant as a crore of suns — remove all obstacles from my every undertaking, always. This is the prayer that opens the festival.',
+          duration: '1 to 10 days (per household tradition)', muhurat: 'Bhadrapada Shukla Chaturthi (as per Panchang)', bestFor: 'The ten-day festival; also on Ganesh Chaturthi of every month',
+          about: 'Ganesh Chaturthi honours Lord Ganesha, the remover of obstacles, in the month of Bhadrapada. Pandit Ji performs the sthapana of the Ganesh murti with full ritual — the pranapratishtha of the deity, the daily panchopchar puja, the offering of modak and durva grass, and the recitation of the Ganesh Atharvashirsha. Over the festival days the daily aarti and mantra recitation continue, and the ceremony concludes with the visarjan (immersion) of the murti with a final offering and the Ganpati Bappa aarti.',
+          why: 'Ganesha is the god who must be worshipped first — no auspicious work begins without his name. The ten-day festival surrounds the household with his protective presence, clears the obstacles of the coming year, and is held to be the single most auspicious celebration of the Hindu calendar for new beginnings and family harmony.' },
+        { name: 'Navratri Puja', hindi: 'नवरात्रि पूजा', tagline: 'Nine nights of Durga upasana — kalash sthapana, path and kanya pujan.', image: '31_navratri_puja.png',
+          shloka: 'या देवी सर्वभूतेषु शक्तिरूपेण संस्थिता । नमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः ॥', shlokaMeaning: 'To the Goddess who dwells in all beings as power — salutations, salutations, salutations. This verse of the Durga Saptashati is repeated through the nine nights.',
+          duration: '9 days (daily puja with homa on the 8th or 9th day)', muhurat: 'Ashwin Shukla Pratipada (as per Panchang)', bestFor: 'The nine-day festival of the Goddess in all her forms',
+          about: 'Navratri is the nine-night worship of the Goddess in her nine forms — from Shailputri on the first night to Siddhidatri on the ninth. Pandit Ji performs the kalash sthapana with the akhand diya, the daily worship of the nine forms with their mantras, and the recitation of the Durga Saptashati (Chandi Path). On Ashtami or Navami the ceremony includes the homa and the kanya pujan — the worship of nine young girls as the living forms of the Goddess — followed by the distribution of prasad.',
+          why: 'The nine nights are the Goddess\'s annual descent into the world, and her worship during them is held to be one of the most powerful spiritual practices available. Navratri puja removes the obstacles of the year, grants the blessings of Shakti in all her forms, and is the prescribed period for beginning the deepest of spiritual practices.' },
+        { name: 'Durga Puja', hindi: 'दुर्गा पूजा', tagline: 'Full ceremonial worship of Maa Durga with Chandi Path and havan.', image: '40_durga_puja.png',
+          shloka: 'ॐ ऐं ह्रीं क्लीं चामुण्डायै विच्चे ।', shlokaMeaning: 'The beej-mantra of the Goddess Chamunda — the fierce form of Durga who destroys demons. This seed invocation awakens the protective power of the Goddess.',
+          duration: '4 days (Saptami to Dashami)', muhurat: 'Ashwin Shukla Saptami (as per Panchang)', bestFor: 'Protection, victory over adversity, and the Goddess\'s grace',
+          about: 'Durga Puja is the grand four-day worship of Maa Durga in her ten-armed form, the slayer of Mahishasura. Pandit Ji performs the full ceremonial sequence: the bodily sthapana of the Goddess (bodhon), the awakening of her in the kalash, the daily Chandi Path recitation of the Saptashati, the homa on the final day, and the sindoor khela with its joyful close. The murti is worshipped with the sixteen-step shodashopchar ritual, and the ceremony concludes with the immersion of the Goddess and the triumph of the Dashami.',
+          why: 'Durga is the Goddess of righteous victory — the power that destroys the demon of ego and protects the devotee. Durga Puja is performed for protection from enemies, for victory in a righteous cause, and for the deep grace of the Goddess that no obstacle can withstand.' },
+        { name: 'Mahalakshmi Puja', hindi: 'महालक्ष्मी पूजा', tagline: 'The classical invocation of Goddess Lakshmi for abundance and grace.', image: '25_mahalakshmi_puja.png',
+          shloka: 'ॐ श्रीं महालक्ष्म्यै नमः । ॐ ह्रीं श्रीं लक्ष्मीभ्यो नमः ।', shlokaMeaning: 'Salutations to Mahalakshmi; salutations to Lakshmi who is Shri. The sacred syllable Sri is itself the seed of abundance — the goddess dwells in this sound.',
+          duration: '2 to 3 hours', muhurat: 'Sharad Purnima, Diwali, Fridays, or on a shubh tithi (as per Panchang)', bestFor: 'Wealth, prosperity, and the removal of financial distress',
+          about: 'Mahalakshmi Puja invokes the goddess of prosperity in her complete form — the one who sits on the lotus, pours gold from her hands, and dwells wherever there is harmony. Pandit Ji performs the puja with the sthapana of the Lakshmi murti or yantra, the recitation of the Shri Sukta of the Rigveda, and the offering of lotus flowers, kumkum and milk into the homa. The ceremony includes the worship of the goddess\'s eight forms — the Ashta Lakshmi — from the giver of wealth (Dhana) to the giver of victory (Vijaya).',
+          why: 'The shastra teaches that Lakshmi is not a goddess of mere money but of the fullness of life — prosperity, health, family and good fortune. Mahalakshmi Puja is performed to invite her steady presence, remove the distress of the house, and ensure that wealth, once earned, remains and multiplies.' },
+        { name: 'Saraswati Puja', hindi: 'सरस्वती पूजा', tagline: 'Worship of the goddess of learning — ideal on Basant Panchami.', image: '26_saraswati_puja.png',
+          shloka: 'या कुन्देन्दुतुषारहारधवला या शुभ्रवस्त्रावृता । या वीणावरदण्डमण्डितकरा या श्वेतपद्मासना ॥', shlokaMeaning: 'She who is white as the kunda flower, the moon and snow, robed in white, holding the veena, seated on the white lotus — this is the goddess Saraswati. The opening verse of her worship.',
+          duration: '2 to 3 hours', muhurat: 'Vasant Panchami (Magh Shukla Panchami) or any auspicious day (as per Panchang)', bestFor: 'Students, teachers, artists and all seekers of knowledge',
+          about: 'Saraswati Puja honours the goddess of speech, music, learning and wisdom on Basant Panchami — the day the spring arrives and the goddess is celebrated in her purity. Pandit Ji performs the puja with the installation of the goddess\'s murti or her symbol, the recitation of the Saraswati mantra, and the offering of white flowers, yellow sweets and the traditional worship of books and instruments. Students place their books before the goddess, musicians their instruments, and children are initiated into their first letters (Aksharabhyasam) on this day.',
+          why: 'Knowledge is the wealth that cannot be stolen. Saraswati Puja is performed by students before examinations, by artists for the flow of creativity, and by parents for their children\'s intellect. The goddess\'s grace is held to sharpen memory, purify speech and open the door of wisdom.' },
+        { name: 'Hanuman Janmotsav Puja', hindi: 'हनुमान जन्मोत्सव पूजा', tagline: 'Celebration of Hanuman Ji\'s birth with Sunderkand and abhishek.', image: '27_hanuman_janmotsav_puja.png',
+          shloka: 'मनोजवं मारुततुल्यवेगं जितेन्द्रियं बुद्धिमतां वरिष्ठम् । वातात्मजं वानरयूथमुख्यं श्रीरामदूतं शरणं प्रपद्ये ॥', shlokaMeaning: 'I take refuge in the son of the wind, the messenger of Shri Ram, swift as the mind and the wind, master of the senses, foremost of the wise — the chief of the monkey hosts. This is the classic verse of Hanuman\'s glory.',
+          duration: '3 to 4 hours', muhurat: 'Chaitra Purnima (Hanuman Jayanti) or any Tuesday (as per Panchang)', bestFor: 'Strength, protection from fear, and devotion to Shri Ram',
+          about: 'Hanuman Janmotsav celebrates the birth of Hanuman — the son of the wind-god and the perfect devotee of Shri Ram. Pandit Ji performs the puja with the abhishek of the Hanuman murti with oil, the recitation of the complete Sunderkand, and the Hanuman Chalisa and Bajrang Baan. The celebration includes the offering of laddoo and sindoor (Hanuman\'s beloved offerings), the aarti with 108 lamps, and the distribution of prasad. For families facing fear or threat, the Janmotsav is also a day of protection.',
+          why: 'Hanuman embodies the union of devotion, strength and wisdom — the devotee who crossed an ocean on faith. His puja grants courage, removes fear and negative influence, and is the unerring refuge of those who feel weak against a powerful adversary.' },
+        { name: 'Shri Krishna Janmashtami Puja', hindi: 'श्री कृष्ण जन्माष्टमी पूजा', tagline: 'Midnight Nandotsav with abhishek of baby Krishna and bhog offering.', image: '28_shri_krishna_janmashtami_puja.png',
+          shloka: 'वसुदेवसुतं देवं कंसचाणूरमर्दनम् । देवकीपरमानन्दं कृष्णं वन्दे जगद्गुरुम् ॥', shlokaMeaning: 'I bow to Krishna — the son of Vasudeva, the slayer of Kansa and Chanur, the supreme joy of Devaki, the teacher of the world. This verse greets the birth of the Lord at midnight.',
+          duration: '3 to 4 hours (midnight ceremony)', muhurat: 'Shravan Krishna Ashtami, at midnight (as per Panchang)', bestFor: 'The birth festival of Krishna; the removal of obstacles and the gift of joy',
+          about: 'Janmashtami marks the midnight birth of Krishna in the prison of Mathura. Pandit Ji performs the nishit-kal (midnight) puja: the day-long fast, the decoration of the cradle, the abhishek of the baby Krishna murti at the hour of birth, the recitation of the birth shloka, and the midnight aarti and bhog offering of makhan, mishri and the beloved panjiri. The celebration continues with the jhula (swing) ceremony and the distribution of prasad in the small hours of the morning.',
+          why: 'Krishna is the god of joy — the one whose name removes sorrow and whose grace removes obstacles. Janmashtami puja fills the household with the divine playfulness of Krishna, blesses the children of the home, and is celebrated as the night when the supreme Lord chose to enter the world as a child.' },
+        { name: 'Shri Ram Navami Puja', hindi: 'श्री राम नवमी पूजा', tagline: 'Worship of Lord Ram on his birth tithi — noontime aarti and path.', image: '29_shri_ram_navami_puja.png',
+          shloka: 'ॐ श्री रामाय नमः । रामाय रामभद्राय रामचन्द्राय वेधसे ।', shlokaMeaning: 'Salutation to Rama, the auspicious, the gentle, the moon-like lord of wisdom. The simple name of Ram — held by the shastra to be equal to a thousand other names.',
+          duration: '2 to 3 hours', muhurat: 'Chaitra Shukla Navami, at noon (as per Panchang)', bestFor: 'The birth festival of Shri Ram; righteousness and protection',
+          about: 'Ram Navami celebrates the birth of Shri Ram, the seventh avatar of Vishnu, at the noontide of the ninth day of Chaitra. Pandit Ji performs the puja with the worship of the Ram murti with the sixteen steps, the recitation of the Ramcharitmanas\'s Bal Kand, and the mid-day aarti at the exact birth hour. The ceremony includes the recitation of the Ram Raksha Stotra for protection and the distribution of prasad to all present.',
+          why: 'Shri Ram is the ideal of dharma — the king who lived righteousness in every circumstance. His puja is performed for protection, for the strength to live by principle, and for the grace that upholds the devotee through the trials of life.' },
+        { name: 'Vishwakarma Puja', hindi: 'विश्वकर्मा पूजा', tagline: 'Consecration of tools, machines and workplaces to the divine architect.', image: '30_vishwakarma_puja.png',
+          shloka: 'ॐ विश्वकर्मणे नमः । विश्वकर्मा विश्वरूपः सर्वशिल्पेषु कर्मकृत् ।', shlokaMeaning: 'Salutations to Vishwakarma, the divine architect of the universe, whose form is all creation and whose hands craft every craft. The mantra consecrates the worker\'s tools to the divine artisan.',
+          duration: '2 to 3 hours', muhurat: 'Kanya Sankranti (September), and on the new shop\'s opening day (as per Panchang)', bestFor: 'Engineers, artisans, factory workers and mechanics',
+          about: 'Vishwakarma is the divine architect who built the cities of the gods. On Vishwakarma Puja, celebrated at the Kanya Sankranti, every workplace — factory, workshop, studio, site — is decorated, and the tools, machines and vehicles are worshipped as the limbs of the craftsman. Pandit Ji performs the puja with the worship of the tools with tilak and flowers, the recitation of the Vishwakarma mantra, and the offering of the first work of the day to the divine architect.',
+          why: 'The shastra teaches that the craftsman\'s skill is itself divine — an echo of Vishwakarma\'s work. This puja consecrates the tools so that the worker\'s hands are guided, the machines run smoothly, accidents are averted, and the work of the hands becomes a form of worship.' },
+        { name: 'Haritalika Puja', hindi: 'हरितालिका पूजा', tagline: 'The Teej vrat puja performed by women for marital wellbeing.', image: '33_haritalika_puja.png',
+          shloka: 'उमा माहेश्वरौ वन्दे विवाहानन्दकारकौ । पार्वतीपरमेशौ च सर्वसौभाग्यदायकौ ॥', shlokaMeaning: 'I bow to Uma and Maheshvara, the bestowers of the joy of marriage; to Parvati and Parameshwara, the givers of all good fortune. This mantra invokes the divine couple for marital blessing.',
+          duration: '2 to 3 hours', muhurat: 'Bhadrapada Shukla Tritiya (as per Panchang)', bestFor: 'Married and unmarried women for marital harmony and auspicious life',
+          about: 'Haritalika Teej celebrates the penance of Parvati through which she attained Shiva as her husband. On this day women observe the nirjala (waterless) vrat and perform the puja of the divine couple. Pandit Ji performs the ceremony with the worship of the Parvati-Shiva murti or a sand idol of Gauri, the recitation of the Haritalika katha, and the offering of the prescribed fruits, flowers and the traditional jau (barley). Married women pray for their husbands\' long life and the unmarried for an ideal partner.',
+          why: 'The shastra holds Haritalika to be one of the most sacred of women\'s vrats — the very vrat by which Parvati won Shiva. Its observance is believed to bring the blessings of a loving marriage, the wellbeing of the husband, and the fulfilment of the family\'s happiness.' },
+        { name: 'Dhanteras Puja', hindi: 'धनतेरस पूजा', tagline: 'The first evening of Diwali — worship of Kuber and Dhanvantari.', image: '39_dhanteras_puja.png',
+          shloka: 'ॐ धनदाय नमः । ॐ दानवताराय विद्महे अमृतकलशाय धीमहि तन्नो धन्वन्तरिः प्रचोदयात् ॥', shlokaMeaning: 'Salutations to the giver of wealth; we meditate on the one who took the form of the healer Dhanvantari, holding the pot of nectar — may he illumine us. This mantra invokes both Kuber and Dhanvantari.',
+          duration: '1 to 2 hours', muhurat: 'Kartik Krishna Trayodashi, after sunset (as per Panchang)', bestFor: 'The first day of Diwali; wealth, health and the purchase of new items',
+          about: 'Dhanteras, the thirteenth day of the waning moon, opens the festival of Diwali. On this evening Pandit Ji performs the puja of Kuber — the treasurer of the gods — and Dhanvantari, the divine physician who emerged from the ocean carrying the pot of nectar. The ceremony is performed after sunset with the worship of the account books, the lighting of the first diya of Diwali, and the offering of the traditional sweet. New purchases of gold, silver or utensils made on this day are worshipped as the arrival of Lakshmi.',
+          why: 'Dhanteras is the evening of wealth and health. The worship of Kuber draws prosperity into the year, the worship of Dhanvantari invokes protection from illness, and the items bought on this auspicious evening are held to bring lasting good fortune to the household.' },
+        { name: 'Deepavali Puja', hindi: 'दीपावली पूजा', tagline: 'Diwali night Lakshmi-Ganesh puja with chopda pujan and diya lighting.', image: '43_deepavali_puja.png',
+          shloka: 'ॐ श्रीं ह्रीं श्रीं कमले कमलालये प्रसीद प्रसीद श्रीं ह्रीं ॐ महालक्ष्म्यै नमः ॥', shlokaMeaning: 'Salutations to Mahalakshmi, who dwells in the lotus — be pleased, be pleased. This is the Lakshmi beej-mantra chanted on the night of Diwali.',
+          duration: '3 to 4 hours', muhurat: 'Kartik Amavasya, during the pradosh kaal (as per Panchang)', bestFor: 'The night of Lakshmi; wealth, victory over darkness and new beginnings',
+          about: 'Deepavali — the festival of lights — reaches its culmination in the Amavasya puja of Lakshmi and Ganesha. Pandit Ji performs the evening puja with the sthapana of the Lakshmi-Ganesh murtis, the recitation of the Shri Sukta and the Lakshmi beej mantra, and the worship of the chopda (the new account book) that opens the new financial year. The house is lit with diyas, the rangoli is drawn at the door, and the ceremony closes with the aarti and the offering of sweets to the goddess. On this night Lakshmi is held to visit the homes that burn the brightest.',
+          why: 'Diwali is the night on which Lakshmi descends to the earth, and her worship on Amavasya is the single most important puja of the year for prosperity. The puja of Lakshmi-Ganesh together ensures that wealth enters the home with wisdom, the old year is closed in gratitude, and the new year opens under the goddess\'s light.' },
+      ]},
+
+      { id: 'VII', slug: 'pitru-antim', label: 'Pitru Karya & Antim Sanskar', blurb: 'Compassionate rites for departed souls — from cremation to annual shraddh at Gaya, Trimbakeshwar and beyond.', items: [
+        { name: 'Narayan Nagbali', hindi: 'नारायण नागबली', tagline: 'The three-day Trimbakeshwar rite that dissolves ancestral and serpent doshas.', image: '24_narayan_nagbali.png',
+          shloka: 'ॐ नारायणाय विद्महे वासुदेवाय धीमहि । तन्नो विष्णुः प्रचोदयात् ॥', shlokaMeaning: 'We meditate on Narayana, we contemplate Vasudeva; may Vishnu illumine us. This invocation of the supreme deity opens the great remedial rite.',
+          duration: '3 days',           muhurat: 'As per Panchang (often performed in the family\'s chosen period)', bestFor: 'Those with Narayan dosha, Nag dosha, Pitru dosha, or a family pattern of childlessness and repeated loss',
+          about: 'Narayan Nagbali is the most powerful of the ancestral rites, performed at the sacred confluence town of Trimbakeshwar or at the family\'s chosen holy place. The three-day ceremony combines Narayan Bali — the offering to Lord Vishnu for the liberation of ancestors who died untimely deaths — with Nag Bali, the pacification of the serpent dosha carried from past lives. Pandit Ji conducts the rite with the worship of the pindas, the recitation of the Narayan Sukta, and the offerings into the fire, concluding with the shraddh of the departed and the Brahman bhoj.',
+          why: 'When ancestors die an untimely or violent death — by accident, suicide, snakebite or in childhood — their souls remain unsettled, and the dosha descends through the family as childlessness, miscarriages, chronic illness or persistent misfortune. Narayan Nagbali releases these souls and dissolves the serpent dosha, freeing the family line from the pattern that has held it back.' },
+        { name: 'Pindadan', hindi: 'पिंडदान', tagline: 'Offering of rice-pinda to ensure liberation and peace for departed ancestors.', image: '36_pind_daan.png',
+          shloka: 'ॐ पितृभ्यः स्वधा नमः । अग्निष्वात्ताः पितरः सोमवन्तो गणाः ।', shlokaMeaning: 'This oblation is for the ancestors; salutations to the departed who are nourished by Soma. The mantra invokes the ancestors to accept the offering of the pinda.',
+          duration: '1 to 2 hours (per pindadan site)', muhurat: 'Pitru Paksha, the death-anniversary, or on pilgrimage (as per Panchang)', bestFor: 'The peace of departed ancestors and the release of Pitru dosha',
+          about: 'Pindadan is the offering of the pinda — balls of cooked rice and sesame — to the departed ancestors. Pandit Ji performs the rite at the sacred sites of the ancestors: Gaya, Trimbakeshwar, Prayagraj, Haridwar, or at the family home. The pindas are offered with the recitation of the Pitru mantras, followed by tarpan (offerings of water) and the worship of Vishnu as the ancestor-deity. The rite is the core of the annual shraddh and the first step of the deeper ancestral rites.',
+          why: 'The shastra holds that the ancestors are nourished by the pinda and water offered by their descendants. Pindadan satisfies the departed, removes the heaviness of the family line, and is the prescribed remedy wherever Pitru dosha, childlessness or the repeated misfortune of the family is suspected.' },
+        { name: 'Varshik Shraddh', hindi: 'वार्षिक श्राद्ध', tagline: 'The annual death-anniversary shraddh with tarpan and Brahman bhoj.', image: '37_varshik_shraddh.png',
+          shloka: 'ॐ पितृगणाय विद्महे जगतधारिणे धीमहि । तन्नो पितरः प्रचोदयात् ॥', shlokaMeaning: 'We meditate on the host of ancestors, the sustainers of the world; may the ancestors illumine us. This invocation opens the annual remembrance of the departed.',
+          duration: '2 to 3 hours', muhurat: 'The tithi of the death anniversary, or during Pitru Paksha (as per Panchang)', bestFor: 'Every household on the death-anniversary of a departed parent or elder',
+          about: 'The Varshik Shraddh is the annual remembrance of a departed soul on the tithi of their death. Pandit Ji performs the ceremony with the pavitra (sanctified) offerings of pinda, the tarpan of water and sesame, the recitation of the Pitru mantras, and the feeding of the Brahmans or the needy as the completion of the rite. The ceremony can be performed at home with the samagri prepared in the morning, and is the family\'s most sacred duty toward its ancestors.',
+          why: 'The shastra makes the annual shraddh a duty that cannot be neglected — the ancestors await this offering each year. Its performance satisfies the departed, keeps the family connected to its roots, and is held to bring the blessings of the lineage: protection, prosperity and the continued grace of those who came before.' },
+        { name: 'Tripindi Shraddh', hindi: 'त्रिपिंडी श्राद्ध', tagline: 'Special shraddh for three generations of unsatisfied ancestral souls.', image: '38_tripindi_shraddh.png',
+          shloka: 'ॐ पिता पितामहश्चैव तथैव प्रपितामहः । ते मे प्रयच्छन्तु विपुलां प्रजां स्वधा नमः ॥', shlokaMeaning: 'Father, grandfather and great-grandfather — may they grant us abundant progeny; this oblation is for them. The mantra of the three generations of the lineage.',
+          duration: '3 to 4 hours', muhurat: 'Pitru Paksha, the death-anniversary, or on a shubh tithi (as per Panchang)', bestFor: 'Families with three generations of unperformed or unfulfilled shraddh, or repeated misfortune',
+          about: 'Tripindi Shraddh is the special shraddh performed for three generations of the paternal line — the father, grandfather and great-grandfather — in a single ceremony, usually on the final day of the Pitru Paksha (Sarva Pitru Amavasya) or during an ancestral pilgrimage. Pandit Ji performs the rite with the three pindas offered for the three generations, the tarpan and homa, and the Brahman bhoj that completes it. The rite is prescribed when the family\'s shraddh has been neglected or when an ancestor is held to have died without issue to perform it.',
+          why: 'Where the shraddh of three generations has lapsed — through death without issue, migration, or neglect — the ancestors remain unsatiated and the family suffers their absence in the form of childlessness and decline. Tripindi Shraddh clears the accumulated deficit of the whole lineage in one comprehensive rite.' },
+        { name: 'Antim Sanskar', hindi: 'अंतिम संस्कार', tagline: 'The final Vedic rite — cremation, kapal kriya and asthi visarjan.', image: '53_antim_sanskar.png',
+          shloka: 'ॐ अग्नये स्वाहा । प्रजापतये स्वाहा । यमाय स्वाहा ।', shlokaMeaning: 'Offering to Agni, offering to Prajapati, offering to Yama. The mantras spoken as the body is consigned to the sacred fire, releasing the soul to its journey.',
+          duration: '3 to 5 hours (plus 10–13 day sapindikaran and shraddh)', muhurat: 'Performed as soon as possible after death (as per Panchang)', bestFor: 'The final rite of a departed family member',
+          about: 'Antim Sanskar is the final rite of passage — the last and most compassionate service a family performs for its loved one. Pandit Ji conducts the ceremony from the preparation of the body through the cremation: the sacred bath, the placing of the flowers and tulsi, the chhaya-dan, the circumambulation of the fire, the offering of the agnihotra, and the kapal kriya (the breaking of the skull for the release of the soul). The rite continues with the asthi (remains) collection and visarjan, followed by the 10th and 13th day ceremonies and the sapindikaran that unites the departed with the ancestors.',
+          why: 'The Vedas teach that the manner of the final rites shapes the soul\'s journey. A properly conducted Antim Sanskar ensures the departed is released with dignity, reaches the ancestors without obstruction, and does not linger near the family — while the completion of the mourning period restores the family\'s normal life and protects the survivors from the heaviness of the loss.' },
+        { name: 'Brahman Bhoj', hindi: 'ब्राह्मण भोज', tagline: 'Ceremonial feeding of Brahmans that completes many pujas and shraddh rites.', image: '52_brahman_bhoj.png',
+          shloka: 'ॐ ब्रह्मार्पणं ब्रह्म हविः ब्रह्माग्नौ ब्रह्मणा हुतम् । ब्रह्मैव तेन गन्तव्यं ब्रह्मकर्मसमाधिना ॥', shlokaMeaning: 'The offering is Brahman, the oblation is Brahman, offered in the fire of Brahman by Brahman — Brahman is attained by one absorbed in the act of Brahman. This verse of the Gita consecrates the act of feeding.',
+          duration: '1 to 2 hours (as part of a larger ceremony)', muhurat: 'As part of a puja, shraddh or udyapan (as per Panchang)', bestFor: 'The completion of shraddh rites, pujas and vrat udyapan ceremonies',
+          about: 'Brahman Bhoj is the ceremonial feeding of learned Brahmans that forms the completion of nearly every important rite — shraddh, pindadan, udyapan and many pujas. Pandit Ji selects and honours the Brahman guests, performs their worship with tilak and dakhshina, and serves them the sattvic meal prepared for the occasion. In the shraddh context the Brahman is the living representative of the ancestor, and in the puja context the honoured guest through whom the ritual is completed.',
+          why: 'The shastra teaches that the offering to the Brahman carries the offering to the ancestors and the gods — the feeding of the learned completes what the mantra began. Brahman Bhoj secures the merit of the whole ceremony, fulfils the obligation of hospitality, and is the indispensable closing of the most important rites.' },
       ]},
     ];
   }
+
   renderVals() {
-    const cats = this.cats();
+    const cats = this.data();
     const tab = this.state.tab;
-    const base = { fontFamily: "'Inter',sans-serif", fontSize: '14px', fontWeight: 600, padding: '11px 20px', borderRadius: '999px', cursor: 'pointer', border: '1px solid #e7dcc2', background: '#fff', color: '#57534e' };
-    const act = { ...base, background: '#991b1b', color: '#fff', border: '1px solid #991b1b' };
-    const tabs = cats.map((c, i) => ({ label: c.tab, onClick: () => this.setState({ tab: i }), style: i === tab ? act : base }));
+
+    const catVals = cats.map((c, i) => ({
+      num: c.id,
+      label: c.label,
+      count: c.items.length,
+      cls: i === tab ? 'cat-pill active' : 'cat-pill',
+      onClick: () => this.setState({ tab: i }),
+    }));
+
     const cur = cats[tab];
-    const items = cur.items.map((it, i) => ({ ...it, num: String(i + 1).padStart(2, '0') }));
-    const showShravanBanner = cur.id === 'F';
-    return { tabs, catNum: cur.id, catTitle: cur.title, catBlurb: cur.blurb, items, showShravanBanner };
+    const items = cur.items.map((it, i) => ({
+      ...it,
+      num: String(i + 1).padStart(2, '0'),
+      hasImage: !!it.image,
+      noImage: !it.image,
+      imgSrc: it.image ? `./puja-images/${it.image}` : '',
+      delay: `${Math.min(i * 55, 600)}ms`,
+      onClick: () => this.setState({ openPuja: it }),
+    }));
+
+    const op = this.state.openPuja;
+    const modalOpen = !!op;
+
+    return {
+      cats: catVals,
+      catNum: cur.id,
+      catTitle: cur.label,
+      catBlurb: cur.blurb,
+      catCountLabel: `${cur.items.length} rituals`,
+      items,
+
+      // modal
+      modalOpacity: modalOpen ? 1 : 0,
+      modalPE: modalOpen ? 'auto' : 'none',
+      modalTransform: modalOpen ? 'translateY(0) scale(1)' : 'translateY(30px) scale(0.97)',
+      closeModal: () => this.setState({ openPuja: null }),
+      stopProp: (e) => e && e.stopPropagation && e.stopPropagation(),
+      modalHasImage: modalOpen && !!op.image,
+      modalNoImage: modalOpen && !op.image,
+      modalImageSrc: modalOpen && op.image ? `./puja-images/${op.image}` : '',
+      modalName: op ? op.name : '',
+      modalHindi: op ? op.hindi : '',
+      modalTagline: op ? op.tagline : '',
+      modalShloka: op && op.shloka ? op.shloka : 'ॐ श्री गणेशाय नमः ॥',
+      modalShlokaMeaning: op && op.shlokaMeaning ? op.shlokaMeaning : 'A detailed shloka and its meaning for this puja will appear here soon.',
+      modalDuration: op && op.duration ? op.duration : 'To be confirmed',
+      modalMuhurat: op && op.muhurat ? op.muhurat : 'As per Panchang',
+      modalBestFor: op && op.bestFor ? op.bestFor : 'Consult Pandit Ji',
+      modalAbout: op && op.about ? op.about : 'Detailed description of this sacred ritual will appear here — its origins in the Vedas, the deities it invokes, and the spiritual purpose it serves in the life of the devotee. Pandit Ji will share the full context of this puja soon.',
+      modalWhy: op && op.why ? op.why : 'The specific circumstances, life stages and intentions that call for this puja will be described here — helping you understand exactly when and why to arrange this ceremony for yourself or your family.',
+    };
   }
 }
 </script>
