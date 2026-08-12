@@ -1,6 +1,6 @@
-# Pandit Vinay Tiwari Website
+# Pandit Umesh Mishra Website
 
-A production-ready static website for Pandit Vinay Tiwari, a North Indian Vedic priest based in Pune. The site presents puja services, kathas, yagyas, sanskar ceremonies, contact details, a Web3Forms enquiry flow, and a coming-soon sacred store.
+A production-ready static website for Pandit Umesh Mishra, a North Indian Vedic priest based in Pune. The site presents puja services, kathas, yagyas, sanskar ceremonies, contact details, a Web3Forms enquiry flow, and a coming-soon sacred store.
 
 ## Live Site Structure
 

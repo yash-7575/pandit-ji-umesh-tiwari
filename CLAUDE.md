@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this project is
 
-A multi-page website for **Pandit Vinay Tiwari** (Vedic priest, Pune, India), built entirely with `.dc.html` Design Component files and a custom runtime (`support.js`).
+A multi-page website for **Pandit Umesh Mishra** (Vedic priest, Pune, India), built entirely with `.dc.html` Design Component files and a custom runtime (`support.js`).
 
 ## How to run
 
