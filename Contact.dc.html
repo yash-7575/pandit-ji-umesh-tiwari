@@ -61,12 +61,10 @@
       <div style="border:1px solid rgba(212,163,68,.22);border-radius:4px;padding:32px;background:rgba(245,239,230,.02);">
         <div style="font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:#d4a344;font-weight:600;">Address</div>
         <div style="font-family:'Playfair Display',serif;font-size:19px;font-weight:500;color:#faf6ed;margin-top:12px;line-height:1.5;">Flat No. 704, A-2 Wing, Sai Nagari Society, Near Moze School, Dighi Alandi Road, Wadmukhwadi, Pune, Maharashtra 412105</div>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=Wadmukhwadi%2C+Pune%2C+Maharashtra+412105" target="_blank" rel="noopener" style="margin-top:20px;display:block;border-radius:4px;overflow:hidden;border:1px solid rgba(212,163,68,.2);text-decoration:none;">
-          <div style="width:100%;height:220px;background:linear-gradient(135deg,#2a0808 0%,#3a0a0a 100%);display:flex;align-items:center;justify-content:center;color:#d4a344;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-align:center;padding:24px;position:relative;overflow:hidden;">
-            <svg width="200" height="200" viewBox="0 0 200 200" style="position:absolute;opacity:.15;"><g fill="none" stroke="#d4a344" stroke-width="1"><circle cx="100" cy="100" r="40"/><circle cx="100" cy="100" r="64" stroke-dasharray="2 6"/><circle cx="100" cy="100" r="88"/></g></svg>
-            <span style="position:relative;">Open Location on Google Maps<br><span style="color:rgba(245,239,230,.6);font-weight:300;letter-spacing:.08em;text-transform:none;margin-top:6px;display:inline-block;font-family:'Playfair Display',serif;font-style:italic;font-size:14px;">Wadmukhwadi, Pune →</span></span>
-          </div>
-        </a>
+        <div style="margin-top:20px;border-radius:4px;overflow:hidden;border:1px solid rgba(212,163,68,.2);background:#2a0808;">
+          <iframe src="https://www.google.com/maps?q=Sai%20Nagari%20Society%20Moze%20School%20Wadmukhwadi%20Dighi%20Pune%20412105&amp;output=embed" width="100%" height="240" style="border:0;display:block;filter:grayscale(.15) contrast(1.05);" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Sai+Nagari+Society+Moze+School+Wadmukhwadi+Dighi+Pune+412105" target="_blank" rel="noopener" style="display:block;text-align:center;padding:12px;color:#d4a344;text-decoration:none;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;border-top:1px solid rgba(212,163,68,.2);">Open in Google Maps →</a>
+        </div>
       </div>
     </div>
 
@@ -75,8 +73,9 @@
       <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
         <div style="text-align:center;padding:56px 12px;">
           <div style="width:72px;height:72px;border-radius:50%;border:1.5px solid #d4a344;display:flex;align-items:center;justify-content:center;margin:0 auto;color:#e8b84b;font-size:30px;">✓</div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:30px;font-weight:700;margin-top:24px;color:#faf6ed;">Enquiry received</h3>
-          <p style="font-size:15px;color:rgba(245,239,230,.7);margin-top:14px;line-height:1.7;font-weight:300;">Thank you — Pandit Ji will reach out to confirm the details of your ceremony shortly.</p>
+          <h3 style="font-family:'Playfair Display',serif;font-size:30px;font-weight:700;margin-top:24px;color:#faf6ed;">Opened on WhatsApp</h3>
+          <p style="font-size:15px;color:rgba(245,239,230,.7);margin-top:14px;line-height:1.7;font-weight:300;">Your enquiry is ready in WhatsApp — please tap <b style="color:#e8b84b;font-weight:600;">Send</b> there to deliver it to Pandit Ji. He will confirm your muhurat and arrangements personally.</p>
+          <a href="https://wa.me/919893515745" target="_blank" rel="noopener" style="display:inline-block;margin-top:22px;background:#25d366;color:#0a2f14;text-decoration:none;padding:14px 24px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;">Open WhatsApp again</a>
         </div>
       </sc-if>
       <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
@@ -116,7 +115,7 @@
               <label style="font-size:10.5px;font-weight:600;color:#d4a344;display:block;margin-bottom:8px;letter-spacing:.2em;text-transform:uppercase;">Message &amp; preferred dates</label>
               <textarea rows="3" placeholder="Tell Pandit Ji about your requirement…" value="{{ message }}" onInput="{{ onMessageInput }}" style="width:100%;padding:14px 16px;border:1px solid rgba(212,163,68,.22);border-radius:2px;font-size:15px;background:rgba(245,239,230,.02);outline:none;resize:vertical;transition:all .2s ease;"></textarea>
             </div>
-            <button type="submit" disabled="{{ isSubmitting }}" style="background:#f5efe6;color:#4a0e0e;border:none;padding:16px;border-radius:2px;font-weight:600;font-size:12.5px;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;margin-top:4px;">Send Enquiry</button>
+            <button type="submit" disabled="{{ isSubmitting }}" style="background:#25d366;color:#0a2f14;border:none;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;margin-top:4px;">Send Enquiry on WhatsApp</button>
             <div style="display:flex;gap:11px;background:rgba(212,163,68,.06);border:1px solid rgba(212,163,68,.22);border-radius:2px;padding:14px 16px;">
               <span style="color:#d4a344;font-size:14px;line-height:1.4;">✦</span>
               <p style="font-size:12.5px;line-height:1.6;color:rgba(245,239,230,.72);margin:0;">Dakshina / Pricing is discussed offline based on your specific ritual requirements.</p>
@@ -150,36 +149,22 @@ class Component extends DCLogic {
       onAreaInput: (e) => this.setState({ area: e.target.value }),
       onCeremonyChange: (e) => this.setState({ ceremony: e.target.value }),
       onMessageInput: (e) => this.setState({ message: e.target.value }),
-      onSubmit: async (e) => {
+      onSubmit: (e) => {
         e.preventDefault();
-        this.setState({ isSubmitting: true });
-        try {
-          const res = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-            body: JSON.stringify({
-              access_key: '[WEB3FORMS_KEY]',
-              subject: 'New puja enquiry from Pandit Umesh Mishra website',
-              from_name: 'Pandit Umesh Mishra Website',
-              name: this.state.name,
-              phone: this.state.phone,
-              area_in_city: this.state.area,
-              ritual_ceremony: this.state.ceremony,
-              message_dates: this.state.message,
-            }),
-          });
-          const result = await res.json();
-          if (result.success) {
-            this.setState({ isSubmitted: true, isSubmitting: false });
-          } else {
-            alert('Something went wrong. Please try again.');
-            this.setState({ isSubmitting: false });
-          }
-        } catch (err) {
-          console.error('Form error:', err);
-          alert('Network error. Please check your connection.');
-          this.setState({ isSubmitting: false });
+        const lines = [
+          'Namaste Pandit Ji, I would like to book a puja.',
+          '',
+          'Name: ' + this.state.name,
+          'Phone: ' + this.state.phone,
+          'Area in Pune: ' + this.state.area,
+          'Ritual / Ceremony: ' + this.state.ceremony,
+        ];
+        if (this.state.message && this.state.message.trim()) {
+          lines.push('Message & preferred dates: ' + this.state.message.trim());
         }
+        const waUrl = 'https://wa.me/919893515745?text=' + encodeURIComponent(lines.join('\n'));
+        window.open(waUrl, '_blank', 'noopener');
+        this.setState({ isSubmitted: true });
       },
     };
   }
