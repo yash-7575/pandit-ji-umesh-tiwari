@@ -43,6 +43,13 @@
       .section-h2{font-size:26px!important;}
       .cta-box{padding:44px 20px!important;}
     }
+    /* desktop hero: left-align copy so priest's face on the right stays visible */
+    @media(min-width:769px){
+      .hero-section{justify-content:flex-start!important;}
+      .hero-content{text-align:left!important;max-width:640px!important;margin:0!important;padding:120px 40px 140px 80px!important;}
+      .hero-cta-row{justify-content:flex-start!important;}
+      .hero-h1{text-shadow:0 4px 40px rgba(0,0,0,.75)!important;}
+    }
     .service-card{transition:all .5s cubic-bezier(.4,0,.2,1);position:relative;}
     .service-card:hover{transform:translateY(-4px);border-color:rgba(212,163,68,.5)!important;background:rgba(245,239,230,.05)!important;}
     .service-card .img-container img{transition:transform .8s cubic-bezier(.4,0,.2,1);}
@@ -58,7 +65,7 @@
   <dc-import name="Nav" active="home" hint-size="100%,84px"></dc-import>
 
   <!-- ============ CINEMATIC HERO ============ -->
-  <section style="position:relative;min-height:calc(100vh - 84px);display:flex;align-items:center;justify-content:center;overflow:hidden;background:#2a0808;">
+  <section class="hero-section" style="position:relative;min-height:calc(100vh - 84px);display:flex;align-items:center;justify-content:center;overflow:hidden;background:#2a0808;">
     <!-- background image full-bleed -->
     <img src="./assets/umesh-ji-hero.jpeg" alt="Pandit Umesh Mishra performing a Vedic puja" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:contrast(1.06) saturate(1.08) brightness(.95);">
     <!-- readable overlay: softer center so the priest photo shows through, deeper edges for text legibility -->
@@ -76,7 +83,7 @@
       <h1 class="hero-h1" style="font-family:'Playfair Display',serif;font-size:78px;line-height:1.02;font-weight:700;margin-top:34px;letter-spacing:-.02em;color:#faf6ed;text-shadow:0 4px 40px rgba(0,0,0,.5);">Sacred rituals,<br><em style="font-style:italic;font-weight:400;color:#e8b84b;">performed the way</em><br>the Vedas prescribe.</h1>
       <p class="hero-sub" style="font-family:'Inter',sans-serif;font-size:17px;line-height:1.75;color:rgba(245,239,230,.78);margin:34px auto 0;max-width:600px;font-weight:300;">Authentic North Indian ceremonies — from Griha Pravesh and Satyanarayan Katha to powerful Yagyas and Homams — performed personally with precision, devotion and scriptural accuracy across all of Pune.</p>
 
-      <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-top:44px;flex-wrap:wrap;">
+      <div class="hero-cta-row" style="display:flex;align-items:center;justify-content:center;gap:16px;margin-top:44px;flex-wrap:wrap;">
         <a href="/contact" class="cta-primary" style="background:#f5efe6;color:#4a0e0e;text-decoration:none;padding:17px 34px;border-radius:2px;font-weight:600;font-size:13px;letter-spacing:.2em;text-transform:uppercase;">Book a Puja</a>
         <a href="/services" class="cta-secondary" style="border:1px solid rgba(245,239,230,.5);color:#f5efe6;text-decoration:none;padding:16px 32px;border-radius:2px;font-weight:600;font-size:13px;letter-spacing:.2em;text-transform:uppercase;background:transparent;">Explore Services</a>
       </div>
