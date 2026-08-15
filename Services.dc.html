@@ -19,28 +19,37 @@
     body{background:#1a0505;overflow-x:hidden;}
     ::selection{background:#d4a344;color:#2a0808;}
 
-    /* ---------- category tabs (editorial underline style) ---------- */
-    .cat-tabs-scroll{
-      border-bottom:1px solid rgba(212,163,68,.18);
-      overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;
+    /* ---------- category cards (all visible at once) ---------- */
+    .cat-grid{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
     }
-    .cat-tabs-scroll::-webkit-scrollbar{display:none;}
-    .cat-tabs{display:flex;gap:4px;padding:0 8px;justify-content:center;min-width:min-content;}
-    .cat-tab{
-      position:relative;display:inline-flex;align-items:baseline;gap:8px;
-      padding:16px 20px;background:transparent;border:0;cursor:pointer;
-      color:rgba(245,239,230,.55);
-      font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
-      white-space:nowrap;transition:color .3s ease;
-      border-bottom:2px solid transparent;margin-bottom:-1px;
+    .cat-card{
+      display:flex;flex-direction:column;align-items:flex-start;gap:10px;
+      padding:20px 22px;background:rgba(245,239,230,.03);
+      border:1px solid rgba(212,163,68,.2);border-radius:3px;
+      color:rgba(245,239,230,.75);cursor:pointer;text-align:left;
+      font-family:'Inter',sans-serif;
+      transition:transform .3s ease, border-color .3s ease, background .3s ease, color .3s ease;
     }
-    .cat-tab:hover{color:#f5efe6;}
-    .cat-tab .count{
-      font-family:'Playfair Display',serif;font-size:10.5px;font-weight:500;letter-spacing:.02em;
-      color:rgba(245,239,230,.4);text-transform:none;
+    .cat-card:hover{transform:translateY(-2px);border-color:rgba(212,163,68,.55);background:rgba(245,239,230,.06);color:#f5efe6;}
+    .cat-card .top{display:flex;align-items:center;justify-content:space-between;width:100%;}
+    .cat-card .num{
+      font-family:'Playfair Display',serif;font-size:11px;font-weight:600;letter-spacing:.14em;color:#d4a344;
     }
-    .cat-tab.active{color:#faf6ed;border-bottom-color:#d4a344;}
-    .cat-tab.active .count{color:#d4a344;}
+    .cat-card .count{
+      font-family:'Playfair Display',serif;font-size:11px;font-weight:500;color:rgba(245,239,230,.55);
+    }
+    .cat-card .label{
+      font-family:'Playfair Display',serif;font-size:17px;font-weight:600;line-height:1.2;letter-spacing:-.005em;color:inherit;
+    }
+    .cat-card.active{
+      background:#f5efe6;border-color:#f5efe6;color:#4a0e0e;transform:translateY(-2px);
+      box-shadow:0 10px 30px -12px rgba(0,0,0,.4);
+    }
+    .cat-card.active .num,.cat-card.active .count,.cat-card.active .label{color:#4a0e0e;}
+    .cat-card.active .num{color:#8a2a1a;}
+    @media(max-width:900px){ .cat-grid{grid-template-columns:repeat(3,1fr);} }
+    @media(max-width:640px){ .cat-grid{grid-template-columns:repeat(2,1fr);gap:10px;} .cat-card{padding:16px 16px;} .cat-card .label{font-size:15px;} }
 
     /* ---------- puja cards ---------- */
     .puja-card{
@@ -222,17 +231,18 @@
     </div>
   </section>
 
-  <!-- category tabs -->
+  <!-- category grid: all seven visible at once, no scrolling -->
   <section class="svc-cats" style="max-width:1240px;margin:0 auto;padding:56px 40px 0;">
-    <div class="cat-tabs-scroll">
-      <div class="cat-tabs">
-        <sc-for list="{{ cats }}" as="c" hint-placeholder-count="7">
-          <button onClick="{{ c.onClick }}" class="{{ c.cls }}">
-            <span>{{ c.label }}</span>
-            <span class="count">{{ c.count }}</span>
-          </button>
-        </sc-for>
-      </div>
+    <div class="cat-grid">
+      <sc-for list="{{ cats }}" as="c" hint-placeholder-count="7">
+        <button onClick="{{ c.onClick }}" class="{{ c.cls }}">
+          <div class="top">
+            <span class="num">{{ c.num }}</span>
+            <span class="count">{{ c.count }} rituals</span>
+          </div>
+          <div class="label">{{ c.label }}</div>
+        </button>
+      </sc-for>
     </div>
   </section>
 
@@ -664,7 +674,7 @@ class Component extends DCLogic {
       num: c.id,
       label: c.label,
       count: c.items.length,
-      cls: i === tab ? 'cat-tab active' : 'cat-tab',
+      cls: i === tab ? 'cat-card active' : 'cat-card',
       onClick: () => this.setState({ tab: i }),
     }));
 
