@@ -19,7 +19,7 @@
 
 <div style="font-family:'Inter',sans-serif;">
   <!-- header -->
-  <header style="position:sticky;top:0;z-index:40;background:rgba(20,4,4,.78);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid rgba(212,163,68,.22);">
+  <header style="position:sticky;top:0;z-index:40;background:rgba(0,0,0,.78);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid rgba(212,163,68,.22);">
     <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:20px 40px;">
       <a href="/" style="display:flex;align-items:center;gap:14px;text-decoration:none;">
         <div style="width:46px;height:46px;border-radius:50%;overflow:hidden;flex-shrink:0;"><img src="./assets/logo.jpg" alt="Pandit Umesh Mishra logo" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
@@ -35,16 +35,16 @@
           <a href="/about" style="{{ sAbout }}">About</a>
           <a href="/contact" style="{{ sContact }}">Contact</a>
         </nav>
-        <button class="nav-book-btn" onClick="{{ openDrawer }}" style="background:#ffffff;color:#a04a10;border:none;padding:12px 22px;border-radius:2px;font-weight:600;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-family:'Inter',sans-serif;cursor:pointer;">Book a Puja</button>
+        <button class="nav-book-btn" onClick="{{ openDrawer }}" style="background:#ffffff;color:#e67e22;border:none;padding:12px 22px;border-radius:2px;font-weight:600;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-family:'Inter',sans-serif;cursor:pointer;">Book a Puja</button>
       </div>
     </div>
   </header>
 
   <!-- backdrop -->
-  <div onClick="{{ closeDrawer }}" style="position:fixed;inset:0;background:rgba(10,2,2,.7);z-index:55;transition:opacity .4s ease;opacity:{{ backdropOpacity }};pointer-events:{{ backdropPE }};backdrop-filter:blur(4px);"></div>
+  <div onClick="{{ closeDrawer }}" style="position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:55;transition:opacity .4s ease;opacity:{{ backdropOpacity }};pointer-events:{{ backdropPE }};backdrop-filter:blur(4px);"></div>
 
   <!-- drawer -->
-  <aside style="position:fixed;top:0;right:0;height:100vh;width:440px;max-width:92vw;background:linear-gradient(180deg,#3a1a05 0%,#3a1a05 100%);z-index:60;box-shadow:-40px 0 100px -20px rgba(0,0,0,.7);transition:transform .42s cubic-bezier(.4,0,.2,1);transform:{{ drawerTransform }};display:flex;flex-direction:column;border-left:1px solid rgba(212,163,68,.2);">
+  <aside style="position:fixed;top:0;right:0;height:100vh;width:440px;max-width:92vw;background:linear-gradient(180deg,#2b2725 0%,#2b2725 100%);z-index:60;box-shadow:-40px 0 100px -20px rgba(0,0,0,.7);transition:transform .42s cubic-bezier(.4,0,.2,1);transform:{{ drawerTransform }};display:flex;flex-direction:column;border-left:1px solid rgba(212,163,68,.2);">
     <div style="display:flex;align-items:center;justify-content:space-between;padding:32px 36px;border-bottom:1px solid rgba(212,163,68,.18);">
       <div>
         <div style="font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#f4d03f;font-weight:600;">Reach Pandit Ji</div>
@@ -60,7 +60,7 @@
         <div style="font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#f4d03f;font-weight:600;">Pandit Umesh Mishra</div>
         <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;color:#ffffff;margin-top:6px;">+91 98935 15745</div>
         <div style="display:flex;gap:10px;margin-top:18px;">
-          <a href="tel:+919893515745" style="flex:1;text-align:center;background:#ffffff;color:#a04a10;text-decoration:none;padding:12px;border-radius:2px;font-weight:600;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;">Call</a>
+          <a href="tel:+919893515745" style="flex:1;text-align:center;background:#ffffff;color:#e67e22;text-decoration:none;padding:12px;border-radius:2px;font-weight:600;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;">Call</a>
           <a href="https://wa.me/919893515745" style="flex:1;text-align:center;background:transparent;color:#ffffff;text-decoration:none;padding:11px;border-radius:2px;font-weight:600;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(245,239,230,.4);">WhatsApp</a>
         </div>
       </div>
