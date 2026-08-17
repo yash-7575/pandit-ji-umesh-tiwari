@@ -16,8 +16,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *{box-sizing:border-box;margin:0;padding:0;}
-    body{background:#ffffff;overflow-x:hidden;}
-    ::selection{background:#f4d03f;color:#1c1917;}
+    body{background:#FFFBF0;overflow-x:hidden;}
+    ::selection{background:#f4d03f;color:#1F1408;}
 
     /* ---------- category cards (all visible at once) ---------- */
     .cat-grid{
@@ -25,26 +25,26 @@
     }
     .cat-card{
       display:flex;flex-direction:column;align-items:flex-start;gap:10px;
-      padding:20px 22px;background:rgba(28,25,23,.03);
-      border:1px solid rgba(212,163,68,.2);border-radius:3px;
-      color:rgba(28,25,23,.75);cursor:pointer;text-align:left;
+      padding:20px 22px;background:rgba(31,20,8,.03);
+      border:1px solid rgba(230,126,34,.2);border-radius:3px;
+      color:rgba(31,20,8,.75);cursor:pointer;text-align:left;
       font-family:'Inter',sans-serif;
       transition:transform .3s ease, border-color .3s ease, background .3s ease, color .3s ease;
     }
-    .cat-card:hover{transform:translateY(-2px);border-color:rgba(212,163,68,.55);background:rgba(28,25,23,.06);color:#1c1917;}
+    .cat-card:hover{transform:translateY(-2px);border-color:rgba(230,126,34,.55);background:rgba(31,20,8,.06);color:#1F1408;}
     .cat-card .top{display:flex;align-items:center;justify-content:space-between;width:100%;}
     .cat-card .num{
       font-family:'Playfair Display',serif;font-size:11px;font-weight:600;letter-spacing:.14em;color:#e67e22;
     }
     .cat-card .count{
-      font-family:'Playfair Display',serif;font-size:11px;font-weight:500;color:rgba(28,25,23,.55);
+      font-family:'Playfair Display',serif;font-size:11px;font-weight:500;color:rgba(31,20,8,.55);
     }
     .cat-card .label{
       font-family:'Playfair Display',serif;font-size:17px;font-weight:600;line-height:1.2;letter-spacing:-.005em;color:inherit;
     }
     .cat-card.active{
-      background:#ffffff;border-color:#1c1917;color:#e67e22;transform:translateY(-2px);
-      box-shadow:0 10px 30px -12px rgba(0,0,0,.4);
+      background:#FFFBF0;border-color:#1F1408;color:#e67e22;transform:translateY(-2px);
+      box-shadow:0 10px 30px -12px rgba(184,88,10,.4);
     }
     .cat-card.active .num,.cat-card.active .count,.cat-card.active .label{color:#e67e22;}
     .cat-card.active .num{color:#e67e22;}
@@ -53,114 +53,114 @@
 
     /* ---------- puja cards ---------- */
     .puja-card{
-      position:relative;background:rgba(28,25,23,.02);border-radius:4px;overflow:hidden;
-      border:1px solid rgba(212,163,68,.18);cursor:pointer;
+      position:relative;background:rgba(31,20,8,.02);border-radius:4px;overflow:hidden;
+      border:1px solid rgba(230,126,34,.18);cursor:pointer;
       transition:transform .5s cubic-bezier(.4,0,.2,1), border-color .3s ease, background .3s ease;
       animation:cardIn .55s cubic-bezier(.4,0,.2,1) backwards;
     }
-    .puja-card:hover{transform:translateY(-6px);border-color:rgba(212,163,68,.5);background:rgba(28,25,23,.05);}
+    .puja-card:hover{transform:translateY(-6px);border-color:rgba(230,126,34,.5);background:rgba(31,20,8,.05);}
     .puja-card .img-wrap{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:#f9e79f;}
     .puja-card .img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.4,0,.2,1);filter:brightness(.92);}
     .puja-card:hover .img-wrap img{transform:scale(1.06);filter:brightness(1);}
     .puja-card .img-wrap::after{
-      content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.75) 100%);
+      content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(184,88,10,.75) 100%);
       pointer-events:none;
     }
     .puja-card .badge{
-      position:absolute;top:16px;left:16px;background:rgba(0,0,0,.7);
+      position:absolute;top:16px;left:16px;background:rgba(184,88,10,.7);
       backdrop-filter:blur(8px);padding:6px 12px;border-radius:2px;
       font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#e67e22;
-      letter-spacing:.14em;border:1px solid rgba(212,163,68,.4);z-index:2;
+      letter-spacing:.14em;border:1px solid rgba(230,126,34,.4);z-index:2;
     }
     .puja-card .cta{
-      position:absolute;bottom:16px;right:16px;background:#e67e22;color:#1c1917;
+      position:absolute;bottom:16px;right:16px;background:#E67E22;color:#FFFFFF;
       padding:8px 14px;border-radius:2px;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
       opacity:0;transform:translateY(8px);transition:all .4s cubic-bezier(.4,0,.2,1);z-index:2;
     }
     .puja-card:hover .cta{opacity:1;transform:translateY(0);}
     .puja-card .body{padding:24px 24px 28px;}
     .puja-card .hindi{font-family:'Noto Sans Devanagari',sans-serif;font-size:13.5px;color:#e67e22;font-weight:500;letter-spacing:.01em;}
-    .puja-card .name{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;line-height:1.2;color:#1c1917;margin-top:6px;letter-spacing:-.005em;}
-    .puja-card .tagline{font-size:13.5px;line-height:1.7;color:rgba(28,25,23,.6);margin-top:10px;font-weight:300;}
+    .puja-card .name{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;line-height:1.2;color:#1F1408;margin-top:6px;letter-spacing:-.005em;}
+    .puja-card .tagline{font-size:13.5px;line-height:1.7;color:rgba(31,20,8,.6);margin-top:10px;font-weight:300;}
 
     /* placeholder image */
     .img-placeholder{
       width:100%;height:100%;display:flex;align-items:center;justify-content:center;
       background:
-        radial-gradient(circle at 30% 20%,rgba(212,163,68,.15),transparent 50%),
-        radial-gradient(circle at 70% 80%,rgba(0,0,0,.4),transparent 60%),
+        radial-gradient(circle at 30% 20%,rgba(230,126,34,.15),transparent 50%),
+        radial-gradient(circle at 70% 80%,rgba(184,88,10,.4),transparent 60%),
         linear-gradient(135deg,#f9e79f 0%,#f9e79f 55%,#e67e22 100%);
       position:relative;overflow:hidden;
     }
     .img-placeholder::before{
       content:'';position:absolute;inset:-20%;
       background:
-        conic-gradient(from 0deg at 50% 50%,transparent 0deg,rgba(212,163,68,.12) 40deg,transparent 80deg,rgba(212,163,68,.12) 120deg,transparent 160deg,rgba(212,163,68,.12) 200deg,transparent 240deg,rgba(212,163,68,.12) 280deg,transparent 320deg);
+        conic-gradient(from 0deg at 50% 50%,transparent 0deg,rgba(230,126,34,.12) 40deg,transparent 80deg,rgba(230,126,34,.12) 120deg,transparent 160deg,rgba(230,126,34,.12) 200deg,transparent 240deg,rgba(230,126,34,.12) 280deg,transparent 320deg);
       animation:mandala 45s linear infinite;
       opacity:.6;
     }
     .img-placeholder .om{
       font-family:'Noto Sans Devanagari',serif;font-size:100px;
-      color:#e67e22;font-weight:700;text-shadow:0 6px 30px rgba(212,163,68,.35);
+      color:#e67e22;font-weight:700;text-shadow:0 6px 30px rgba(230,126,34,.35);
       position:relative;z-index:1;
       transition:transform .6s cubic-bezier(.4,0,.2,1);
     }
     .puja-card:hover .img-placeholder .om{transform:scale(1.12) rotate(-3deg);}
 
     /* ---------- modal ---------- */
-    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(10px);z-index:80;transition:opacity .4s ease;}
+    .modal-backdrop{position:fixed;inset:0;background:rgba(31,20,8,.65);backdrop-filter:blur(10px);z-index:80;transition:opacity .4s ease;}
     .modal-scroll{position:fixed;inset:0;z-index:85;overflow-y:auto;padding:48px 24px;display:flex;justify-content:center;align-items:flex-start;transition:opacity .4s ease;}
     .modal-panel{
       position:relative;background:linear-gradient(180deg,#ffffff 0%,#ffffff 100%);border-radius:4px;
       max-width:1080px;width:100%;overflow:hidden;
-      box-shadow:0 60px 120px -30px rgba(0,0,0,.8);
-      border:1px solid rgba(212,163,68,.22);
+      box-shadow:0 60px 120px -30px rgba(184,88,10,.8);
+      border:1px solid rgba(230,126,34,.22);
       transition:transform .5s cubic-bezier(.4,0,.2,1), opacity .4s ease;
     }
     .modal-close{
       position:absolute;top:24px;right:24px;z-index:5;
       width:44px;height:44px;border-radius:50%;
-      background:rgba(0,0,0,.7);backdrop-filter:blur(8px);
-      color:#1c1917;font-size:18px;cursor:pointer;line-height:1;
+      background:rgba(31,20,8,.55);backdrop-filter:blur(8px);
+      color:#FFF8E7;font-size:18px;cursor:pointer;line-height:1;
       display:flex;align-items:center;justify-content:center;
-      border:1px solid rgba(212,163,68,.35);
+      border:1px solid rgba(249,231,159,.4);
       transition:all .3s ease;
     }
-    .modal-close:hover{background:#e67e22;color:#1c1917;border-color:#1c1917;transform:rotate(90deg) scale(1.05);}
-    .modal-hero{width:100%;aspect-ratio:21/9;position:relative;overflow:hidden;background:#f9e79f;}
-    .modal-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(.85) contrast(1.05);}
-    .modal-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.3) 0%,rgba(0,0,0,.5) 40%,rgba(0,0,0,.95) 100%);}
-    .modal-hero .titlewrap{position:absolute;left:0;right:0;bottom:0;padding:48px 56px;color:#1c1917;z-index:2;}
-    .modal-hero .hindi{font-family:'Noto Sans Devanagari',serif;font-size:22px;color:#e67e22;font-weight:500;letter-spacing:.01em;}
-    .modal-hero .name{font-family:'Playfair Display',serif;font-size:54px;font-weight:700;line-height:1.03;margin-top:8px;letter-spacing:-.02em;text-shadow:0 4px 30px rgba(0,0,0,.6);color:#1c1917;}
-    .modal-hero .tagline{font-size:16px;color:rgba(28,25,23,.75);margin-top:12px;max-width:640px;line-height:1.6;font-weight:300;}
+    .modal-close:hover{background:#E67E22;color:#FFFFFF;border-color:#F4D03F;transform:rotate(90deg) scale(1.05);}
+    .modal-hero{width:100%;aspect-ratio:21/9;position:relative;overflow:hidden;background:#F9E79F;}
+    .modal-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(.9) contrast(1.05) saturate(1.08);}
+    .modal-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(31,20,8,.15) 0%,rgba(31,20,8,.45) 45%,rgba(31,20,8,.88) 100%);}
+    .modal-hero .titlewrap{position:absolute;left:0;right:0;bottom:0;padding:48px 56px;color:#FFF8E7;z-index:2;}
+    .modal-hero .hindi{font-family:'Noto Sans Devanagari',serif;font-size:22px;color:#F4D03F;font-weight:500;letter-spacing:.01em;text-shadow:0 2px 12px rgba(0,0,0,.5);}
+    .modal-hero .name{font-family:'Playfair Display',serif;font-size:56px;font-weight:700;line-height:1.03;margin-top:8px;letter-spacing:-.02em;text-shadow:0 4px 30px rgba(0,0,0,.55);color:#FFF8E7;}
+    .modal-hero .tagline{font-size:16px;color:rgba(255,248,231,.9);margin-top:12px;max-width:640px;line-height:1.65;font-weight:400;text-shadow:0 2px 12px rgba(0,0,0,.4);}
     .modal-body{padding:56px;}
     .modal-shloka{
-      background:linear-gradient(135deg,rgba(212,163,68,.06) 0%,rgba(212,163,68,.02) 100%);
-      border:1px solid rgba(212,163,68,.28);border-left:3px solid #f4d03f;
+      background:linear-gradient(135deg,rgba(230,126,34,.06) 0%,rgba(230,126,34,.02) 100%);
+      border:1px solid rgba(230,126,34,.28);border-left:3px solid #f4d03f;
       border-radius:4px;padding:32px 36px;margin-bottom:40px;position:relative;
     }
-    .modal-shloka .glyph{position:absolute;top:14px;right:24px;font-family:'Playfair Display',serif;font-size:60px;color:rgba(212,163,68,.14);font-weight:700;line-height:1;}
-    .modal-shloka .verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:23px;line-height:1.6;color:#1c1917;font-weight:500;}
-    .modal-shloka .translation{font-size:14px;color:rgba(28,25,23,.7);margin-top:14px;line-height:1.7;font-style:italic;font-weight:300;}
+    .modal-shloka .glyph{position:absolute;top:14px;right:24px;font-family:'Playfair Display',serif;font-size:60px;color:rgba(230,126,34,.14);font-weight:700;line-height:1;}
+    .modal-shloka .verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:23px;line-height:1.6;color:#1F1408;font-weight:500;}
+    .modal-shloka .translation{font-size:14px;color:rgba(31,20,8,.7);margin-top:14px;line-height:1.7;font-style:italic;font-weight:300;}
     .modal-section{margin-bottom:36px;}
     .modal-section .eyebrow{font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:#e67e22;font-weight:600;}
-    .modal-section h3{font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:#1c1917;margin-top:10px;letter-spacing:-.01em;line-height:1.15;}
-    .modal-section p{font-size:15.5px;line-height:1.85;color:rgba(28,25,23,.75);margin-top:16px;font-weight:300;}
+    .modal-section h3{font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:#1F1408;margin-top:10px;letter-spacing:-.01em;line-height:1.15;}
+    .modal-section p{font-size:15.5px;line-height:1.85;color:rgba(31,20,8,.75);margin-top:16px;font-weight:300;}
     .modal-meta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px;}
-    .modal-meta{background:rgba(28,25,23,.02);border:1px solid rgba(212,163,68,.22);border-radius:4px;padding:24px;}
+    .modal-meta{background:rgba(31,20,8,.02);border:1px solid rgba(230,126,34,.22);border-radius:4px;padding:24px;}
     .modal-meta .lbl{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#e67e22;font-weight:600;}
-    .modal-meta .val{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:#1c1917;margin-top:10px;line-height:1.3;}
-    .modal-included{background:rgba(28,25,23,.02);border:1px solid rgba(212,163,68,.22);border-radius:4px;padding:32px 36px;margin-bottom:40px;}
+    .modal-meta .val{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:#1F1408;margin-top:10px;line-height:1.3;}
+    .modal-included{background:rgba(31,20,8,.02);border:1px solid rgba(230,126,34,.22);border-radius:4px;padding:32px 36px;margin-bottom:40px;}
     .modal-included ul{list-style:none;margin-top:20px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px 28px;}
-    .modal-included li{display:flex;align-items:flex-start;gap:12px;font-size:14.5px;color:rgba(28,25,23,.8);line-height:1.6;font-weight:300;}
+    .modal-included li{display:flex;align-items:flex-start;gap:12px;font-size:14.5px;color:rgba(31,20,8,.8);line-height:1.6;font-weight:300;}
     .modal-included li::before{content:'✦';color:#e67e22;font-size:13px;flex-shrink:0;margin-top:4px;}
     .modal-cta{display:flex;gap:14px;flex-wrap:wrap;padding-top:8px;}
     .modal-cta a{text-decoration:none;padding:16px 32px;border-radius:2px;font-weight:600;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;transition:all .3s ease;}
-    .modal-cta .primary{background:#e67e22;color:#1c1917;}
-    .modal-cta .primary:hover{background:#ffffff;transform:translateY(-1px);}
-    .modal-cta .secondary{background:transparent;color:#1c1917;border:1px solid rgba(28,25,23,.4);}
-    .modal-cta .secondary:hover{background:rgba(28,25,23,.08);border-color:#1c1917;}
+    .modal-cta .primary{background:#E67E22;color:#FFFFFF;box-shadow:0 12px 24px -10px rgba(184,88,10,.5);}
+    .modal-cta .primary:hover{background:#B8560A;transform:translateY(-2px);box-shadow:0 16px 32px -12px rgba(184,88,10,.6);}
+    .modal-cta .secondary{background:transparent;color:#1F1408;border:1px solid rgba(31,20,8,.4);}
+    .modal-cta .secondary:hover{background:rgba(31,20,8,.08);border-color:#1F1408;}
 
     /* ---------- animations ---------- */
     @keyframes cardIn{
@@ -218,15 +218,15 @@
   </style>
 </helmet>
 
-<div style="font-family:'Inter',sans-serif;background:#ffffff;color:#1c1917;">
+<div style="font-family:'Inter',sans-serif;background:#FFFBF0;color:#1F1408;">
   <dc-import name="Nav" active="services" hint-size="100%,84px"></dc-import>
 
   <!-- header -->
   <section class="svc-header header-in" style="max-width:1240px;margin:0 auto;padding:100px 40px 8px;text-align:center;position:relative;">
     <div style="font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:#e67e22;font-weight:600;">— Services Catalog</div>
-    <h1 class="svc-h1" style="font-family:'Playfair Display',serif;font-size:70px;font-weight:700;margin-top:18px;letter-spacing:-.02em;line-height:1.02;color:#1c1917;">Rituals &amp;<br><em style="font-style:italic;font-weight:400;color:#e67e22;">ceremonies.</em></h1>
-    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.55;color:rgba(28,25,23,.7);margin:22px auto 0;max-width:660px;font-weight:400;">A complete repertoire of authentic North Indian Vedic ceremonies, performed personally by Pandit Ji across all of Pune.</p>
-    <div style="display:inline-flex;align-items:center;gap:11px;margin-top:32px;background:rgba(212,163,68,.06);border:1px solid rgba(212,163,68,.28);color:rgba(28,25,23,.78);padding:11px 22px;border-radius:2px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;">
+    <h1 class="svc-h1" style="font-family:'Playfair Display',serif;font-size:70px;font-weight:700;margin-top:18px;letter-spacing:-.02em;line-height:1.02;color:#1F1408;">Rituals &amp;<br><em style="font-style:italic;font-weight:400;color:#e67e22;">ceremonies.</em></h1>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.55;color:rgba(31,20,8,.7);margin:22px auto 0;max-width:660px;font-weight:400;">A complete repertoire of authentic North Indian Vedic ceremonies, performed personally by Pandit Ji across all of Pune.</p>
+    <div style="display:inline-flex;align-items:center;gap:11px;margin-top:32px;background:rgba(230,126,34,.06);border:1px solid rgba(230,126,34,.28);color:rgba(31,20,8,.78);padding:11px 22px;border-radius:2px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;">
       <span style="color:#e67e22;">✦</span> Dakshina discussed offline · Based on specific requirements
     </div>
   </section>
@@ -248,11 +248,11 @@
 
   <!-- active category header + grid -->
   <section class="svc-list" style="max-width:1240px;margin:0 auto;padding:68px 40px 0;">
-    <div class="cat-header" style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid rgba(212,163,68,.18);">
+    <div class="cat-header" style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid rgba(230,126,34,.18);">
       <div>
         <div style="font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:#e67e22;font-weight:600;">— Category {{ catNum }}</div>
-        <h2 class="cat-title" style="font-family:'Playfair Display',serif;font-size:44px;font-weight:700;line-height:1.05;margin-top:14px;letter-spacing:-.02em;color:#1c1917;">{{ catTitle }}</h2>
-        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:rgba(28,25,23,.65);margin-top:12px;max-width:680px;line-height:1.55;font-weight:400;">{{ catBlurb }}</p>
+        <h2 class="cat-title" style="font-family:'Playfair Display',serif;font-size:44px;font-weight:700;line-height:1.05;margin-top:14px;letter-spacing:-.02em;color:#1F1408;">{{ catTitle }}</h2>
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:rgba(31,20,8,.65);margin-top:12px;max-width:680px;line-height:1.55;font-weight:400;">{{ catBlurb }}</p>
       </div>
       <div style="font-family:'Playfair Display',serif;font-size:12px;color:#e67e22;font-weight:500;white-space:nowrap;letter-spacing:.24em;text-transform:uppercase;">{{ catCountLabel }}</div>
     </div>
@@ -282,14 +282,14 @@
 
   <!-- enquire band -->
   <section class="svc-enquire" style="max-width:1240px;margin:0 auto;padding:120px 40px 120px;">
-    <div class="enquire-band" style="background:linear-gradient(135deg,#f9e79f 0%,#e67e22 100%);border-radius:4px;padding:80px 64px;display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap;color:#1c1917;border:1px solid rgba(212,163,68,.3);box-shadow:0 40px 80px -30px rgba(0,0,0,.5);position:relative;overflow:hidden;">
+    <div class="enquire-band" style="background:linear-gradient(135deg,#f9e79f 0%,#e67e22 100%);border-radius:4px;padding:80px 64px;display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap;color:#1F1408;border:1px solid rgba(230,126,34,.3);box-shadow:0 40px 80px -30px rgba(184,88,10,.5);position:relative;overflow:hidden;">
       <svg width="260" height="260" viewBox="0 0 260 260" style="position:absolute;top:-60px;right:-60px;opacity:.15;pointer-events:none;"><g fill="none" stroke="#f4d03f" stroke-width="1"><circle cx="130" cy="130" r="50"/><circle cx="130" cy="130" r="82" stroke-dasharray="2 6"/><circle cx="130" cy="130" r="114"/></g></svg>
       <div style="position:relative;max-width:640px;">
         <div style="font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:#e67e22;font-weight:600;">— Need Guidance?</div>
-        <h2 class="enquire-h2" style="font-family:'Playfair Display',serif;font-size:44px;font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-top:14px;color:#1c1917;">Not sure which ritual<br><em style="font-style:italic;font-weight:400;color:#e67e22;">you need?</em></h2>
-        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:rgba(28,25,23,.75);margin-top:16px;max-width:580px;line-height:1.55;font-weight:400;">Share your situation with Pandit Ji — he'll recommend the right ceremony, muhurat and samagri.</p>
+        <h2 class="enquire-h2" style="font-family:'Playfair Display',serif;font-size:44px;font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-top:14px;color:#1F1408;">Not sure which ritual<br><em style="font-style:italic;font-weight:400;color:#e67e22;">you need?</em></h2>
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:rgba(31,20,8,.75);margin-top:16px;max-width:580px;line-height:1.55;font-weight:400;">Share your situation with Pandit Ji — he'll recommend the right ceremony, muhurat and samagri.</p>
       </div>
-      <a href="/contact" style="background:#e67e22;color:#1c1917;text-decoration:none;padding:17px 34px;border-radius:2px;font-weight:600;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;position:relative;">Speak to Pandit Ji</a>
+      <a href="/contact" style="background:#e67e22;color:#1F1408;text-decoration:none;padding:17px 34px;border-radius:2px;font-weight:600;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;position:relative;">Speak to Pandit Ji</a>
     </div>
   </section>
 
@@ -351,7 +351,7 @@
 
         <div class="modal-included">
           <div class="eyebrow" style="font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:#e67e22;font-weight:600;">— What is Included</div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:#1c1917;margin-top:10px;letter-spacing:-.01em;">The full ceremony arrangement</h3>
+          <h3 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:#1F1408;margin-top:10px;letter-spacing:-.01em;">The full ceremony arrangement</h3>
           <ul>
             <li>Complete Vedic samagri list &amp; procurement guidance</li>
             <li>Muhurat calculation as per Panchang</li>

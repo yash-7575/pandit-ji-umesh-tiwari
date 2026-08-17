@@ -13,10 +13,31 @@
   <link rel="icon" href="./assets/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    *{box-sizing:border-box;margin:0;padding:0;} body{background:#ffffff;}
-    ::selection{background:#f4d03f;color:#1c1917;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html,body{background:#FFFBF0;color:#1F1408;}
+    ::selection{background:#F4D03F;color:#1F1408;}
+
+    /* ornament divider */
+    .lotus-div{display:flex;align-items:center;justify-content:center;gap:14px;color:#E67E22;font-size:14px;letter-spacing:.3em;}
+    .lotus-div::before,.lotus-div::after{content:"";flex:0 0 auto;width:60px;height:1px;background:linear-gradient(90deg,transparent,#E67E22,transparent);}
+
+    .service-card{transition:all .5s cubic-bezier(.4,0,.2,1);position:relative;background:#FFFFFF;}
+    .service-card:hover{transform:translateY(-6px);border-color:rgba(230,126,34,.55)!important;box-shadow:0 40px 70px -30px rgba(184,88,10,.35),0 15px 30px -15px rgba(184,88,10,.15)!important;}
+    .service-card .img-container img{transition:transform .8s cubic-bezier(.4,0,.2,1);}
+    .service-card:hover .img-container img{transform:scale(1.06);}
+
+    .cta-primary{transition:all .3s ease;box-shadow:0 12px 28px -12px rgba(184,88,10,.55);}
+    .cta-primary:hover{transform:translateY(-2px);box-shadow:0 20px 40px -14px rgba(184,88,10,.6);}
+    .cta-ghost{transition:all .3s ease;}
+    .cta-ghost:hover{background:rgba(230,126,34,.08)!important;border-color:#E67E22!important;color:#B8560A!important;}
+    .cta-cream{transition:all .3s ease;box-shadow:0 12px 28px -12px rgba(31,20,8,.4);}
+    .cta-cream:hover{transform:translateY(-2px);background:#FFFFFF!important;color:#B8560A!important;box-shadow:0 20px 40px -14px rgba(31,20,8,.35);}
+
+    .seasonal-tile{transition:all .35s ease;}
+    .seasonal-tile:hover{transform:translateY(-4px);border-color:#F39C12!important;background:#FFFFFF!important;box-shadow:0 20px 40px -20px rgba(184,88,10,.25);}
+
     @media(max-width:900px){
       .seasonal-grid{grid-template-columns:repeat(2,1fr)!important;}
       .services-grid{grid-template-columns:repeat(2,1fr)!important;}
@@ -28,87 +49,80 @@
       .katha-grid{grid-template-columns:1fr!important;gap:36px!important;padding:64px 24px!important;}
       .about-grid{grid-template-columns:1fr!important;gap:36px!important;padding:64px 24px!important;}
       .container{padding-left:24px!important;padding-right:24px!important;}
-      .section-h2{font-size:32px!important;}
+      .section-h2{font-size:34px!important;}
       .section-eyebrow-row{flex-direction:column;align-items:flex-start!important;gap:20px!important;}
-      .trust-strip{padding:32px 24px!important;flex-wrap:wrap;gap:28px!important;justify-content:flex-start!important;}
+      .trust-strip{padding:36px 24px!important;flex-wrap:wrap;gap:28px!important;justify-content:flex-start!important;}
       .trust-divider{display:none!important;}
-      .cta-box{padding:56px 28px!important;}
+      .cta-box{padding:60px 28px!important;}
     }
     @media(max-width:480px){
       .services-grid{grid-template-columns:1fr!important;}
       .seasonal-grid{grid-template-columns:1fr 1fr!important;}
       .container{padding-left:16px!important;padding-right:16px!important;}
       .hero-content{padding:60px 16px 80px!important;}
-      .hero-h1{font-size:34px!important;}
-      .section-h2{font-size:26px!important;}
+      .hero-h1{font-size:36px!important;}
+      .section-h2{font-size:28px!important;}
       .cta-box{padding:44px 20px!important;}
     }
-    /* desktop hero: left-align copy so priest's face on the right stays visible */
     @media(min-width:769px){
       .hero-section{justify-content:flex-start!important;}
-      .hero-content{text-align:left!important;max-width:640px!important;margin:0!important;padding:120px 40px 140px 80px!important;}
+      .hero-content{text-align:left!important;max-width:660px!important;margin:0!important;padding:120px 40px 140px 80px!important;}
       .hero-cta-row{justify-content:flex-start!important;}
-      .hero-h1{text-shadow:0 4px 40px rgba(0,0,0,.75)!important;}
+      .hero-badge-row{justify-content:flex-start!important;}
     }
-    .service-card{transition:all .5s cubic-bezier(.4,0,.2,1);position:relative;}
-    .service-card:hover{transform:translateY(-4px);border-color:rgba(212,163,68,.5)!important;background:rgba(28,25,23,.05)!important;}
-    .service-card .img-container img{transition:transform .8s cubic-bezier(.4,0,.2,1);}
-    .service-card:hover .img-container img{transform:scale(1.06);}
-    .cta-primary{transition:all .3s ease;}
-    .cta-primary:hover{background:#f39c12!important;transform:translateY(-1px);}
-    .cta-secondary{transition:all .3s ease;}
-    .cta-secondary:hover{background:rgba(28,25,23,.08)!important;border-color:#1c1917!important;}
   </style>
 </helmet>
 
-<div style="font-family:'Inter',sans-serif;background:#ffffff;color:#1c1917;">
-  <dc-import name="Nav" active="home" hint-size="100%,84px"></dc-import>
+<div style="font-family:'Inter',sans-serif;background:#FFFBF0;color:#1F1408;">
+  <dc-import name="Nav" active="home" hint-size="100%,82px"></dc-import>
 
-  <!-- ============ CINEMATIC HERO ============ -->
-  <section class="hero-section" style="position:relative;min-height:calc(100vh - 84px);display:flex;align-items:center;justify-content:center;overflow:hidden;background:#f9e79f;">
-    <!-- background image full-bleed -->
-    <img src="./assets/umesh-ji-hero.jpeg" alt="Pandit Umesh Mishra performing a Vedic puja" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:contrast(1.06) saturate(1.08) brightness(.95);">
-    <!-- readable overlay: softer center so the priest photo shows through, deeper edges for text legibility -->
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(0,0,0,.28) 0%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.82) 100%);"></div>
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.5) 0%,transparent 25%,transparent 70%,rgba(0,0,0,.78) 100%);"></div>
-    <!-- gold vignette accent -->
-    <div style="position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:1000px;height:600px;background:radial-gradient(ellipse,rgba(212,163,68,.08) 0%,transparent 65%);pointer-events:none;"></div>
+  <!-- ============ HERO ============ -->
+  <section class="hero-section" style="position:relative;min-height:calc(100vh - 82px);display:flex;align-items:center;justify-content:center;overflow:hidden;background:#F39C12;">
+    <img src="./assets/umesh-ji-hero.jpeg" alt="Pandit Umesh Mishra performing a Vedic puja" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%;filter:contrast(1.05) saturate(1.12) brightness(.95);">
+    <!-- warm saffron overlay: sunrise light instead of black darkness -->
+    <div style="position:absolute;inset:0;background:linear-gradient(105deg,rgba(184,88,10,.72) 0%,rgba(230,126,34,.55) 35%,rgba(243,156,18,.25) 60%,rgba(31,20,8,.55) 100%);"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(31,20,8,.45) 0%,transparent 22%,transparent 70%,rgba(31,20,8,.75) 100%);"></div>
+    <!-- gold sunburst -->
+    <div style="position:absolute;top:-160px;left:-80px;width:900px;height:900px;background:radial-gradient(circle,rgba(249,231,159,.35) 0%,transparent 55%);pointer-events:none;"></div>
 
-    <!-- content -->
     <div class="hero-content" style="position:relative;z-index:2;max-width:960px;padding:120px 40px 140px;text-align:center;">
-      <div style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(212,163,68,.45);color:#e67e22;padding:8px 18px;border-radius:2px;font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);">
-        <span style="width:5px;height:5px;background:#f4d03f;border-radius:50%;box-shadow:0 0 8px #f4d03f;"></span>
-        Now booking · Shrawan &amp; Navratri 2026
-      </div>
-      <h1 class="hero-h1" style="font-family:'Playfair Display',serif;font-size:78px;line-height:1.02;font-weight:700;margin-top:34px;letter-spacing:-.02em;color:#1c1917;text-shadow:0 4px 40px rgba(0,0,0,.5);">Sacred rituals,<br><em style="font-style:italic;font-weight:400;color:#e67e22;">performed the way</em><br>the Vedas prescribe.</h1>
-      <p class="hero-sub" style="font-family:'Inter',sans-serif;font-size:17px;line-height:1.75;color:rgba(28,25,23,.78);margin:34px auto 0;max-width:600px;font-weight:300;">Authentic North Indian ceremonies — from Griha Pravesh and Satyanarayan Katha to powerful Yagyas and Homams — performed personally with precision, devotion and scriptural accuracy across all of Pune.</p>
-
-      <div class="hero-cta-row" style="display:flex;align-items:center;justify-content:center;gap:16px;margin-top:44px;flex-wrap:wrap;">
-        <a href="/contact" class="cta-primary" style="background:#e67e22;color:#1c1917;text-decoration:none;padding:17px 34px;border-radius:2px;font-weight:600;font-size:13px;letter-spacing:.2em;text-transform:uppercase;">Book a Puja</a>
-        <a href="/services" class="cta-secondary" style="border:1px solid rgba(28,25,23,.5);color:#1c1917;text-decoration:none;padding:16px 32px;border-radius:2px;font-weight:600;font-size:13px;letter-spacing:.2em;text-transform:uppercase;background:transparent;">Explore Services</a>
+      <div class="hero-badge-row" style="display:flex;justify-content:center;">
+        <div style="display:inline-flex;align-items:center;gap:12px;border:1px solid rgba(249,231,159,.6);color:#FFF8E7;padding:9px 20px;border-radius:999px;font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;background:rgba(31,20,8,.35);backdrop-filter:blur(8px);">
+          <span style="width:6px;height:6px;background:#F4D03F;border-radius:50%;box-shadow:0 0 12px #F4D03F;"></span>
+          Now booking · Shrawan &amp; Navratri 2026
+        </div>
       </div>
 
-      <!-- rating badge -->
-      <div style="display:inline-flex;align-items:center;gap:14px;margin-top:56px;padding:14px 22px;border:1px solid rgba(212,163,68,.35);border-radius:2px;background:rgba(0,0,0,.4);backdrop-filter:blur(6px);">
-        <span style="color:#e67e22;font-size:16px;letter-spacing:3px;">★★★★★</span>
-        <span style="font-size:12.5px;color:rgba(28,25,23,.85);letter-spacing:.02em;"><b style="color:#1c1917;font-weight:600;">4.8</b> · 1000+ ceremonies across Pune</span>
+      <h1 class="hero-h1" style="font-family:'Playfair Display',serif;font-size:82px;line-height:1.02;font-weight:700;margin-top:32px;letter-spacing:-.02em;color:#FFF8E7;text-shadow:0 4px 40px rgba(0,0,0,.5);">Sacred rituals,<br><em style="font-style:italic;font-weight:500;color:#F4D03F;">performed the way</em><br>the Vedas prescribe.</h1>
+
+      <p class="hero-sub" style="font-family:'Inter',sans-serif;font-size:17px;line-height:1.8;color:rgba(255,248,231,.9);margin:34px auto 0;max-width:620px;font-weight:300;text-shadow:0 2px 12px rgba(0,0,0,.4);">Authentic North Indian ceremonies — from Griha Pravesh and Satyanarayan Katha to powerful Yagyas and Homams — performed personally with precision, devotion and scriptural accuracy across all of Pune.</p>
+
+      <div class="hero-cta-row" style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:44px;flex-wrap:wrap;">
+        <a href="/contact" class="cta-primary" style="background:#E67E22;color:#FFFFFF;text-decoration:none;padding:17px 36px;border-radius:2px;font-weight:600;font-size:13px;letter-spacing:.2em;text-transform:uppercase;">Book a Puja</a>
+        <a href="/services" class="cta-ghost" style="border:1px solid rgba(255,248,231,.55);color:#FFF8E7;text-decoration:none;padding:16px 32px;border-radius:2px;font-weight:600;font-size:13px;letter-spacing:.2em;text-transform:uppercase;background:transparent;backdrop-filter:blur(4px);">Explore Services</a>
+      </div>
+
+      <div class="hero-badge-row" style="display:flex;justify-content:center;margin-top:52px;">
+        <div style="display:inline-flex;align-items:center;gap:16px;padding:14px 24px;border:1px solid rgba(249,231,159,.45);border-radius:999px;background:rgba(31,20,8,.4);backdrop-filter:blur(8px);">
+          <span style="color:#F4D03F;font-size:16px;letter-spacing:3px;">★★★★★</span>
+          <span style="font-size:12.5px;color:rgba(255,248,231,.9);letter-spacing:.02em;"><b style="color:#FFF8E7;font-weight:600;">4.8</b> · 1000+ ceremonies across Pune</span>
+        </div>
       </div>
     </div>
 
-    <!-- scroll hint -->
-    <div style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);color:rgba(212,163,68,.5);font-size:10px;letter-spacing:.4em;text-transform:uppercase;writing-mode:vertical-rl;">Scroll</div>
+    <div style="position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:rgba(255,248,231,.6);font-size:10px;letter-spacing:.4em;text-transform:uppercase;writing-mode:vertical-rl;">Scroll</div>
   </section>
 
   <!-- ============ TRUST STRIP ============ -->
-  <section style="background:#ffffff;border-top:1px solid rgba(212,163,68,.15);border-bottom:1px solid rgba(212,163,68,.15);">
-    <div class="container trust-strip" style="max-width:1240px;margin:0 auto;padding:44px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;">
-      <div style="display:flex;align-items:baseline;gap:14px;"><span style="font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:#e67e22;line-height:1;">30<span style="font-size:22px;">+</span></span><span style="font-size:12px;color:rgba(28,25,23,.65);line-height:1.4;letter-spacing:.06em;">years of<br>Vedic practice</span></div>
-      <div class="trust-divider" style="width:1px;height:44px;background:rgba(212,163,68,.2);"></div>
-      <div style="display:flex;align-items:baseline;gap:14px;"><span style="font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:#e67e22;line-height:1;">40<span style="font-size:22px;">+</span></span><span style="font-size:12px;color:rgba(28,25,23,.65);line-height:1.4;letter-spacing:.06em;">rituals, yagyas<br>&amp; kathas</span></div>
-      <div class="trust-divider" style="width:1px;height:44px;background:rgba(212,163,68,.2);"></div>
-      <div style="display:flex;align-items:baseline;gap:14px;"><span style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#e67e22;line-height:1;">All</span><span style="font-size:12px;color:rgba(28,25,23,.65);line-height:1.4;letter-spacing:.06em;">of Pune<br>covered</span></div>
-      <div class="trust-divider" style="width:1px;height:44px;background:rgba(212,163,68,.2);"></div>
-      <div style="display:flex;align-items:center;gap:14px;"><span style="color:#e67e22;font-size:15px;letter-spacing:3px;">★★★★★</span><span style="font-size:12px;color:rgba(28,25,23,.65);line-height:1.4;letter-spacing:.06em;"><b style="color:#1c1917;">4.8</b> rating<br>500+ families</span></div>
+  <section style="background:#FDF3D9;border-top:1px solid rgba(230,126,34,.18);border-bottom:1px solid rgba(230,126,34,.18);">
+    <div class="container trust-strip" style="max-width:1240px;margin:0 auto;padding:52px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;">
+      <div style="display:flex;align-items:baseline;gap:14px;"><span style="font-family:'Playfair Display',serif;font-size:44px;font-weight:700;color:#E67E22;line-height:1;">30<span style="font-size:22px;color:#F39C12;">+</span></span><span style="font-size:11.5px;color:rgba(31,20,8,.65);line-height:1.5;letter-spacing:.08em;text-transform:uppercase;font-weight:500;">years of<br>Vedic practice</span></div>
+      <div class="trust-divider" style="width:1px;height:44px;background:linear-gradient(180deg,transparent,rgba(230,126,34,.4),transparent);"></div>
+      <div style="display:flex;align-items:baseline;gap:14px;"><span style="font-family:'Playfair Display',serif;font-size:44px;font-weight:700;color:#E67E22;line-height:1;">40<span style="font-size:22px;color:#F39C12;">+</span></span><span style="font-size:11.5px;color:rgba(31,20,8,.65);line-height:1.5;letter-spacing:.08em;text-transform:uppercase;font-weight:500;">rituals, yagyas<br>&amp; kathas</span></div>
+      <div class="trust-divider" style="width:1px;height:44px;background:linear-gradient(180deg,transparent,rgba(230,126,34,.4),transparent);"></div>
+      <div style="display:flex;align-items:baseline;gap:14px;"><span style="font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:#E67E22;line-height:1;font-style:italic;">All</span><span style="font-size:11.5px;color:rgba(31,20,8,.65);line-height:1.5;letter-spacing:.08em;text-transform:uppercase;font-weight:500;">of Pune<br>covered</span></div>
+      <div class="trust-divider" style="width:1px;height:44px;background:linear-gradient(180deg,transparent,rgba(230,126,34,.4),transparent);"></div>
+      <div style="display:flex;align-items:center;gap:14px;"><span style="color:#F39C12;font-size:16px;letter-spacing:3px;">★★★★★</span><span style="font-size:11.5px;color:rgba(31,20,8,.65);line-height:1.5;letter-spacing:.08em;text-transform:uppercase;font-weight:500;"><b style="color:#1F1408;font-family:'Playfair Display',serif;font-size:15px;font-weight:700;">4.8</b> rating<br>500+ families</span></div>
     </div>
   </section>
 
@@ -116,132 +130,154 @@
   <section class="container" style="max-width:1240px;margin:0 auto;padding:120px 40px 96px;">
     <div class="section-eyebrow-row" style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:60px;">
       <div>
-        <div style="font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:#e67e22;font-weight:600;">— Services</div>
-        <h2 class="section-h2" style="font-family:'Playfair Display',serif;font-size:52px;font-weight:700;margin-top:16px;letter-spacing:-.015em;line-height:1.05;color:#1c1917;max-width:640px;">Ceremonies for<br><em style="font-style:italic;font-weight:400;color:#e67e22;">every occasion.</em></h2>
+        <div style="font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:#B8560A;font-weight:600;display:flex;align-items:center;gap:12px;"><span style="width:24px;height:1px;background:#E67E22;"></span>Services</div>
+        <h2 class="section-h2" style="font-family:'Playfair Display',serif;font-size:54px;font-weight:700;margin-top:18px;letter-spacing:-.015em;line-height:1.05;color:#1F1408;max-width:660px;">Ceremonies for<br><em style="font-style:italic;font-weight:500;color:#E67E22;">every occasion.</em></h2>
       </div>
-      <a href="/services" style="color:#e67e22;text-decoration:none;font-weight:500;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid #f4d03f;padding-bottom:4px;white-space:nowrap;">View all services →</a>
+      <a href="/services" style="color:#B8560A;text-decoration:none;font-weight:600;font-size:12px;letter-spacing:.22em;text-transform:uppercase;border-bottom:1.5px solid #F4D03F;padding-bottom:5px;white-space:nowrap;">View all services →</a>
     </div>
 
-    <div class="services-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
-      <a href="/services" class="service-card" style="text-decoration:none;color:inherit;border:1px solid rgba(212,163,68,.18);border-radius:4px;overflow:hidden;background:rgba(28,25,23,.02);display:flex;flex-direction:column;">
-        <div class="img-container" style="aspect-ratio:4/3;overflow:hidden;background:#f9e79f;position:relative;"><img src="./puja-images/54_shanti_dosha_nivaran.png" alt="Shanti puja ritual items" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.92);"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.7) 100%);"></div></div>
-        <div style="padding:26px;display:flex;flex-direction:column;gap:12px;flex:1;">
-          <div style="font-family:'Playfair Display',serif;font-size:11px;font-weight:500;color:#e67e22;letter-spacing:.24em;text-transform:uppercase;">Chapter I</div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#1c1917;line-height:1.2;">Shanti &amp; Dosha Nivaran</h3>
-          <p style="font-size:13.5px;line-height:1.7;color:rgba(28,25,23,.6);">Remedial rituals — Navgrah Shanti, Kaal Sarp Dosh, Pitru Dosh, Manglik Dosh &amp; more.</p>
-          <span style="font-size:11px;color:#e67e22;font-weight:500;letter-spacing:.2em;text-transform:uppercase;margin-top:auto;padding-top:8px;">6 rituals →</span>
+    <div class="services-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;">
+      <a href="/services" class="service-card" style="text-decoration:none;color:inherit;border:1px solid rgba(230,126,34,.2);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 40px -25px rgba(184,88,10,.2);">
+        <div class="img-container" style="aspect-ratio:4/3;overflow:hidden;background:#F9E79F;position:relative;"><img src="./puja-images/54_shanti_dosha_nivaran.png" alt="Shanti puja ritual items" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(31,20,8,.35) 100%);"></div>
+        </div>
+        <div style="padding:28px;display:flex;flex-direction:column;gap:12px;flex:1;">
+          <div style="font-family:'Playfair Display',serif;font-size:11px;font-weight:500;color:#B8560A;letter-spacing:.28em;text-transform:uppercase;font-style:italic;">Chapter I</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:23px;font-weight:600;color:#1F1408;line-height:1.2;">Shanti &amp; Dosha Nivaran</h3>
+          <p style="font-size:13.5px;line-height:1.75;color:rgba(31,20,8,.65);">Remedial rituals — Navgrah Shanti, Kaal Sarp Dosh, Pitru Dosh, Manglik Dosh &amp; more.</p>
+          <span style="font-size:11px;color:#E67E22;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-top:auto;padding-top:10px;">6 rituals →</span>
         </div>
       </a>
-      <a href="/services" class="service-card" style="text-decoration:none;color:inherit;border:1px solid rgba(212,163,68,.18);border-radius:4px;overflow:hidden;background:rgba(28,25,23,.02);display:flex;flex-direction:column;">
-        <div class="img-container" style="aspect-ratio:4/3;overflow:hidden;background:#f9e79f;position:relative;"><img src="./puja-images/55_home_office_ceremonies.png" alt="Office inauguration puja" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.92);"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.7) 100%);"></div></div>
-        <div style="padding:26px;display:flex;flex-direction:column;gap:12px;flex:1;">
-          <div style="font-family:'Playfair Display',serif;font-size:11px;font-weight:500;color:#e67e22;letter-spacing:.24em;text-transform:uppercase;">Chapter II</div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#1c1917;line-height:1.2;">Home &amp; Office Ceremonies</h3>
-          <p style="font-size:13.5px;line-height:1.7;color:rgba(28,25,23,.6);">Griha Pravesh, Vastu Shanti, Bhumi Puja, business inaugurations &amp; festive pujas.</p>
-          <span style="font-size:11px;color:#e67e22;font-weight:500;letter-spacing:.2em;text-transform:uppercase;margin-top:auto;padding-top:8px;">6 ceremonies →</span>
+      <a href="/services" class="service-card" style="text-decoration:none;color:inherit;border:1px solid rgba(230,126,34,.2);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 40px -25px rgba(184,88,10,.2);">
+        <div class="img-container" style="aspect-ratio:4/3;overflow:hidden;background:#F9E79F;position:relative;"><img src="./puja-images/55_home_office_ceremonies.png" alt="Office inauguration puja" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(31,20,8,.35) 100%);"></div>
+        </div>
+        <div style="padding:28px;display:flex;flex-direction:column;gap:12px;flex:1;">
+          <div style="font-family:'Playfair Display',serif;font-size:11px;font-weight:500;color:#B8560A;letter-spacing:.28em;text-transform:uppercase;font-style:italic;">Chapter II</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:23px;font-weight:600;color:#1F1408;line-height:1.2;">Home &amp; Office Ceremonies</h3>
+          <p style="font-size:13.5px;line-height:1.75;color:rgba(31,20,8,.65);">Griha Pravesh, Vastu Shanti, Bhumi Puja, business inaugurations &amp; festive pujas.</p>
+          <span style="font-size:11px;color:#E67E22;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-top:auto;padding-top:10px;">6 ceremonies →</span>
         </div>
       </a>
-      <a href="/services" class="service-card" style="text-decoration:none;color:inherit;border:1px solid rgba(212,163,68,.18);border-radius:4px;overflow:hidden;background:rgba(28,25,23,.02);display:flex;flex-direction:column;">
-        <div class="img-container" style="aspect-ratio:4/3;overflow:hidden;background:#f9e79f;position:relative;"><img src="./puja-images/56_major_yagyas_homams.png" alt="Havan fire for Yagya" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.92);"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.7) 100%);"></div></div>
-        <div style="padding:26px;display:flex;flex-direction:column;gap:12px;flex:1;">
-          <div style="font-family:'Playfair Display',serif;font-size:11px;font-weight:500;color:#e67e22;letter-spacing:.24em;text-transform:uppercase;">Chapter III</div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#1c1917;line-height:1.2;">Major Yagyas &amp; Homams</h3>
-          <p style="font-size:13.5px;line-height:1.7;color:rgba(28,25,23,.6);">Maha Mrityunjaya, Navchandi, Ganapati Homam, Rudrabhishek &amp; powerful havans.</p>
-          <span style="font-size:11px;color:#e67e22;font-weight:500;letter-spacing:.2em;text-transform:uppercase;margin-top:auto;padding-top:8px;">7 yagyas →</span>
+      <a href="/services" class="service-card" style="text-decoration:none;color:inherit;border:1px solid rgba(230,126,34,.2);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 40px -25px rgba(184,88,10,.2);">
+        <div class="img-container" style="aspect-ratio:4/3;overflow:hidden;background:#F9E79F;position:relative;"><img src="./puja-images/56_major_yagyas_homams.png" alt="Havan fire for Yagya" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(31,20,8,.35) 100%);"></div>
+        </div>
+        <div style="padding:28px;display:flex;flex-direction:column;gap:12px;flex:1;">
+          <div style="font-family:'Playfair Display',serif;font-size:11px;font-weight:500;color:#B8560A;letter-spacing:.28em;text-transform:uppercase;font-style:italic;">Chapter III</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:23px;font-weight:600;color:#1F1408;line-height:1.2;">Major Yagyas &amp; Homams</h3>
+          <p style="font-size:13.5px;line-height:1.75;color:rgba(31,20,8,.65);">Maha Mrityunjaya, Navchandi, Ganapati Homam, Rudrabhishek &amp; powerful havans.</p>
+          <span style="font-size:11px;color:#E67E22;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-top:auto;padding-top:10px;">7 yagyas →</span>
         </div>
       </a>
-      <a href="/services" class="service-card" style="text-decoration:none;color:inherit;border:1px solid rgba(212,163,68,.18);border-radius:4px;overflow:hidden;background:rgba(28,25,23,.02);display:flex;flex-direction:column;">
-        <div class="img-container" style="aspect-ratio:4/3;overflow:hidden;background:#f9e79f;position:relative;"><img src="./puja-images/57_kathas_recitations.png" alt="Sacred katha recitation" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.92);"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.7) 100%);"></div></div>
-        <div style="padding:26px;display:flex;flex-direction:column;gap:12px;flex:1;">
-          <div style="font-family:'Playfair Display',serif;font-size:11px;font-weight:500;color:#e67e22;letter-spacing:.24em;text-transform:uppercase;">Chapter IV</div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#1c1917;line-height:1.2;">Kathas &amp; Recitations</h3>
-          <p style="font-size:13.5px;line-height:1.7;color:rgba(28,25,23,.6);">Satyanarayan Katha, Bhagwat Saptaha, Ram Katha, Shiv Puran &amp; Gita Path.</p>
-          <span style="font-size:11px;color:#e67e22;font-weight:500;letter-spacing:.2em;text-transform:uppercase;margin-top:auto;padding-top:8px;">6 kathas →</span>
+      <a href="/services" class="service-card" style="text-decoration:none;color:inherit;border:1px solid rgba(230,126,34,.2);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 40px -25px rgba(184,88,10,.2);">
+        <div class="img-container" style="aspect-ratio:4/3;overflow:hidden;background:#F9E79F;position:relative;"><img src="./puja-images/57_kathas_recitations.png" alt="Sacred katha recitation" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(31,20,8,.35) 100%);"></div>
+        </div>
+        <div style="padding:28px;display:flex;flex-direction:column;gap:12px;flex:1;">
+          <div style="font-family:'Playfair Display',serif;font-size:11px;font-weight:500;color:#B8560A;letter-spacing:.28em;text-transform:uppercase;font-style:italic;">Chapter IV</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:23px;font-weight:600;color:#1F1408;line-height:1.2;">Kathas &amp; Recitations</h3>
+          <p style="font-size:13.5px;line-height:1.75;color:rgba(31,20,8,.65);">Satyanarayan Katha, Bhagwat Saptaha, Ram Katha, Shiv Puran &amp; Gita Path.</p>
+          <span style="font-size:11px;color:#E67E22;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-top:auto;padding-top:10px;">6 kathas →</span>
         </div>
       </a>
-      <a href="/services" class="service-card" style="text-decoration:none;color:inherit;border:1px solid rgba(212,163,68,.18);border-radius:4px;overflow:hidden;background:rgba(28,25,23,.02);display:flex;flex-direction:column;">
-        <div class="img-container" style="aspect-ratio:4/3;overflow:hidden;background:#f9e79f;position:relative;"><img src="./puja-images/58_sanskar_ancestral_rites.png" alt="Traditional Vivah Sanskar ceremony" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.92);"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.7) 100%);"></div></div>
-        <div style="padding:26px;display:flex;flex-direction:column;gap:12px;flex:1;">
-          <div style="font-family:'Playfair Display',serif;font-size:11px;font-weight:500;color:#e67e22;letter-spacing:.24em;text-transform:uppercase;">Chapter V</div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#1c1917;line-height:1.2;">Sanskar &amp; Ancestral Rites</h3>
-          <p style="font-size:13.5px;line-height:1.7;color:rgba(28,25,23,.6);">Namkaran, Mundan, Janeu, Vivah Sanskar, Shradh, Pind Daan &amp; Tarpan.</p>
-          <span style="font-size:11px;color:#e67e22;font-weight:500;letter-spacing:.2em;text-transform:uppercase;margin-top:auto;padding-top:8px;">All sanskars →</span>
+      <a href="/services" class="service-card" style="text-decoration:none;color:inherit;border:1px solid rgba(230,126,34,.2);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 40px -25px rgba(184,88,10,.2);">
+        <div class="img-container" style="aspect-ratio:4/3;overflow:hidden;background:#F9E79F;position:relative;"><img src="./puja-images/58_sanskar_ancestral_rites.png" alt="Traditional Vivah Sanskar ceremony" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(31,20,8,.35) 100%);"></div>
+        </div>
+        <div style="padding:28px;display:flex;flex-direction:column;gap:12px;flex:1;">
+          <div style="font-family:'Playfair Display',serif;font-size:11px;font-weight:500;color:#B8560A;letter-spacing:.28em;text-transform:uppercase;font-style:italic;">Chapter V</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:23px;font-weight:600;color:#1F1408;line-height:1.2;">Sanskar &amp; Ancestral Rites</h3>
+          <p style="font-size:13.5px;line-height:1.75;color:rgba(31,20,8,.65);">Namkaran, Mundan, Janeu, Vivah Sanskar, Shradh, Pind Daan &amp; Tarpan.</p>
+          <span style="font-size:11px;color:#E67E22;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-top:auto;padding-top:10px;">All sanskars →</span>
         </div>
       </a>
-      <div class="service-card" style="border:1px dashed rgba(212,163,68,.35);border-radius:4px;padding:32px;background:rgba(212,163,68,.04);display:flex;flex-direction:column;gap:16px;justify-content:center;">
-        <span style="color:#e67e22;font-size:20px;">✦</span>
-        <div style="font-family:'Playfair Display',serif;font-size:11px;font-weight:500;color:#e67e22;letter-spacing:.24em;text-transform:uppercase;">A note on dakshina</div>
-        <p style="font-size:13.5px;line-height:1.75;color:rgba(28,25,23,.72);"><b style="color:#e67e22;font-weight:600;">Dakshina is discussed offline</b> based on your specific ritual requirements — not listed on the website.</p>
+      <div class="service-card" style="border:1.5px dashed rgba(230,126,34,.4);border-radius:6px;padding:34px;background:linear-gradient(135deg,#FDF3D9 0%,#F9E79F 100%);display:flex;flex-direction:column;gap:16px;justify-content:center;box-shadow:none;">
+        <span style="font-family:'Noto Serif Devanagari',serif;color:#E67E22;font-size:34px;line-height:1;">ॐ</span>
+        <div style="font-family:'Playfair Display',serif;font-size:11px;font-weight:500;color:#B8560A;letter-spacing:.28em;text-transform:uppercase;font-style:italic;">A note on dakshina</div>
+        <p style="font-size:13.5px;line-height:1.75;color:rgba(31,20,8,.78);"><b style="color:#B8560A;font-weight:600;">Dakshina is discussed offline</b> based on your specific ritual requirements — not listed on the website.</p>
       </div>
     </div>
   </section>
 
-  <!-- ============ BHAGWAT KATHA — CINEMATIC FEATURE ============ -->
-  <section style="background:linear-gradient(135deg,#f9e79f 0%,#e67e22 60%,#e67e22 100%);color:#1c1917;position:relative;overflow:hidden;">
-    <!-- ornamental sacred geometry -->
-    <svg width="520" height="520" viewBox="0 0 520 520" style="position:absolute;top:-140px;right:-120px;opacity:.14;pointer-events:none;"><g fill="none" stroke="#f4d03f" stroke-width="1.2"><circle cx="260" cy="260" r="90"/><circle cx="260" cy="260" r="140" stroke-dasharray="3 8"/><circle cx="260" cy="260" r="190"/><circle cx="260" cy="260" r="240"/></g></svg>
-    <svg width="300" height="300" viewBox="0 0 300 300" style="position:absolute;bottom:-80px;left:-60px;opacity:.1;pointer-events:none;"><g fill="none" stroke="#f4d03f" stroke-width="1"><circle cx="150" cy="150" r="50"/><circle cx="150" cy="150" r="90" stroke-dasharray="2 6"/><circle cx="150" cy="150" r="130"/></g></svg>
+  <!-- ============ BHAGWAT KATHA — SUNRISE FEATURE ============ -->
+  <section style="background:linear-gradient(135deg,#F9E79F 0%,#F4D03F 25%,#F39C12 60%,#E67E22 100%);color:#1F1408;position:relative;overflow:hidden;">
+    <!-- sacred geometry -->
+    <svg width="620" height="620" viewBox="0 0 620 620" style="position:absolute;top:-180px;right:-160px;opacity:.22;pointer-events:none;"><g fill="none" stroke="#FFF8E7" stroke-width="1.2"><circle cx="310" cy="310" r="90"/><circle cx="310" cy="310" r="150" stroke-dasharray="3 8"/><circle cx="310" cy="310" r="210"/><circle cx="310" cy="310" r="270"/></g></svg>
+    <svg width="360" height="360" viewBox="0 0 360 360" style="position:absolute;bottom:-100px;left:-80px;opacity:.16;pointer-events:none;"><g fill="none" stroke="#FFF8E7" stroke-width="1"><circle cx="180" cy="180" r="60"/><circle cx="180" cy="180" r="105" stroke-dasharray="2 6"/><circle cx="180" cy="180" r="150"/></g></svg>
 
-    <div class="container katha-grid" style="max-width:1240px;margin:0 auto;padding:120px 40px;position:relative;display:grid;grid-template-columns:1.3fr 1fr;gap:72px;align-items:center;">
+    <div class="container katha-grid" style="max-width:1240px;margin:0 auto;padding:130px 40px;position:relative;display:grid;grid-template-columns:1.3fr 1fr;gap:76px;align-items:center;">
       <div>
-        <div style="font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:#e67e22;font-weight:600;">— Shrimad Bhagwat Saptaha Katha</div>
-        <h2 class="section-h2" style="font-family:'Playfair Display',serif;font-size:56px;font-weight:700;margin-top:20px;line-height:1.05;letter-spacing:-.015em;">Seven sacred days —<br><em style="font-style:italic;font-weight:400;color:#e67e22;">the most powerful recitation</em><br>in the Vedic tradition.</h2>
-        <p style="font-size:16px;line-height:1.85;color:rgba(28,25,23,.78);margin-top:26px;max-width:580px;font-weight:300;">Shrimad Bhagwat Saptaha is the complete seven-day recitation of the 18,000 sacred verses of the Bhagwat Puran. The shastras declare that in Kaliyug, hearing the Bhagwat with sincerity destroys all sins, releases ancestral debts, and opens the path to moksha.</p>
-        <p style="font-size:16px;line-height:1.85;color:rgba(28,25,23,.68);margin-top:14px;max-width:580px;font-weight:300;font-style:italic;">Each day opens with Kalash Sthapana and puja; the seventh day closes with a Purnahuti havan — conducted entirely by Pandit Ji with full Vedic procedure.</p>
-        <a href="/contact" class="cta-primary" style="display:inline-block;margin-top:36px;background:#e67e22;color:#1c1917;text-decoration:none;padding:16px 32px;border-radius:2px;font-weight:600;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;">Enquire about a Katha</a>
+        <div style="font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:#B8560A;font-weight:600;display:flex;align-items:center;gap:12px;"><span style="width:24px;height:1px;background:#B8560A;"></span>Shrimad Bhagwat Saptaha Katha</div>
+        <h2 class="section-h2" style="font-family:'Playfair Display',serif;font-size:58px;font-weight:700;margin-top:22px;line-height:1.05;letter-spacing:-.015em;color:#1F1408;">Seven sacred days —<br><em style="font-style:italic;font-weight:500;color:#B8560A;">the most powerful recitation</em><br>in the Vedic tradition.</h2>
+        <p style="font-size:16.5px;line-height:1.85;color:rgba(31,20,8,.82);margin-top:28px;max-width:580px;font-weight:400;">Shrimad Bhagwat Saptaha is the complete seven-day recitation of the 18,000 sacred verses of the Bhagwat Puran. The shastras declare that in Kaliyug, hearing the Bhagwat with sincerity destroys all sins, releases ancestral debts, and opens the path to moksha.</p>
+        <p style="font-size:16.5px;line-height:1.85;color:rgba(31,20,8,.72);margin-top:16px;max-width:580px;font-weight:400;font-style:italic;">Each day opens with Kalash Sthapana and puja; the seventh day closes with a Purnahuti havan — conducted entirely by Pandit Ji with full Vedic procedure.</p>
+        <a href="/contact" class="cta-cream" style="display:inline-block;margin-top:38px;background:#FFF8E7;color:#B8560A;text-decoration:none;padding:17px 34px;border-radius:2px;font-weight:600;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;">Enquire about a Katha</a>
       </div>
-      <div style="aspect-ratio:4/5;border-radius:4px;border:1px solid rgba(212,163,68,.3);overflow:hidden;background:#f9e79f;position:relative;box-shadow:0 40px 80px -20px rgba(0,0,0,.6);">
+      <div style="aspect-ratio:4/5;border-radius:6px;border:2px solid rgba(255,248,231,.5);overflow:hidden;background:#F9E79F;position:relative;box-shadow:0 50px 90px -25px rgba(31,20,8,.5),0 20px 40px -15px rgba(184,88,10,.35);">
         <img src="./assets/radha-krishna.png" alt="Radha Krishna during Bhagwat Katha" style="width:100%;height:100%;object-fit:cover;display:block;">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.4) 100%);"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(31,20,8,.4) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;color:#FFF8E7;font-family:'Playfair Display',serif;font-style:italic;font-size:14px;letter-spacing:.02em;">— Shri Radha-Krishna, presiding deities of the Bhagwat</div>
       </div>
     </div>
   </section>
 
   <!-- ============ ABOUT TEASER ============ -->
-  <section class="container about-grid" style="max-width:1240px;margin:0 auto;padding:120px 40px;display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:center;">
-    <div style="position:relative;aspect-ratio:4/5;border-radius:4px;border:1px solid rgba(212,163,68,.2);overflow:hidden;background:#f9e79f;box-shadow:0 40px 80px -30px rgba(212,163,68,.15);">
-      <img src="./assets/umesh-ji-seated.jpeg" alt="Pandit Umesh Mishra" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;filter:brightness(.95);">
-      <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.5) 100%);"></div>
-    </div>
-    <div>
-      <div style="font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:#e67e22;font-weight:600;">— About Pandit Ji</div>
-      <h2 class="section-h2" style="font-family:'Playfair Display',serif;font-size:52px;font-weight:700;margin-top:18px;line-height:1.05;letter-spacing:-.015em;color:#1c1917;">A lifetime devoted to<br><em style="font-style:italic;font-weight:400;color:#e67e22;">the Vedic tradition.</em></h2>
-      <p style="font-size:16.5px;line-height:1.85;color:rgba(28,25,23,.78);margin-top:26px;font-weight:300;">Pandit Umesh Mishra is a highly-regarded North Indian Vedic priest based in Pune, known for the authenticity and discipline he brings to every ceremony. Each ritual is performed personally, following correct procedure, mantra and muhurat.</p>
-      <div style="display:flex;flex-direction:column;gap:14px;margin-top:32px;">
-        <div style="display:flex;align-items:center;gap:14px;"><span style="color:#e67e22;font-size:14px;">✦</span><span style="font-size:14.5px;color:rgba(28,25,23,.85);letter-spacing:.02em;">Scripturally accurate procedure</span></div>
-        <div style="display:flex;align-items:center;gap:14px;"><span style="color:#e67e22;font-size:14px;">✦</span><span style="font-size:14.5px;color:rgba(28,25,23,.85);letter-spacing:.02em;">Performed personally, never outsourced</span></div>
-        <div style="display:flex;align-items:center;gap:14px;"><span style="color:#e67e22;font-size:14px;">✦</span><span style="font-size:14.5px;color:rgba(28,25,23,.85);letter-spacing:.02em;">Educated in Vedic Sanskrit &amp; Jyotish Shastra</span></div>
+  <section style="background:#FFFBF0;">
+    <div class="container about-grid" style="max-width:1240px;margin:0 auto;padding:130px 40px;display:grid;grid-template-columns:.9fr 1.1fr;gap:76px;align-items:center;">
+      <div style="position:relative;aspect-ratio:4/5;border-radius:6px;overflow:hidden;background:#F9E79F;box-shadow:0 40px 80px -30px rgba(184,88,10,.3),0 15px 30px -15px rgba(184,88,10,.15);">
+        <div style="position:absolute;inset:-2px;border:2px solid #F4D03F;border-radius:6px;pointer-events:none;z-index:2;opacity:.4;"></div>
+        <img src="./assets/umesh-ji-seated.jpeg" alt="Pandit Umesh Mishra" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(31,20,8,.4) 100%);"></div>
       </div>
-      <a href="/about" style="display:inline-block;margin-top:36px;color:#e67e22;text-decoration:none;font-weight:500;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid #f4d03f;padding-bottom:4px;">Read his full story →</a>
+      <div>
+        <div style="font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:#B8560A;font-weight:600;display:flex;align-items:center;gap:12px;"><span style="width:24px;height:1px;background:#E67E22;"></span>About Pandit Ji</div>
+        <h2 class="section-h2" style="font-family:'Playfair Display',serif;font-size:54px;font-weight:700;margin-top:18px;line-height:1.05;letter-spacing:-.015em;color:#1F1408;">A lifetime devoted to<br><em style="font-style:italic;font-weight:500;color:#E67E22;">the Vedic tradition.</em></h2>
+        <p style="font-size:16.5px;line-height:1.85;color:rgba(31,20,8,.78);margin-top:28px;font-weight:400;">Pandit Umesh Mishra is a highly-regarded North Indian Vedic priest based in Pune, known for the authenticity and discipline he brings to every ceremony. Each ritual is performed personally, following correct procedure, mantra and muhurat.</p>
+        <div style="display:flex;flex-direction:column;gap:16px;margin-top:34px;">
+          <div style="display:flex;align-items:center;gap:14px;"><span style="color:#E67E22;font-size:15px;">✦</span><span style="font-size:14.5px;color:rgba(31,20,8,.85);letter-spacing:.02em;">Scripturally accurate procedure</span></div>
+          <div style="display:flex;align-items:center;gap:14px;"><span style="color:#E67E22;font-size:15px;">✦</span><span style="font-size:14.5px;color:rgba(31,20,8,.85);letter-spacing:.02em;">Performed personally, never outsourced</span></div>
+          <div style="display:flex;align-items:center;gap:14px;"><span style="color:#E67E22;font-size:15px;">✦</span><span style="font-size:14.5px;color:rgba(31,20,8,.85);letter-spacing:.02em;">Educated in Vedic Sanskrit &amp; Jyotish Shastra</span></div>
+        </div>
+        <a href="/about" style="display:inline-block;margin-top:38px;color:#B8560A;text-decoration:none;font-weight:600;font-size:12px;letter-spacing:.22em;text-transform:uppercase;border-bottom:1.5px solid #F4D03F;padding-bottom:5px;">Read his full story →</a>
+      </div>
     </div>
   </section>
 
+  <!-- lotus divider -->
+  <div style="max-width:1240px;margin:0 auto;padding:0 40px;">
+    <div class="lotus-div" style="padding:8px 0 40px;">
+      <span style="font-family:'Noto Serif Devanagari',serif;font-size:22px;letter-spacing:0;color:#E67E22;">ॐ</span>
+    </div>
+  </div>
+
   <!-- ============ SEASONAL BAND ============ -->
-  <section style="background:#ffffff;border-top:1px solid rgba(212,163,68,.15);border-bottom:1px solid rgba(212,163,68,.15);">
-    <div class="container" style="max-width:1240px;margin:0 auto;padding:88px 40px;">
-      <div style="text-align:center;max-width:680px;margin:0 auto 56px;">
-        <div style="font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:#e67e22;font-weight:600;">— Plan Ahead</div>
-        <h2 class="section-h2" style="font-family:'Playfair Display',serif;font-size:46px;font-weight:700;margin-top:16px;color:#1c1917;line-height:1.1;">Book early for the<br><em style="font-style:italic;font-weight:400;color:#e67e22;">festive season.</em></h2>
-        <p style="font-size:15.5px;color:rgba(28,25,23,.65);margin-top:18px;line-height:1.7;font-weight:300;">Dates fill quickly during peak periods. Reserve your muhurat in advance.</p>
+  <section style="background:#FDF3D9;border-top:1px solid rgba(230,126,34,.18);border-bottom:1px solid rgba(230,126,34,.18);">
+    <div class="container" style="max-width:1240px;margin:0 auto;padding:96px 40px;">
+      <div style="text-align:center;max-width:680px;margin:0 auto 60px;">
+        <div style="font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:#B8560A;font-weight:600;display:inline-flex;align-items:center;gap:12px;"><span style="width:24px;height:1px;background:#E67E22;"></span>Plan Ahead<span style="width:24px;height:1px;background:#E67E22;"></span></div>
+        <h2 class="section-h2" style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;margin-top:18px;color:#1F1408;line-height:1.1;">Book early for the<br><em style="font-style:italic;font-weight:500;color:#E67E22;">festive season.</em></h2>
+        <p style="font-size:15.5px;color:rgba(31,20,8,.7);margin-top:20px;line-height:1.75;font-weight:400;">Dates fill quickly during peak periods. Reserve your muhurat in advance.</p>
       </div>
       <div class="seasonal-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;">
-        <div style="border:1px solid rgba(212,163,68,.2);border-radius:4px;padding:32px 20px;text-align:center;background:rgba(28,25,23,.02);"><div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:#e67e22;letter-spacing:.01em;">Shrawan</div><div style="font-size:12px;color:rgba(28,25,23,.6);margin-top:10px;letter-spacing:.05em;">Rudrabhishek &amp; Shiv puja</div></div>
-        <div style="border:1px solid rgba(212,163,68,.2);border-radius:4px;padding:32px 20px;text-align:center;background:rgba(28,25,23,.02);"><div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:#e67e22;letter-spacing:.01em;">Navratri</div><div style="font-size:12px;color:rgba(28,25,23,.6);margin-top:10px;letter-spacing:.05em;">Navchandi &amp; Durga havan</div></div>
-        <div style="border:1px solid rgba(212,163,68,.2);border-radius:4px;padding:32px 20px;text-align:center;background:rgba(28,25,23,.02);"><div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:#e67e22;letter-spacing:.01em;">Ganpati</div><div style="font-size:12px;color:rgba(28,25,23,.6);margin-top:10px;letter-spacing:.05em;">Sthapana &amp; Ganesh puja</div></div>
-        <div style="border:1px solid rgba(212,163,68,.2);border-radius:4px;padding:32px 20px;text-align:center;background:rgba(28,25,23,.02);"><div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:#e67e22;letter-spacing:.01em;">Diwali</div><div style="font-size:12px;color:rgba(28,25,23,.6);margin-top:10px;letter-spacing:.05em;">Lakshmi-Kuber puja</div></div>
+        <div class="seasonal-tile" style="border:1px solid rgba(230,126,34,.25);border-radius:4px;padding:36px 22px;text-align:center;background:#FFFBF0;"><div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:#E67E22;letter-spacing:.01em;">Shrawan</div><div style="font-size:12px;color:rgba(31,20,8,.65);margin-top:12px;letter-spacing:.06em;font-weight:500;">Rudrabhishek &amp; Shiv puja</div></div>
+        <div class="seasonal-tile" style="border:1px solid rgba(230,126,34,.25);border-radius:4px;padding:36px 22px;text-align:center;background:#FFFBF0;"><div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:#E67E22;letter-spacing:.01em;">Navratri</div><div style="font-size:12px;color:rgba(31,20,8,.65);margin-top:12px;letter-spacing:.06em;font-weight:500;">Navchandi &amp; Durga havan</div></div>
+        <div class="seasonal-tile" style="border:1px solid rgba(230,126,34,.25);border-radius:4px;padding:36px 22px;text-align:center;background:#FFFBF0;"><div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:#E67E22;letter-spacing:.01em;">Ganpati</div><div style="font-size:12px;color:rgba(31,20,8,.65);margin-top:12px;letter-spacing:.06em;font-weight:500;">Sthapana &amp; Ganesh puja</div></div>
+        <div class="seasonal-tile" style="border:1px solid rgba(230,126,34,.25);border-radius:4px;padding:36px 22px;text-align:center;background:#FFFBF0;"><div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:#E67E22;letter-spacing:.01em;">Diwali</div><div style="font-size:12px;color:rgba(31,20,8,.65);margin-top:12px;letter-spacing:.06em;font-weight:500;">Lakshmi-Kuber puja</div></div>
       </div>
     </div>
   </section>
 
   <!-- ============ FINAL CTA ============ -->
-  <section class="container" style="max-width:1240px;margin:0 auto;padding:0 40px 120px;">
-    <div class="cta-box" style="background:linear-gradient(135deg,#f9e79f 0%,#e67e22 100%);border:1px solid rgba(212,163,68,.3);border-radius:4px;padding:88px 56px;text-align:center;position:relative;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.5);">
-      <svg width="260" height="260" viewBox="0 0 260 260" style="position:absolute;bottom:-80px;left:-60px;opacity:.18;pointer-events:none;"><g fill="none" stroke="#f4d03f" stroke-width="1"><circle cx="130" cy="130" r="50"/><circle cx="130" cy="130" r="82" stroke-dasharray="2 6"/><circle cx="130" cy="130" r="114"/></g></svg>
-      <svg width="200" height="200" viewBox="0 0 200 200" style="position:absolute;top:-60px;right:-40px;opacity:.16;pointer-events:none;"><g fill="none" stroke="#f4d03f" stroke-width="1"><circle cx="100" cy="100" r="40"/><circle cx="100" cy="100" r="64" stroke-dasharray="2 6"/><circle cx="100" cy="100" r="88"/></g></svg>
-      <div style="font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:#e67e22;font-weight:600;position:relative;">— Begin</div>
-      <h2 class="section-h2" style="font-family:'Playfair Display',serif;font-size:56px;font-weight:700;position:relative;line-height:1.05;color:#1c1917;margin-top:16px;letter-spacing:-.015em;">Ready to begin<br><em style="font-style:italic;font-weight:400;color:#e67e22;">your ceremony?</em></h2>
-      <p style="font-size:16.5px;color:rgba(28,25,23,.75);margin-top:20px;position:relative;font-weight:300;line-height:1.7;max-width:520px;margin-left:auto;margin-right:auto;">Tell Pandit Ji about your ritual and preferred dates — he'll handle the rest.</p>
-      <a href="/contact" class="cta-primary" style="display:inline-block;margin-top:38px;background:#e67e22;color:#1c1917;text-decoration:none;padding:17px 38px;border-radius:2px;font-weight:600;font-size:13px;letter-spacing:.2em;text-transform:uppercase;position:relative;">Book a Puja</a>
+  <section class="container" style="max-width:1240px;margin:0 auto;padding:120px 40px;">
+    <div class="cta-box" style="background:linear-gradient(135deg,#F9E79F 0%,#F4D03F 30%,#F39C12 65%,#E67E22 100%);border:1px solid rgba(255,248,231,.4);border-radius:8px;padding:96px 56px;text-align:center;position:relative;overflow:hidden;box-shadow:0 50px 100px -30px rgba(184,88,10,.5),0 20px 40px -20px rgba(184,88,10,.25);">
+      <svg width="300" height="300" viewBox="0 0 300 300" style="position:absolute;bottom:-80px;left:-60px;opacity:.22;pointer-events:none;"><g fill="none" stroke="#FFF8E7" stroke-width="1.2"><circle cx="150" cy="150" r="60"/><circle cx="150" cy="150" r="95" stroke-dasharray="2 6"/><circle cx="150" cy="150" r="130"/></g></svg>
+      <svg width="220" height="220" viewBox="0 0 220 220" style="position:absolute;top:-60px;right:-40px;opacity:.22;pointer-events:none;"><g fill="none" stroke="#FFF8E7" stroke-width="1"><circle cx="110" cy="110" r="45"/><circle cx="110" cy="110" r="72" stroke-dasharray="2 6"/><circle cx="110" cy="110" r="99"/></g></svg>
+      <div style="font-family:'Noto Serif Devanagari',serif;font-size:40px;color:rgba(255,248,231,.7);line-height:1;margin-bottom:8px;position:relative;">ॐ</div>
+      <div style="font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:#B8560A;font-weight:600;position:relative;">— Begin —</div>
+      <h2 class="section-h2" style="font-family:'Playfair Display',serif;font-size:58px;font-weight:700;position:relative;line-height:1.05;color:#1F1408;margin-top:18px;letter-spacing:-.015em;">Ready to begin<br><em style="font-style:italic;font-weight:500;color:#B8560A;">your ceremony?</em></h2>
+      <p style="font-size:16.5px;color:rgba(31,20,8,.78);margin-top:22px;position:relative;font-weight:400;line-height:1.75;max-width:540px;margin-left:auto;margin-right:auto;">Tell Pandit Ji about your ritual and preferred dates — he'll personally handle the rest.</p>
+      <a href="/contact" class="cta-cream" style="display:inline-block;margin-top:40px;background:#FFF8E7;color:#B8560A;text-decoration:none;padding:18px 40px;border-radius:2px;font-weight:600;font-size:13px;letter-spacing:.22em;text-transform:uppercase;position:relative;">Book a Puja</a>
     </div>
   </section>
 
