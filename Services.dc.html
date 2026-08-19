@@ -83,6 +83,18 @@
     .puja-card .name{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;line-height:1.2;color:#1F1408;margin-top:6px;letter-spacing:-.005em;}
     .puja-card .tagline{font-size:13.5px;line-height:1.7;color:rgba(31,20,8,.6);margin-top:10px;font-weight:300;}
 
+    /* "similar pujas" extra card */
+    .puja-more{border:1.5px dashed rgba(230,126,34,.5);background:linear-gradient(135deg,#FDF3D9 0%,#F9E79F 100%);}
+    .puja-more:hover{border-color:rgba(230,126,34,.85);background:linear-gradient(135deg,#FFF8E7 0%,#F9E79F 100%);}
+    .puja-more .img-wrap{background:#FDF3D9;}
+    .puja-more .img-wrap::after{background:none;}
+    .img-more{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:radial-gradient(circle at 50% 28%,rgba(230,126,34,.16),transparent 62%);}
+    .img-more .om{font-family:'Noto Sans Devanagari',serif;font-size:72px;color:#e67e22;font-weight:700;line-height:1;transition:transform .6s cubic-bezier(.4,0,.2,1);}
+    .puja-more:hover .img-more .om{transform:scale(1.12) rotate(-3deg);}
+    .more-eyebrow{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#b8560a;font-weight:600;}
+    .puja-more .hindi{color:#b8560a;}
+    .more-link{margin-top:8px;color:#e67e22;font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;}
+
     /* placeholder image */
     .img-placeholder{
       width:100%;height:100%;display:flex;align-items:center;justify-content:center;
@@ -259,21 +271,34 @@
 
     <div class="puja-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;">
       <sc-for list="{{ items }}" as="it" hint-placeholder-count="6">
-        <div class="puja-card" onClick="{{ it.onClick }}" style="animation-delay:{{ it.delay }};">
+        <div class="puja-card {{ it.cardCls }}" onClick="{{ it.onClick }}" style="animation-delay:{{ it.delay }};">
           <div class="img-wrap">
-            <sc-if value="{{ it.hasImage }}" hint-placeholder-val="">
-              <img src="{{ it.imgSrc }}" alt="{{ it.name }}" loading="lazy">
+            <sc-if value="{{ it.isMore }}" hint-placeholder-val="">
+              <div class="img-more"><span class="om">ॐ</span><span class="more-eyebrow">Similar rituals</span></div>
             </sc-if>
-            <sc-if value="{{ it.noImage }}" hint-placeholder-val="">
-              <div class="img-placeholder"><span class="om">ॐ</span></div>
+            <sc-if value="{{ it.isRegular }}" hint-placeholder-val="">
+              <sc-if value="{{ it.hasImage }}" hint-placeholder-val="">
+                <img src="{{ it.imgSrc }}" alt="{{ it.name }}" loading="lazy">
+              </sc-if>
+              <sc-if value="{{ it.noImage }}" hint-placeholder-val="">
+                <div class="img-placeholder"><span class="om">ॐ</span></div>
+              </sc-if>
+              <span class="badge">{{ it.num }}</span>
+              <span class="cta">View details →</span>
             </sc-if>
-            <span class="badge">{{ it.num }}</span>
-            <span class="cta">View details →</span>
           </div>
           <div class="body">
-            <div class="hindi">{{ it.hindi }}</div>
-            <div class="name">{{ it.name }}</div>
-            <div class="tagline">{{ it.tagline }}</div>
+            <sc-if value="{{ it.isMore }}" hint-placeholder-val="">
+              <div class="hindi">Enquire</div>
+              <div class="name">{{ it.name }}</div>
+              <div class="tagline">{{ it.tagline }}</div>
+              <div class="more-link">See all rituals →</div>
+            </sc-if>
+            <sc-if value="{{ it.isRegular }}" hint-placeholder-val="">
+              <div class="hindi">{{ it.hindi }}</div>
+              <div class="name">{{ it.name }}</div>
+              <div class="tagline">{{ it.tagline }}</div>
+            </sc-if>
           </div>
         </div>
       </sc-for>
@@ -682,12 +707,23 @@ class Component extends DCLogic {
     const items = cur.items.map((it, i) => ({
       ...it,
       num: String(i + 1).padStart(2, '0'),
+      isRegular: true,
+      cardCls: '',
       hasImage: !!it.image,
       noImage: !it.image,
       imgSrc: it.image ? `./puja-images/${it.image}` : '',
       delay: `${Math.min(i * 55, 600)}ms`,
       onClick: () => this.setState({ openPuja: it }),
     }));
+    items.push({
+      isMore: true,
+      isRegular: false,
+      cardCls: 'puja-more',
+      name: 'Similar pujas',
+      tagline: 'Most rituals have variations for families, budgets and traditions. If the puja you need isn\'t listed, Pandit Ji performs it personally — enquire and he\'ll guide you.',
+      delay: `${Math.min(cur.items.length * 55, 600)}ms`,
+      onClick: () => window.location.href = '/contact',
+    });
 
     const op = this.state.openPuja;
     const modalOpen = !!op;
